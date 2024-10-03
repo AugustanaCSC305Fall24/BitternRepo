@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="370.0" prefWidth="455.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
+<VBox alignment="CENTER" prefHeight="370.0" prefWidth="455.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.WelcomeController">
    <children>
       <Label text="HAM Radio Simulator">
          <font>
@@ -15,9 +15,9 @@
          </font></Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <Button fx:id="trainingButton" text="Training" onAction="#switchToTraining" />
-            <Button mnemonicParsing="false" text="Scenarios" />
-            <Button mnemonicParsing="false" text="Multiplayer" />
+            <Button fx:id="trainingButton" onAction="#switchToTraining" text="Training" />
+            <Button fx:id="scenarioButton" onAction="#switchToScenario" text="Scenarios" />
+            <Button fx:id="serverButton" onAction="#switchToServer" text="Multiplayer" />
          </children>
       </HBox>
    </children>
