@@ -31,7 +31,6 @@ public class RadioApp extends Application {
         return fxmlLoader.load();
     }
 
-
     public static void main(String[] args) {
         launch();
     }
