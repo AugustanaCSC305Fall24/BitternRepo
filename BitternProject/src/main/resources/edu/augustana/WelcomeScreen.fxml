@@ -17,9 +17,10 @@
          <children>
             <Button fx:id="trainingButton" onAction="#switchToTraining" text="Training" />
             <Button fx:id="scenarioButton" onAction="#switchToScenario" text="Scenarios" />
-            <Button fx:id="serverButton" onAction="#switchToServer" text="Multiplayer" />
+            <Button fx:id="serverButton" onAction="#switchToServer" text="Server" />
          </children>
       </HBox>
+      <Button fx:id="howToButton" onAction="#switchToHowTo" text="How To" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
