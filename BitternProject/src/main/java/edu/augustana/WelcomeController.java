@@ -19,7 +19,7 @@ public class WelcomeController {
     @FXML private void switchToServer() throws IOException {
         RadioApp.setRoot("ServerScreen");
     }
-    @FXML private void switchToSound() throws IOException {
-        RadioApp.setRoot("Sound");
+    @FXML private void switchToHowTo() throws IOException {
+        RadioApp.setRoot("HowToScreen");
     }
 }
