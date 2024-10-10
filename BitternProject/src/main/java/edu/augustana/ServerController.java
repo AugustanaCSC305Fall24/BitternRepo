@@ -24,7 +24,7 @@ public class ServerController {
     @FXML
     void playDashSound(ActionEvent event) {
         // Path to your dash sound file (make sure to provide the correct path)
-        String dashSoundPath = "C:\\Users\\leroy\\git\\BitternRepo\\BitternProject\\src\\main\\resources\\Sound\\dash.wav";
+        String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
         playSound(dashSoundPath);
     }
 
@@ -32,7 +32,7 @@ public class ServerController {
     @FXML
     void playDotSound(ActionEvent event) {
         // Path to your dot sound file (make sure to provide the correct path)
-        String dotSoundPath = "C:\\Users\\leroy\\git\\BitternRepo\\BitternProject\\src\\main\\resources\\Sound\\dot.wav";
+        String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
         playSound(dotSoundPath);
     }
 
