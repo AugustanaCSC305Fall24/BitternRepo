@@ -8,10 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -75,7 +78,31 @@ public class ScenarioController {
 
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
+    @FXML
+   private void playDashSound(ActionEvent event) {
+        // Path to your dash sound file (make sure to provide the correct path)
+        String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
+        playSound(dashSoundPath);
+    }
 
+
+    @FXML
+    private void playDotSound(ActionEvent event) {
+        // Path to your dot sound file (make sure to provide the correct path)
+        String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
+        playSound(dotSoundPath);
+    }
+
+    private void playSound(String filePath) {
+        File soundFile = new File(filePath);
+        if (soundFile.exists()) {
+            Media sound = new Media(soundFile.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
+        } else {
+            System.out.println("Audio file not found: " + filePath);
+        }
+    }
 
 
 }

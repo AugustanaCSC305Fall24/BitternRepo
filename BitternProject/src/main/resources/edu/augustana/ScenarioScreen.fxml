@@ -55,8 +55,8 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="43.0" text="Dit" />
-      <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="43.0" text="Dah" />
+      <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" onAction="#playDotSound" prefHeight="39.0" prefWidth="43.0" text="Dit" />
+      <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" onAction="#playDashSound" prefHeight="39.0" prefWidth="43.0" text="Dah" />
       <BorderPane layoutX="192.0" layoutY="81.0" prefHeight="322.0" prefWidth="408.0">
          <center>
             <ScrollPane fx:id="chatLogScrollPane" prefHeight="237.0" prefWidth="415.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" vvalue="1.0">
