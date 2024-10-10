@@ -23,6 +23,17 @@ public class MorseCodeTranslator {
             ".--.", "--.-", ".-.",  "...",  "-",
             "..-",  "...-", ".--",  "-..-", "-.--",
             "--..", "|"};
+
+    private static String[] codeWords
+            = { "CQ", "GM", "GA", "GE", "GN",
+            "AGN", "QSB", "QRS", "QRQ", "WPM",
+            "R", "TU", "73"};
+
+    private static String[] translateCodeWords
+            = { "Calling all stations", "Good morning", "Good afternoon", "Good evening", "Good night",
+            "Again", "Fading signal", "Send slower", "Send faster", "Words per minute",
+            "Roger", "Thank you", "Best wishes"};
+
     public MorseCodeTranslator() {
         // Initialize the maps with Morse code mappings
         for (int i = 0; i < letter.length; i++) {
