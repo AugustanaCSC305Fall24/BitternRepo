@@ -49,6 +49,7 @@ public class MorseCodeTranslator {
     }
 
     public static String textToMorse(String text) {
+        new MorseCodeTranslator();
         StringBuilder morse = new StringBuilder();
         for (char c : text.toLowerCase().toCharArray()) {
             if (charToMorse.containsKey(c)) {

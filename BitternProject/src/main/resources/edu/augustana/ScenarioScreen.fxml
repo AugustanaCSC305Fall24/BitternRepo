@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -22,19 +23,28 @@
             <Font size="36.0" />
          </font>
       </Text>
-      <VBox layoutX="14.0" layoutY="73.0" prefHeight="310.0" prefWidth="178.0">
+      <VBox layoutX="13.0" layoutY="73.0" prefHeight="316.0" prefWidth="213.0">
          <children>
             <HBox prefHeight="278.0" prefWidth="178.0">
                <children>
-                  <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true" />
-                  <Slider fx:id="bandWidthSlider" majorTickUnit="50.0" max="250.0" min="50.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+                  <Slider majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor></Slider>
+                  <Slider majorTickUnit="50.0" max="250.0" min="50.0" minorTickCount="2" orientation="VERTICAL" prefHeight="278.0" prefWidth="19.0" showTickLabels="true" showTickMarks="true">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
                   </Slider>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <HBox prefHeight="32.0" prefWidth="178.0">
+            <HBox prefHeight="32.0" prefWidth="224.0">
                <children>
                   <Label text="Frequency">
                      <HBox.margin>
@@ -51,16 +61,19 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
+                     <padding>
+                        <Insets right="3.0" />
+                     </padding>
                   </Label>
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" onAction="#playDotSound" prefHeight="39.0" prefWidth="43.0" text="Dit" />
-      <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" onAction="#playDashSound" prefHeight="39.0" prefWidth="43.0" text="Dah" />
-      <BorderPane layoutX="192.0" layoutY="81.0" prefHeight="322.0" prefWidth="408.0">
+      <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" onAction="#userDitInput" prefHeight="39.0" prefWidth="43.0" text="Dit" />
+      <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" onAction="#userDahInput" prefHeight="39.0" prefWidth="43.0" text="Dah" />
+      <BorderPane layoutX="173.0" layoutY="81.0" prefHeight="322.0" prefWidth="428.0">
          <center>
-            <ScrollPane fx:id="chatLogScrollPane" prefHeight="237.0" prefWidth="415.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" vvalue="1.0">
+            <ScrollPane fx:id="chatLogScrollPane" prefHeight="238.0" prefWidth="401.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" vvalue="1.0">
                <BorderPane.margin>
                   <Insets top="10.0" />
                </BorderPane.margin>
@@ -101,13 +114,19 @@
             </HBox>
          </bottom>
       </BorderPane>
-
-      <Slider fx:id="volumeSlider" layoutX="14.0" layoutY="407.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" />
-      <Label layoutX="14.0" layoutY="445.0" text="Volume">
+      <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="394.0" mnemonicParsing="false" text="Type in English" />
+      <Slider fx:id="volumeSlider" layoutX="8.0" layoutY="394.0" onDragDetected="#controlVolume" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </Slider>
+      <Label layoutX="13.0" layoutY="434.0" prefHeight="18.0" prefWidth="44.0" text="Volume">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <CheckBox fx:id="englishCheckBox" layoutX="486.0" layoutY="398.0" mnemonicParsing="false" text="Type in English" />
    </children>
 </AnchorPane>
