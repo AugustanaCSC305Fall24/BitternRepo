@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.print.attribute.standard.Media;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -33,6 +35,11 @@ public class RadioApp extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void playSound(String fileName) {
+        String path = getClass().getResource(fileName).getPath();
+
     }
 
 }

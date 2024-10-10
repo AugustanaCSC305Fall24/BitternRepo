@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import java.lang.module.ModuleReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ public class MorseCodeTranslator {
             'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r',
             's', 't', 'u', 'v', 'w', 'x',
-            'y', 'z', ' ' };
+            'y', 'z', ' '};
 
     // Morse code by indexing
     private static String[] code
@@ -21,7 +22,7 @@ public class MorseCodeTranslator {
             "-.-",  ".-..", "--",   "-.",   "---",
             ".--.", "--.-", ".-.",  "...",  "-",
             "..-",  "...-", ".--",  "-..-", "-.--",
-            "--..", "|" };
+            "--..", "|"};
     public MorseCodeTranslator() {
         // Initialize the maps with Morse code mappings
         for (int i = 0; i < letter.length; i++) {
@@ -43,11 +44,15 @@ public class MorseCodeTranslator {
     }
 
     public static String morseToText(String morse) {
+        new MorseCodeTranslator();
         StringBuilder text = new StringBuilder();
         for (String code : morse.split(" ")) {
             if (morseToChar.containsKey(code)) {
                 text.append(morseToChar.get(code));
             }
+        }
+        if (text.length() == 0) {
+            return "nothing";
         }
         return text.toString();
     }
