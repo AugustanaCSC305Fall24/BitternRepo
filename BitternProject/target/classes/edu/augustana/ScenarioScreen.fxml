@@ -39,18 +39,10 @@
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor>
                   </Slider>
-                  <Slider fx:id="volumeSlider" onDragDetected="#controlVolume" orientation="VERTICAL" prefHeight="278.0" prefWidth="55.0" showTickLabels="true" showTickMarks="true">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <cursor>
-                        <Cursor fx:constant="CLOSED_HAND" />
-                     </cursor>
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                  </Slider>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
             <HBox prefHeight="32.0" prefWidth="224.0">
                <children>
@@ -73,21 +65,13 @@
                         <Insets right="3.0" />
                      </padding>
                   </Label>
-                  <Label text="Volume">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <padding>
-                        <Insets top="15.0" />
-                     </padding>
-                  </Label>
                </children>
             </HBox>
          </children>
       </VBox>
       <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" onAction="#userDitInput" prefHeight="39.0" prefWidth="43.0" text="Dit" />
       <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" onAction="#userDahInput" prefHeight="39.0" prefWidth="43.0" text="Dah" />
-      <BorderPane layoutX="219.0" layoutY="81.0" prefHeight="322.0" prefWidth="381.0">
+      <BorderPane layoutX="173.0" layoutY="81.0" prefHeight="322.0" prefWidth="428.0">
          <center>
             <ScrollPane fx:id="chatLogScrollPane" prefHeight="238.0" prefWidth="401.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" vvalue="1.0">
                <BorderPane.margin>
@@ -131,5 +115,18 @@
          </bottom>
       </BorderPane>
       <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="394.0" mnemonicParsing="false" text="Type in English" />
+      <Slider fx:id="volumeSlider" layoutX="8.0" layoutY="394.0" onDragDetected="#controlVolume" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor>
+      </Slider>
+      <Label layoutX="13.0" layoutY="434.0" prefHeight="18.0" prefWidth="44.0" text="Volume">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

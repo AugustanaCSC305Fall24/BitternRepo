@@ -3,15 +3,14 @@ package edu.augustana;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.atomic.AtomicReference;
 
 
-public class userInput {
+public class UserInput {
     private String input;
     private long lastClickTime = 0;
     private String output;
 
-    public userInput() {
+    public UserInput() {
 
         this.lastClickTime = System.currentTimeMillis();
     }
