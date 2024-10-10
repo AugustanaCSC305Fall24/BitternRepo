@@ -14,6 +14,8 @@ import java.util.List;
 
 public class ScenarioController {
 
+    @FXML
+    private Slider volumeSlider;
 
     @FXML private ScrollPane chatLogScrollPane;
 
@@ -28,8 +30,6 @@ public class ScenarioController {
     @FXML private Label userNameLabel;
 
     @FXML private Button welcomeButton;
-
-    @FXML private Slider volumeSlider;
 
     @FXML private Slider bandWidthSlider;
 
@@ -140,6 +140,21 @@ public class ScenarioController {
     }
 
 
+    @ FXML
+    private void controlVolume(){
 
+    }
+    @FXML
+    void playDashSound(ActionEvent event) {
+        // Path to your dash sound file (make sure to provide the correct path)
+        String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
+        SoundClass.playSound(dashSoundPath);
+    }
 
+    @FXML
+    void playDotSound(ActionEvent event) {
+        // Path to your dot sound file (make sure to provide the correct path)
+        String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
+        SoundClass.playSound(dotSoundPath);
+    }
 }
