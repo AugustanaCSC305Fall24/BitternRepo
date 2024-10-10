@@ -39,6 +39,8 @@ public class ScenarioController {
 
     private String input = "";
 
+    @FXML private CheckBox englishCheckBox;
+
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
@@ -74,14 +76,20 @@ public class ScenarioController {
             ChatRoom.addMessage(newMessageFromUser);
             addMessageToChatLogUI(newMessageFromUser);
 
-            // Translate Morse code to text
-            String translation = MorseCodeTranslator.morseToText(msgText);
-            if(translation.isEmpty()){
-                translation = "Invalid Morse Code";
+            if (englishCheckBox.isSelected()) {
+                // Translate text to Morse code
+                String translation = MorseCodeTranslator.textToMorse(msgText);
+                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
+                addMessageToChatLogUI(newMessageFromTranslator);
+            } else {
+                // Translate Morse code to text
+                String translation = MorseCodeTranslator.morseToText(msgText);
+                if (translation.isEmpty()) {
+                    translation = "Invalid Morse Code";
+                }
+                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
+                addMessageToChatLogUI(newMessageFromTranslator);
             }
-            ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
-            addMessageToChatLogUI(newMessageFromTranslator);
-
             // Clear the input field and reset the input string
             userMessageTextField.clear();
             input = "";
@@ -110,6 +118,7 @@ public class ScenarioController {
             input += " ";
             input += "|";
             input += " ";
+            input += ".";
         }
 
         userMessageTextField.setText(input);
@@ -131,14 +140,11 @@ public class ScenarioController {
             input += " ";
             input += "|";
             input += " ";
+            input += "-";
         }
-
         lastClickTime = currentTime;
         userMessageTextField.setText(input);
-
-
     }
-
 
     @ FXML
     private void controlVolume(){
