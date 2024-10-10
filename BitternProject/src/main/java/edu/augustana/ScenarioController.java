@@ -3,10 +3,7 @@ package edu.augustana;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -18,26 +15,25 @@ import java.util.List;
 public class ScenarioController {
 
 
-    @FXML
-    private ScrollPane chatLogScrollPane;
+    @FXML private ScrollPane chatLogScrollPane;
 
-    @FXML
-    private VBox chatLogVBox;
+    @FXML private VBox chatLogVBox;
 
-    @FXML
-    private Button dahButton;
+    @FXML private Button dahButton;
 
-    @FXML
-    private Button ditButton;
+    @FXML private Button ditButton;
 
-    @FXML
-    private TextField userMessageTextField;
+    @FXML private TextField userMessageTextField;
 
-    @FXML
-    private Label userNameLabel;
+    @FXML private Label userNameLabel;
 
-    @FXML
-    private Button welcomeButton;
+    @FXML private Button welcomeButton;
+
+    @FXML private Slider volumeSlider;
+
+    @FXML private Slider bandWidthSlider;
+
+    @FXML private Slider frequencySlider;
 
     private long lastClickTime = 0;
 
@@ -47,6 +43,12 @@ public class ScenarioController {
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
+    }
+
+    @FXML
+    private void volumeControl(){
+        volumeSlider.setValue(50);
+
     }
 
     // got from exam 1 chatbots
