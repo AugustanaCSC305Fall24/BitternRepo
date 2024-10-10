@@ -9,11 +9,13 @@ public class MorseCodeTranslator {
     private static final Map<Character, String> charToMorse = new HashMap<>();
     private static final Map<String, Character> morseToChar = new HashMap<>();
 
-    private static char[] letter = { 'a', 'b', 'c', 'd', 'e', 'f',
+    private static char[] letter
+            = { 'a', 'b', 'c', 'd', 'e', 'f',
             'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r',
             's', 't', 'u', 'v', 'w', 'x',
-            'y', 'z', ' '};
+            'y', 'z', ' ', '0', '1', '2',
+            '3', '4', '5', '6', '7', '8', '9'};
 
     // Morse code by indexing
     private static String[] code
@@ -22,7 +24,9 @@ public class MorseCodeTranslator {
             "-.-",  ".-..", "--",   "-.",   "---",
             ".--.", "--.-", ".-.",  "...",  "-",
             "..-",  "...-", ".--",  "-..-", "-.--",
-            "--..", "|"};
+            "--..", "|", "-----", ".----", "..---",
+            "...--", "....-", ".....", "-....",
+            "--...", "---..", "----."};
 
     private static String[] codeWords
             = { "CQ", "GM", "GA", "GE", "GN",
