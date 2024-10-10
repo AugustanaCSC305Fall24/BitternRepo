@@ -120,9 +120,11 @@ public class ScenarioController {
             input += " ";
             input += ".";
         }
-
+        playDotSound();
         userMessageTextField.setText(input);
         lastClickTime = currentTime;
+
+
     }
 
     @FXML
@@ -144,6 +146,7 @@ public class ScenarioController {
         }
         lastClickTime = currentTime;
         userMessageTextField.setText(input);
+        playDashSound();
     }
 
     @ FXML
@@ -151,14 +154,14 @@ public class ScenarioController {
 
     }
     @FXML
-    void playDashSound(ActionEvent event) {
+    void playDashSound() {
         // Path to your dash sound file (make sure to provide the correct path)
         String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
         SoundClass.playSound(dashSoundPath);
     }
 
     @FXML
-    void playDotSound(ActionEvent event) {
+    void playDotSound() {
         // Path to your dot sound file (make sure to provide the correct path)
         String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
         SoundClass.playSound(dotSoundPath);
