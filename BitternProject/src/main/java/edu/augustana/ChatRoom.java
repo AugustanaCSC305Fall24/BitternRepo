@@ -7,11 +7,10 @@ import java.util.List;
 
 public class ChatRoom {
     private static List<ChatBot> bots;
-    private static List<ChatMessage> chatLogMessageList;
+    private static List<ChatMessage> chatLogMessageList = new ArrayList<>();
 
     private ChatRoom() {
         bots = new ArrayList<>();
-        chatLogMessageList = new ArrayList<>();
         chatLogMessageList.add(new ChatMessage("Welcome to chat room!", "System", Color.GREEN));
     }
 

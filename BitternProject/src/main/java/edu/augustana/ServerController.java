@@ -20,21 +20,20 @@ public class ServerController {
     @FXML
     private Button welcomeButton;
 
-
     @FXML
     void playDashSound(ActionEvent event) {
         // Path to your dash sound file (make sure to provide the correct path)
         String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
-        playSound(dashSoundPath);
+        SoundClass.playSound(dashSoundPath);
     }
-
 
     @FXML
     void playDotSound(ActionEvent event) {
         // Path to your dot sound file (make sure to provide the correct path)
         String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
-        playSound(dotSoundPath);
+        SoundClass.playSound(dotSoundPath);
     }
+
 
     // Method to switch to the Welcome screen
     @FXML
@@ -42,15 +41,4 @@ public class ServerController {
         RadioApp.setRoot("WelcomeScreen");
     }
 
-    // Helper method to play sound using ChatGPT
-    private void playSound(String filePath) {
-        File soundFile = new File(filePath);
-        if (soundFile.exists()) {
-            Media sound = new Media(soundFile.toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();
-        } else {
-            System.out.println("Audio file not found: " + filePath);
-        }
-    }
 }
