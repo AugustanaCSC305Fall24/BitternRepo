@@ -35,6 +35,9 @@ public class ScenarioController {
 
     @FXML private Slider frequencySlider;
 
+    @FXML private CheckBox englishCheckBox;
+
+
     private long lastClickTime = 0;
 
     private String input = "";
@@ -73,15 +76,20 @@ public class ScenarioController {
             ChatMessage newMessageFromUser = new ChatMessage(msgText, "User", Color.BLACK);
             ChatRoom.addMessage(newMessageFromUser);
             addMessageToChatLogUI(newMessageFromUser);
-
-            // Translate Morse code to text
-            String translation = MorseCodeTranslator.morseToText(msgText);
-            if(translation.isEmpty()){
-                translation = "Invalid Morse Code";
+            if (englishCheckBox.isSelected()) {
+                // Translate text to Morse code
+                String translation = MorseCodeTranslator.textToMorse(msgText);
+                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
+                addMessageToChatLogUI(newMessageFromTranslator);
+            } else {
+                // Translate Morse code to text
+                String translation = MorseCodeTranslator.morseToText(msgText);
+                if (translation.isEmpty()) {
+                    translation = "Invalid Morse Code";
+                }
+                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
+                addMessageToChatLogUI(newMessageFromTranslator);
             }
-            ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
-            addMessageToChatLogUI(newMessageFromTranslator);
-
             // Clear the input field and reset the input string
             userMessageTextField.clear();
             input = "";

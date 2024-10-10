@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
@@ -25,8 +26,8 @@
          <children>
             <HBox prefHeight="278.0" prefWidth="178.0">
                <children>
-                  <Slider majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true" />
-                  <Slider majorTickUnit="50.0" max="250.0" min="50.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+                  <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true" />
+                  <Slider fx:id="bandWidthSlider" majorTickUnit="50.0" max="250.0" min="50.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
                      <HBox.margin>
                         <Insets left="60.0" />
                      </HBox.margin>
@@ -106,5 +107,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <CheckBox fx:id="englishCheckBox" layoutX="486.0" layoutY="398.0" mnemonicParsing="false" text="Type in English" />
    </children>
 </AnchorPane>
