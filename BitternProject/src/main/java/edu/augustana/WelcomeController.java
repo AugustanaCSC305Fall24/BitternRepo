@@ -4,6 +4,8 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
+import javax.sound.sampled.LineUnavailableException;
+
 public class WelcomeController {
 
     @FXML private Button trainingButton;
@@ -13,7 +15,9 @@ public class WelcomeController {
     @FXML private void switchToTraining() throws IOException {
         RadioApp.setRoot("TrainingScreen");
     }
-    @FXML private void switchToScenario() throws IOException {
+    @FXML private void switchToScenario() throws IOException, LineUnavailableException {
+        Tone.line.open(Tone.af, Note.SAMPLE_RATE);
+        Tone.line.start();
         RadioApp.setRoot("ScenarioScreen");
     }
     @FXML private void switchToServer() throws IOException {

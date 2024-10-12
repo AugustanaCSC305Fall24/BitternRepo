@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class ScenarioController {
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
+        Tone.line.drain();
+        Tone.line.close();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -69,7 +72,7 @@ public class ScenarioController {
     }
 
     @FXML
-    private void sendAction() {
+    private void sendAction() throws LineUnavailableException {
         String msgText = userMessageTextField.getText();
         if (!msgText.isBlank()) {
             ChatMessage newMessageFromUser = new ChatMessage(msgText, "User", Color.BLACK);
@@ -96,6 +99,13 @@ public class ScenarioController {
             // Clear the input field and reset the input string
             userMessageTextField.clear();
             input = "";
+
+            Tone.line.drain();
+            Tone.line.close();
+
+            Tone.line.open(Tone.af, Note.SAMPLE_RATE);
+            Tone.line.start();
+
         }
     }
 
@@ -109,9 +119,11 @@ public class ScenarioController {
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
     @FXML
-    private void userDitInput(){
+    private void userDitInput() throws LineUnavailableException {
         String msgText = ".";
         long currentTime = System.currentTimeMillis();
+        playDotSound();
+
         if (currentTime - lastClickTime < 2000) {
             input += ".";
         } else if(currentTime - lastClickTime < 3000){
@@ -124,7 +136,7 @@ public class ScenarioController {
             input += ".";
         }
         //SoundClass.playDot();
-        playDotSound();
+
         userMessageTextField.setText(input);
         lastClickTime = currentTime;
 
@@ -132,9 +144,10 @@ public class ScenarioController {
     }
 
     @FXML
-    private void userDahInput(){
+    private void userDahInput() throws LineUnavailableException {
         String msgText = "-";
         long currentTime = System.currentTimeMillis();
+        playDashSound();
 
         if (currentTime - lastClickTime < 2000) {
             input += "-";
@@ -149,7 +162,7 @@ public class ScenarioController {
             input += "-";
         }
         //SoundClass.playDash();
-        playDashSound();
+
         lastClickTime = currentTime;
         userMessageTextField.setText(input);
     }
@@ -158,17 +171,26 @@ public class ScenarioController {
     private void controlVolume(){
 
     }
-    @FXML
-    void playDashSound() {
-        // Path to your dash sound file (make sure to provide the correct path)
-        String dashSoundPath = getClass().getResource("/Sound/dash.wav").toExternalForm();
-        SoundClass.playSound(dashSoundPath);
-    }
+//    @FXML
+//    void playDashSound() {
+//        // Path to your dash sound file (make sure to provide the correct path)
+//        String dashSoundPath = getClass().getResource("/Sound/dash.wav").toExternalForm();
+//        SoundClass.playSound(dashSoundPath);
+//    }
+//
+//    @FXML
+//    void playDotSound() {
+//        // Path to your dot sound file (make sure to provide the correct path)
+//        String dotSoundPath = getClass().getResource("/Sound/dot.wav").toExternalForm();
+//        SoundClass.playSound(dotSoundPath);
+//    }
 
     @FXML
-    void playDotSound() {
-        // Path to your dot sound file (make sure to provide the correct path)
-        String dotSoundPath = getClass().getResource("/Sound/dot.wav").toExternalForm();
-        SoundClass.playSound(dotSoundPath);
+    void playDotSound() throws LineUnavailableException {
+        Tone.play(Tone.SoundType.DOT);
+    }
+    @FXML
+    void playDashSound() throws LineUnavailableException {
+        Tone.play(Tone.SoundType.DASH);
     }
 }
