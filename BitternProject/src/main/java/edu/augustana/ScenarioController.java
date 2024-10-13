@@ -95,12 +95,8 @@ public class ScenarioController {
         if (messages == null || messages.isEmpty()) {
             return; // or handle the null/empty case appropriately
         }
-
-        ChatMessage firstSystemPost = messages.get(0);
         messages.clear();
         chatLogVBox.getChildren().clear();
-        messages.add(firstSystemPost);
-        addMessageToChatLogUI(firstSystemPost);
     }
 
     @FXML
