@@ -27,7 +27,7 @@
          <children>
             <HBox prefHeight="278.0" prefWidth="178.0">
                <children>
-                  <Slider majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+                  <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" onDragDone="#setFrequencyLabel" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
                      <cursor>
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor></Slider>
@@ -125,6 +125,11 @@
          </cursor>
       </Slider>
       <Label layoutX="13.0" layoutY="434.0" prefHeight="18.0" prefWidth="44.0" text="Volume">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="frequencyLabel" layoutX="14.0" layoutY="35.0" prefHeight="18.0" prefWidth="178.0" text="Transmitting from: ">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
