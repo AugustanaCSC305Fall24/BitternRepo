@@ -11,6 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
@@ -21,6 +22,9 @@ public class ScenarioController {
     @FXML private Slider volumeSlider;
     private MediaPlayer mediaPlayer;
 
+    @FXML
+    private Label frequencyLabel;
+
     @FXML private ScrollPane chatLogScrollPane;
 
     @FXML private VBox chatLogVBox;
@@ -28,6 +32,9 @@ public class ScenarioController {
     @FXML private Button dahButton;
 
     @FXML private Button ditButton;
+
+    @FXML
+    private CheckBox translationCheckbox;
 
     @FXML private TextField userMessageTextField;
 
@@ -43,7 +50,15 @@ public class ScenarioController {
 
     private String input = "";
 
+
+
     @FXML private CheckBox englishCheckBox;
+
+    @FXML
+    private void setFrequencyLabel() {
+        frequencyLabel.setText("Frequency: " + (int) frequencySlider.getValue() + " Hz");
+    }
+
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
@@ -52,7 +67,7 @@ public class ScenarioController {
         RadioApp.setRoot("WelcomeScreen");
     }
 
-   
+
 
 
     @FXML
@@ -91,27 +106,40 @@ public class ScenarioController {
     @FXML
     private void sendAction() throws LineUnavailableException {
         String msgText = userMessageTextField.getText();
+        String translation = "";
         if (!msgText.isBlank()) {
             ChatMessage newMessageFromUser = new ChatMessage(msgText, "User", Color.BLACK);
             ChatRoom.addMessage(newMessageFromUser);
             addMessageToChatLogUI(newMessageFromUser);
 
-            if (englishCheckBox.isSelected()) {
-                // Translate text to Morse code
-                String translation = MorseCodeTranslator.textToMorse(msgText);
-                if (translation.isEmpty()) {
-                    translation = "Empty english translation";
+
+
+            if (translationCheckbox.isSelected()) {
+
+                if (englishCheckBox.isSelected()) {
+                    // Translate text to Morse code
+                     translation = MorseCodeTranslator.textToMorse(msgText);
+                    if (translation.isEmpty()) {
+                        translation = "Empty english translation";
+                    }
+                    ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
+                    addMessageToChatLogUI(newMessageFromTranslator);
+
+
+
+
+
+                } else {
+                    // Translate Morse code to text
+                    translation = MorseCodeTranslator.morseToText(msgText);
+                    if (translation.isEmpty()) {
+                        translation = "Invalid Morse Code";
+                    }
+                    ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
+                    addMessageToChatLogUI(newMessageFromTranslator);
+
                 }
-                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
-                addMessageToChatLogUI(newMessageFromTranslator);
-            } else {
-                // Translate Morse code to text
-                String translation = MorseCodeTranslator.morseToText(msgText);
-                if (translation.isEmpty()) {
-                    translation = "Invalid Morse Code";
-                }
-                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
-                addMessageToChatLogUI(newMessageFromTranslator);
+                playMessageSound(translation);
             }
             // Clear the input field and reset the input string
             userMessageTextField.clear();
@@ -125,6 +153,27 @@ public class ScenarioController {
 
         }
     }
+
+
+    private void playMessageSound(String message) throws LineUnavailableException {
+        for (int i = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+            if (c == '.') {
+                playDotSound();
+
+            } else if (c == '-') {
+                playDashSound();
+            }
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+    }
+
+
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
         Label label = new Label(messageToDisplay.getSender() + ":  " + messageToDisplay.getText());
@@ -194,7 +243,7 @@ public class ScenarioController {
 //    @FXML
 //    void playDotSound() {
 //        // Path to your dot sound file (make sure to provide the correct path)
-//        String dotSoundPath = getClass().getResource("src/Sound/dot.wav").toExternalForm();
+//        String dotSoundPath = getClass().getResource("/Sound/dot.wav").toExternalForm();
 //        SoundClass.playSound(dotSoundPath);
 //    }
 
