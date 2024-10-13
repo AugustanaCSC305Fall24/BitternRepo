@@ -114,7 +114,8 @@
             </HBox>
          </bottom>
       </BorderPane>
-      <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="394.0" mnemonicParsing="false" text="Type in English" />
+      <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="414.0" mnemonicParsing="false" text="Type in English" />
+      <CheckBox fx:id="translationCheckbox" layoutX="483.0" layoutY="435.0" mnemonicParsing="false" text="Turn on translation" />
       <Slider fx:id="volumeSlider" layoutX="8.0" layoutY="394.0" onDragDetected="#controlVolume" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
          <opaqueInsets>
             <Insets />

@@ -25,6 +25,9 @@ public class ScenarioController {
 
     @FXML private Button ditButton;
 
+    @FXML
+    private CheckBox translationCheckbox;
+
     @FXML private TextField userMessageTextField;
 
     @FXML private Label userNameLabel;
@@ -76,22 +79,27 @@ public class ScenarioController {
             ChatRoom.addMessage(newMessageFromUser);
             addMessageToChatLogUI(newMessageFromUser);
 
-            if (englishCheckBox.isSelected()) {
-                // Translate text to Morse code
-                String translation = MorseCodeTranslator.textToMorse(msgText);
-                if (translation.isEmpty()) {
-                    translation = "Empty english translation";
+
+
+            if (translationCheckbox.isSelected()) {
+
+                if (englishCheckBox.isSelected()) {
+                    // Translate text to Morse code
+                    String translation = MorseCodeTranslator.textToMorse(msgText);
+                    if (translation.isEmpty()) {
+                        translation = "Empty english translation";
+                    }
+                    ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
+                    addMessageToChatLogUI(newMessageFromTranslator);
+                } else {
+                    // Translate Morse code to text
+                    String translation = MorseCodeTranslator.morseToText(msgText);
+                    if (translation.isEmpty()) {
+                        translation = "Invalid Morse Code";
+                    }
+                    ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
+                    addMessageToChatLogUI(newMessageFromTranslator);
                 }
-                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
-                addMessageToChatLogUI(newMessageFromTranslator);
-            } else {
-                // Translate Morse code to text
-                String translation = MorseCodeTranslator.morseToText(msgText);
-                if (translation.isEmpty()) {
-                    translation = "Invalid Morse Code";
-                }
-                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
-                addMessageToChatLogUI(newMessageFromTranslator);
             }
             // Clear the input field and reset the input string
             userMessageTextField.clear();
@@ -159,14 +167,14 @@ public class ScenarioController {
     @FXML
     void playDashSound() {
         // Path to your dash sound file (make sure to provide the correct path)
-        String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
+        String dashSoundPath = "C:\\Users\\Timalma Zakaria\\hamproject\\BitternRepo\\BitternProject\\src\\main\\resources\\Sound\\dash.wav";
         SoundClass.playSound(dashSoundPath);
     }
 
     @FXML
     void playDotSound() {
         // Path to your dot sound file (make sure to provide the correct path)
-        String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
+        String dotSoundPath = "C:\\Users\\Timalma Zakaria\\hamproject\\BitternRepo\\BitternProject\\src\\main\\resources\\Sound\\dot.wav";
         SoundClass.playSound(dotSoundPath);
     }
 }
