@@ -1,10 +1,13 @@
 package edu.augustana;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -15,8 +18,8 @@ import java.util.List;
 
 public class ScenarioController {
 
-    @FXML
-    private Slider volumeSlider;
+    @FXML private Slider volumeSlider;
+    private MediaPlayer mediaPlayer;
 
     @FXML private ScrollPane chatLogScrollPane;
 
@@ -42,7 +45,6 @@ public class ScenarioController {
 
     @FXML private CheckBox englishCheckBox;
 
-
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         Tone.line.drain();
@@ -50,9 +52,24 @@ public class ScenarioController {
         RadioApp.setRoot("WelcomeScreen");
     }
 
+   
+
+
     @FXML
-    private void volumeControl(){
-        volumeSlider.setValue(50);
+    public void controlVolume(){
+//        three different ways explored
+
+//        attempted to use a volume controller class, we need some sort of media player to change the sound
+
+//        double volume = volumeSlider.getValue();
+//        System.out.println(volume);
+
+//        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                if(mediaPlayer != null) mediaPlayer.setVolume(newValue.doubleValue());
+//            }
+//        });
 
     }
 
@@ -167,10 +184,6 @@ public class ScenarioController {
         userMessageTextField.setText(input);
     }
 
-    @ FXML
-    private void controlVolume(){
-
-    }
 //    @FXML
 //    void playDashSound() {
 //        // Path to your dash sound file (make sure to provide the correct path)
@@ -181,7 +194,7 @@ public class ScenarioController {
 //    @FXML
 //    void playDotSound() {
 //        // Path to your dot sound file (make sure to provide the correct path)
-//        String dotSoundPath = getClass().getResource("/Sound/dot.wav").toExternalForm();
+//        String dotSoundPath = getClass().getResource("src/Sound/dot.wav").toExternalForm();
 //        SoundClass.playSound(dotSoundPath);
 //    }
 
