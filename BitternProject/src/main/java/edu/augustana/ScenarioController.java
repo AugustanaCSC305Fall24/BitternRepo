@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -53,6 +54,8 @@ public class ScenarioController {
 
     @FXML private CheckBox englishCheckBox;
 
+
+
     @FXML
     private void setFrequencyLabel() {
         frequencyLabel.setText("Frequency: " + (int) frequencySlider.getValue() + " Hz");
@@ -70,7 +73,7 @@ public class ScenarioController {
 
 
     @FXML
-    public void controlVolume(){
+    public void controlVolume() {
 //        three different ways explored
 
 //        attempted to use a volume controller class, we need some sort of media player to change the sound
@@ -85,7 +88,7 @@ public class ScenarioController {
 //            }
 //        });
         FloatControl gainControl = (FloatControl) Tone.line.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue((float) volumeSlider.getValue()/2);
+        gainControl.setValue((float) ((float) volumeSlider.getValue() / 1.5));
 
     }
 
@@ -275,4 +278,5 @@ public class ScenarioController {
     void playDashSound() throws LineUnavailableException {
         Tone.play(Tone.SoundType.DASH);
     }
+
 }
