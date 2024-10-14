@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.List;
@@ -50,8 +51,6 @@ public class ScenarioController {
 
     private String input = "";
 
-
-
     @FXML private CheckBox englishCheckBox;
 
     @FXML
@@ -85,6 +84,8 @@ public class ScenarioController {
 //                if(mediaPlayer != null) mediaPlayer.setVolume(newValue.doubleValue());
 //            }
 //        });
+        FloatControl gainControl = (FloatControl) Tone.line.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue((float) volumeSlider.getValue()/2);
 
     }
 
