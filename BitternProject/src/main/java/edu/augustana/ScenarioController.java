@@ -1,6 +1,8 @@
 package edu.augustana;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -70,6 +72,17 @@ public class ScenarioController {
 
     }
 
+    @FXML
+    public void initialize() {
+        // Add a listener to the frequencySlider
+        frequencySlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                setFrequencyLabel();
+            }
+        });
+    }
+
     // got from exam 1 chatbots
     @FXML
     private void clearChatLogAction() {
@@ -121,38 +134,50 @@ public class ScenarioController {
                     addMessageToChatLogUI(newMessageFromTranslator);
 
                 }
-                playMessageSound(translation);
+                String finalTranslation = translation;
+                new Thread(() -> {
+                    try {
+                        playMessageSound(finalTranslation);
+                    } catch (LineUnavailableException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).start();
+
             }
+
             // Clear the input field and reset the input string
             userMessageTextField.clear();
             input = "";
 
-            Tone.line.drain();
-            Tone.line.close();
 
-            Tone.line.open(Tone.af, Note.SAMPLE_RATE);
-            Tone.line.start();
 
         }
     }
 
 
     private void playMessageSound(String message) throws LineUnavailableException {
+        Tone.line.open(Tone.af, Note.SAMPLE_RATE);  // Open the line before playing
+        Tone.line.start();
+
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             if (c == '.') {
                 playDotSound();
-
             } else if (c == '-') {
                 playDashSound();
             }
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(100);  // Pause between sounds
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                Thread.currentThread().interrupt();  // Handle thread interruption
             }
         }
+
+        // Stop and close the line after playing all sounds
+        Tone.line.drain();
+        Tone.line.stop();   // Ensure the line is stopped
+        Tone.line.close();  // Close the line to release resources
     }
 
 
