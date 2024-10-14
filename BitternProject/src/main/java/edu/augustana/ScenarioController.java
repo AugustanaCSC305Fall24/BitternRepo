@@ -158,7 +158,7 @@ public class ScenarioController {
                         throw new RuntimeException(e);
                     }
                 }).start();
-
+                replyMessage(msgText);
             }
 
             // Clear the input field and reset the input string
@@ -277,6 +277,49 @@ public class ScenarioController {
     @FXML
     void playDashSound() throws LineUnavailableException {
         Tone.play(Tone.SoundType.DASH);
+    }
+    private void replyMessage(String message) {
+       switch (message) {
+           case "Hello":
+               botMessage("Hello! How can I help you today?");
+               break;
+           case "How are you?":
+               botMessage("I'm doing well, thank you for asking!");
+               break;
+           case "Goodbye":
+               botMessage("Goodbye! Have a great day!");
+               break;
+           default:
+               botMessage("I'm sorry, I don't understand that message.");
+               break;
+       }
+    }
+
+    private void botMessage(String message) {
+        ChatMessage newMessageFromBot = new ChatMessage(message, "Bot", Color.BLUE);
+        ChatRoom.addMessage(newMessageFromBot);
+        addMessageToChatLogUI(newMessageFromBot);
+
+        if (translationCheckbox.isSelected()) {
+            String translation;
+            if (englishCheckBox.isSelected()) {
+                // Translate text to Morse code
+                translation = MorseCodeTranslator.textToMorse(message);
+                if (translation.isEmpty()) {
+                    translation = "Empty english translation";
+                }
+                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
+                addMessageToChatLogUI(newMessageFromTranslator);
+            } else {
+                // Translate Morse code to text
+                translation = MorseCodeTranslator.morseToText(message);
+                if (translation.isEmpty()) {
+                    translation = "Invalid Morse Code";
+                }
+                ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
+                addMessageToChatLogUI(newMessageFromTranslator);
+            }
+        }
     }
 
 }
