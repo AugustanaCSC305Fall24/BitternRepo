@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 
 import javax.sound.sampled.LineUnavailableException;
 
+import static edu.augustana.ScenarioController.*;
+
 public class WelcomeController {
 
     @FXML private Button trainingButton;

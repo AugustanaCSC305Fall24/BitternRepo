@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -18,8 +19,8 @@ import java.util.List;
 
 public class ScenarioController {
 
-    @FXML
-    private Slider volumeSlider;
+    @FXML private Slider volumeSlider;
+    private MediaPlayer mediaPlayer;
 
     @FXML
     private Label frequencyLabel;
@@ -66,9 +67,24 @@ public class ScenarioController {
         RadioApp.setRoot("WelcomeScreen");
     }
 
+
+
+
     @FXML
-    private void volumeControl(){
-        volumeSlider.setValue(50);
+    public void controlVolume(){
+//        three different ways explored
+
+//        attempted to use a volume controller class, we need some sort of media player to change the sound
+
+//        double volume = volumeSlider.getValue();
+//        System.out.println(volume);
+
+//        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                if(mediaPlayer != null) mediaPlayer.setVolume(newValue.doubleValue());
+//            }
+//        });
 
     }
 
@@ -90,12 +106,8 @@ public class ScenarioController {
         if (messages == null || messages.isEmpty()) {
             return; // or handle the null/empty case appropriately
         }
-
-        ChatMessage firstSystemPost = messages.get(0);
         messages.clear();
         chatLogVBox.getChildren().clear();
-        messages.add(firstSystemPost);
-        addMessageToChatLogUI(firstSystemPost);
     }
 
     @FXML
@@ -238,11 +250,6 @@ public class ScenarioController {
 
         lastClickTime = currentTime;
         userMessageTextField.setText(input);
-    }
-
-    @ FXML
-    private void controlVolume(){
-
     }
 
 //    @FXML
