@@ -115,7 +115,7 @@ public class ScenarioController {
     }
 
     @FXML
-    private void sendAction() throws LineUnavailableException {
+    private void sendAction() throws LineUnavailableException{
         String msgText = userMessageTextField.getText();
         String translation = "";
         if (!msgText.isBlank()) {
@@ -158,6 +158,7 @@ public class ScenarioController {
                         throw new RuntimeException(e);
                     }
                 }).start();
+
                 replyMessage(msgText);
             }
 
@@ -269,7 +270,6 @@ public class ScenarioController {
 //        String dotSoundPath = getClass().getResource("/Sound/dot.wav").toExternalForm();
 //        SoundClass.playSound(dotSoundPath);
 //    }
-
     @FXML
     void playDotSound() throws LineUnavailableException {
         Tone.play(Tone.SoundType.DOT);
@@ -279,23 +279,36 @@ public class ScenarioController {
         Tone.play(Tone.SoundType.DASH);
     }
     private void replyMessage(String message) {
-       switch (message) {
-           case "Hello":
-               botMessage("Hello! How can I help you today?");
-               break;
-           case "How are you?":
-               botMessage("I'm doing well, thank you for asking!");
-               break;
-           case "Goodbye":
-               botMessage("Goodbye! Have a great day!");
-               break;
-           default:
-               botMessage("I'm sorry, I don't understand that message.");
-               break;
-       }
+        new Thread(() -> {
+            try {
+                // Introduce a delay of 2 seconds (2000 milliseconds)
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();  // Handle thread interruption
+            }
+
+            Platform.runLater(() -> {
+                switch (message) {
+                    case "Hello":
+                        botMessage("Hello! How can I help you today?");
+                        break;
+                    case "How are you?":
+                        botMessage("I'm doing well, thank you for asking!");
+                        break;
+                    case "Goodbye":
+                        botMessage("Goodbye! Have a great day!");
+                        break;
+                    default:
+                        botMessage("I'm sorry, I don't understand that message.");
+                        break;
+                }
+            });
+        }).start();
     }
 
     private void botMessage(String message) {
+
+
         ChatMessage newMessageFromBot = new ChatMessage(message, "Bot", Color.BLUE);
         ChatRoom.addMessage(newMessageFromBot);
         addMessageToChatLogUI(newMessageFromBot);
