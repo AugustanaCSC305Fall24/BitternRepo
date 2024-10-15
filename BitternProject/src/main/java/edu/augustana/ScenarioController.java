@@ -18,6 +18,7 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class ScenarioController {
 
@@ -88,7 +89,7 @@ public class ScenarioController {
 //            }
 //        });
         FloatControl gainControl = (FloatControl) Tone.line.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue((float) ((float) volumeSlider.getValue() / 1.5));
+        gainControl.setValue((float) volumeSlider.getValue() / 2);
 
     }
 
