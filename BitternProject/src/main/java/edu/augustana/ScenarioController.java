@@ -185,7 +185,7 @@ public class ScenarioController {
             }
 
             try {
-                Thread.sleep(100);  // Pause between sounds
+                Thread.sleep(200);  // Pause between sounds
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();  // Handle thread interruption
             }
