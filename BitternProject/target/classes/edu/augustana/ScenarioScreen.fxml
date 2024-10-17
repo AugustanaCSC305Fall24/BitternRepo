@@ -18,7 +18,7 @@
 <AnchorPane prefHeight="477.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ScenarioController">
    <children>
       <Button fx:id="welcomeButton" layoutX="544.0" layoutY="27.0" mnemonicParsing="false" onAction="#switchToWelcome" text="x" />
-      <Text layoutX="186.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario " textAlignment="CENTER" wrappingWidth="178.13671875">
+      <Text layoutX="301.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario " textAlignment="CENTER" wrappingWidth="178.13671875">
          <font>
             <Font size="36.0" />
          </font>
@@ -27,7 +27,11 @@
          <children>
             <HBox prefHeight="278.0" prefWidth="178.0">
                <children>
+<<<<<<< HEAD
                   <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2"  orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+=======
+                  <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" onMouseDragReleased="#setFrequencyLabel" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+>>>>>>> a1a3090328d893d24658c87f21a1a40db1caecad
                      <cursor>
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor></Slider>
@@ -116,7 +120,11 @@
       </BorderPane>
       <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="394.0" mnemonicParsing="false" text="Type in English" />
       <CheckBox fx:id="translationCheckbox" layoutX="483.0" layoutY="435.0" mnemonicParsing="false" text="Turn on translation" />
+<<<<<<< HEAD
       <Slider fx:id="volumeSlider" layoutX="8.0" layoutY="394.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
+=======
+      <Slider fx:id="volumeSlider" blockIncrement="1.0" layoutX="8.0" layoutY="394.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" onDragDetected="#controlVolume" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
+>>>>>>> a1a3090328d893d24658c87f21a1a40db1caecad
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
