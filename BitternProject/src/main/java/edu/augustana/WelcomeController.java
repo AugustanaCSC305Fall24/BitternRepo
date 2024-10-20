@@ -10,10 +10,6 @@ import static edu.augustana.ScenarioController.*;
 
 public class WelcomeController {
 
-    @FXML private Button trainingButton;
-    @FXML private Button scenarioButton;
-    @FXML private Button serverButton;
-
     @FXML private void switchToTraining() throws IOException {
         RadioApp.setRoot("TrainingScreen");
     }

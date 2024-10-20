@@ -20,21 +20,6 @@ public class ServerController {
     @FXML
     private Button welcomeButton;
 
-    @FXML
-    void playDashSound(ActionEvent event) {
-        // Path to your dash sound file (make sure to provide the correct path)
-        String dashSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dash.wav";
-        SoundClass.playSound(dashSoundPath);
-    }
-
-    @FXML
-    void playDotSound(ActionEvent event) {
-        // Path to your dot sound file (make sure to provide the correct path)
-        String dotSoundPath = "BitternProject\\src\\main\\resources\\Sound\\dot.wav";
-        SoundClass.playSound(dotSoundPath);
-    }
-
-
     // Method to switch to the Welcome screen
     @FXML
     void switchToWelcome(ActionEvent event) throws IOException {
