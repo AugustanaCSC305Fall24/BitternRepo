@@ -114,7 +114,7 @@
             </HBox>
          </bottom>
       </BorderPane>
-      <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="394.0" mnemonicParsing="false" text="Type in English" />
+      <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="414.0" mnemonicParsing="false" text="Type in English" />
       <CheckBox fx:id="translationCheckbox" layoutX="483.0" layoutY="435.0" mnemonicParsing="false" text="Turn on translation" />
       <Slider fx:id="volumeSlider" blockIncrement="1.0" layoutX="8.0" layoutY="394.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" onDragDetected="#controlVolume" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
          <opaqueInsets>
@@ -129,7 +129,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="frequencyLabel" layoutX="14.0" layoutY="35.0" prefHeight="18.0" prefWidth="178.0" text="Transmitting from: ">
+      <Label fx:id="frequencyLabel" layoutX="14.0" layoutY="35.0" prefHeight="18.0" prefWidth="178.0" text="">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
