@@ -27,7 +27,11 @@
          <children>
             <HBox prefHeight="278.0" prefWidth="178.0">
                <children>
+<<<<<<< HEAD
+                  <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2"  orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+=======
                   <Slider fx:id="frequencySlider" majorTickUnit="5.0" max="450.0" min="420.0" minorTickCount="2" onMouseDragReleased="#setFrequencyLabel" orientation="VERTICAL" prefHeight="291.0" prefWidth="31.0" showTickLabels="true" showTickMarks="true">
+>>>>>>> a1a3090328d893d24658c87f21a1a40db1caecad
                      <cursor>
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor></Slider>
@@ -69,8 +73,8 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" onAction="#userDitInput" prefHeight="39.0" prefWidth="43.0" text="Dit" />
-      <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" onAction="#userDahInput" prefHeight="39.0" prefWidth="43.0" text="Dah" />
+      <Button fx:id="ditButton" layoutX="347.0" layoutY="414.0" mnemonicParsing="false" onAction="#dit" prefHeight="39.0" prefWidth="43.0" text="Dit" />
+      <Button fx:id="dahButton" layoutX="400.0" layoutY="414.0" mnemonicParsing="false" onAction="#dah" prefHeight="39.0" prefWidth="43.0" text="Dah" />
       <BorderPane layoutX="173.0" layoutY="81.0" prefHeight="322.0" prefWidth="428.0">
          <center>
             <ScrollPane fx:id="chatLogScrollPane" prefHeight="238.0" prefWidth="401.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" vvalue="1.0">
@@ -104,7 +108,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="userMessageTextField" onAction="#sendAction" promptText="(type message here)" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="userMessageTextField" promptText="(type message here)" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#sendAction" text="Send" />
                   <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearChatLogAction" text="Clear" />
                </children>
@@ -116,7 +120,11 @@
       </BorderPane>
       <CheckBox fx:id="englishCheckBox" layoutX="483.0" layoutY="414.0" mnemonicParsing="false" text="Type in English" />
       <CheckBox fx:id="translationCheckbox" layoutX="483.0" layoutY="435.0" mnemonicParsing="false" text="Turn on translation" />
+<<<<<<< HEAD
+      <Slider fx:id="volumeSlider" layoutX="8.0" layoutY="394.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
+=======
       <Slider fx:id="volumeSlider" blockIncrement="1.0" layoutX="8.0" layoutY="394.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" onDragDetected="#controlVolume" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true">
+>>>>>>> a1a3090328d893d24658c87f21a1a40db1caecad
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -129,7 +137,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <Label fx:id="frequencyLabel" layoutX="14.0" layoutY="35.0" prefHeight="18.0" prefWidth="178.0" text="">
+=======
+      <Label layoutX="14.0" layoutY="35.0" prefHeight="18.0" prefWidth="178.0" text="Transmitting from: ">
+>>>>>>> b93aacf46fe990454bee6b65d024aac7f9beac4c
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
