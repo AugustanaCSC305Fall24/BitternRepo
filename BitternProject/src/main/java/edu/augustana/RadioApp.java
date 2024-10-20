@@ -10,9 +10,8 @@ import javax.print.attribute.standard.Media;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
+/** JavaFX App **/
+
 public class RadioApp extends Application {
 
     private static Scene scene;

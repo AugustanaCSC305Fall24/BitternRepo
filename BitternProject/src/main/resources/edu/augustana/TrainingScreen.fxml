@@ -5,11 +5,12 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="417.0" prefWidth="528.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TrainingController">
+<VBox alignment="CENTER" prefHeight="426.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TrainingController">
     <children>
       <HBox alignment="CENTER" prefHeight="30.0" prefWidth="452.0" spacing="50.0">
          <children>
@@ -28,7 +29,23 @@
          <VBox.margin>
             <Insets />
          </VBox.margin></Label>
-      <TextArea prefHeight="232.0" prefWidth="452.0" />
+      <AnchorPane prefHeight="199.0" prefWidth="424.0">
+         <children>
+            <Label fx:id="letterLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="199.0" prefHeight="131.0" prefWidth="163.0" text="A" textAlignment="CENTER">
+               <font>
+                  <Font name="Rockwell Bold" size="96.0" />
+               </font>
+            </Label>
+            <Label fx:id="morseCodeLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="229.0" layoutY="120.0" prefHeight="32.0" prefWidth="103.0" text=".-" textAlignment="CENTER">
+               <font>
+                  <Font name="Rockwell Bold" size="47.0" />
+               </font>
+            </Label>
+            <Button fx:id="prevButton" layoutX="6.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlePrevButtonAction" text="←" />
+            <Button fx:id="nextButton" layoutX="525.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleNextButtonAction" text="→" />
+         </children>
+      </AnchorPane>
+      <TextArea prefHeight="49.0" prefWidth="383.0" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
