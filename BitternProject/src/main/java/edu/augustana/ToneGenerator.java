@@ -1,8 +1,6 @@
 package edu.augustana;
 
 import javax.sound.sampled.*;
-import java.util.*;
-
 
 //  Couldn't find much on the internet for making sound w/o an audio file
 //  so turned to ChatGTP to help write this class
@@ -11,7 +9,7 @@ public class ToneGenerator {
     public static void main(String[] args) throws LineUnavailableException {
         // Parameters for tone generation
         float sampleRate = 44100;   // Standard CD-quality sample rate
-        int duration = 5;           // Duration in seconds
+        double duration = 5;           // Duration in seconds
         double frequency = 440;     // Frequency in Hertz (A4 note)
 
         // Generate tone
@@ -19,10 +17,15 @@ public class ToneGenerator {
 
         // Play the tone
         playSound(tone, sampleRate);
+
+        //Play dit and dah
+        playDah(44100);
+        playDit(44100);
+
     }
 
     // Method to generate a sine wave
-    public static byte[] generateSineWave(double freq, int duration, float sampleRate) {
+    public static byte[] generateSineWave(double freq, double duration, float sampleRate) {
         int numSamples = (int)(duration * sampleRate);
         byte[] output = new byte[2 * numSamples];
 
@@ -53,4 +56,17 @@ public class ToneGenerator {
         line.drain();
         line.close();
     }
+
+    public static void playDit(float sampleRate) throws LineUnavailableException {
+        //float sampleRate = 44100;
+        byte[] tone = generateSineWave(440, .1, sampleRate);
+        playSound(tone, sampleRate);
+    }
+
+    public static void playDah(float sampleRate) throws LineUnavailableException {
+        //float sampleRate = 44100;
+        byte[] tone = generateSineWave(440, .5, sampleRate);
+        playSound(tone, sampleRate);
+    }
+
 }

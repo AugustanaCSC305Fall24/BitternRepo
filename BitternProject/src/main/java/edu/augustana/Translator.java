@@ -1,15 +1,14 @@
 package edu.augustana;
 
-import java.lang.module.ModuleReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MorseCodeTranslator {
+public class Translator {
 
     private static final Map<Character, String> charToMorse = new HashMap<>();
     private static final Map<String, Character> morseToChar = new HashMap<>();
 
-    private static char[] letter
+    public static char[] englishLetters
             = { 'a', 'b', 'c', 'd', 'e', 'f',
             'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r',
@@ -18,7 +17,7 @@ public class MorseCodeTranslator {
             '3', '4', '5', '6', '7', '8', '9'};
 
     // Morse code by indexing
-    private static String[] code
+    public static String[] morseCodeLetters
             = { ".-",   "-...", "-.-.", "-..",  ".",
             "..-.", "--.",  "....", "..",   ".---",
             "-.-",  ".-..", "--",   "-.",   "---",
@@ -28,28 +27,28 @@ public class MorseCodeTranslator {
             "...--", "....-", ".....", "-....",
             "--...", "---..", "----."};
 
-    private static String[] codeWords
+    public static String[] codeWords
             = { "CQ", "GM", "GA", "GE", "GN",
             "AGN", "QSB", "QRS", "QRQ", "WPM",
             "R", "TU", "73"};
 
-    private static String[] translateCodeWords
+    public static String[] translateCodeWords
             = { "Calling all stations", "Good morning", "Good afternoon", "Good evening", "Good night",
             "Again", "Fading signal", "Send slower", "Send faster", "Words per minute",
             "Roger", "Thank you", "Best wishes"};
 
-    public MorseCodeTranslator() {
+    public Translator() {
         // Initialize the maps with Morse code mappings
-        for (int i = 0; i < letter.length; i++) {
-            charToMorse.put(letter[i], code[i]);
+        for (int i = 0; i < englishLetters.length; i++) {
+            charToMorse.put(englishLetters[i], morseCodeLetters[i]);
         }
-        for (int i = 0; i < code.length; i++) {
-            morseToChar.put(code[i], letter[i]);
+        for (int i = 0; i < morseCodeLetters.length; i++) {
+            morseToChar.put(morseCodeLetters[i], englishLetters[i]);
         }
     }
 
     public static String textToMorse(String text) {
-        new MorseCodeTranslator();
+        new Translator();
         StringBuilder morse = new StringBuilder();
         for (char c : text.toLowerCase().toCharArray()) {
             if (charToMorse.containsKey(c)) {
@@ -60,7 +59,7 @@ public class MorseCodeTranslator {
     }
 
     public static String morseToText(String morse) {
-        new MorseCodeTranslator();
+        new Translator();
         StringBuilder text = new StringBuilder();
         for (String code : morse.split(" ")) {
             if (morseToChar.containsKey(code)) {
@@ -73,12 +72,13 @@ public class MorseCodeTranslator {
         return text.toString();
     }
 
-    public static void main(String[] args) {
-        MorseCodeTranslator translator = new MorseCodeTranslator();
-        String text = "Hello, World!";
-        String morse = translator.textToMorse(text);
-        System.out.println("Text: " + text);
-        System.out.println("Morse: " + morse);
-        System.out.println("Decoded: " + translator.morseToText(morse));
-    }
+//    For testing purposes
+//    public static void main(String[] args) {
+//        MorseCodeTranslator translator = new MorseCodeTranslator();
+//        String text = "Hello, World!";
+//        String morse = translator.textToMorse(text);
+//        System.out.println("Text: " + text);
+//        System.out.println("Morse: " + morse);
+//        System.out.println("Decoded: " + translator.morseToText(morse));
+//    }
 }

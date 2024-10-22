@@ -2,10 +2,14 @@ package edu.augustana;
 
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChatMessage {
     private String text;
     private String sender;
     private Color color;
+    private static List<ChatMessage> chatLogMessageList = new ArrayList<>();
 
     public ChatMessage(String text, String sender, Color color) {
         this.text = text;
@@ -25,12 +29,9 @@ public class ChatMessage {
         return color;
     }
 
-    @Override
-    public String toString() {
-        return "ChatMessage{" +
-                "text='" + text + '\'' +
-                ", sender='" + sender + '\'' +
-                ", color=" + color +
-                '}';
+    public static List<ChatMessage> getChatMessageList() {return chatLogMessageList;}
+
+    public static void addMessage(ChatMessage message) {
+        chatLogMessageList.add(message);
     }
 }

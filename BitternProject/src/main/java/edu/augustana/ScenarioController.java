@@ -38,15 +38,13 @@ public class ScenarioController {
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        Tone.line.drain();
-        Tone.line.close();
         RadioApp.setRoot("WelcomeScreen");
     }
 
     // got from exam 1 chatbots
     @FXML
     private void clearChatLogAction() {
-        List<ChatMessage> messages = ChatRoom.getChatMessageList();
+        List<ChatMessage> messages = ChatMessage.getChatMessageList();
         if (messages == null || messages.isEmpty()) {
             return; // or handle the null/empty case appropriately
         }
@@ -60,30 +58,28 @@ public class ScenarioController {
         String translation;
         if (!msgText.isBlank()) {
             ChatMessage newMessageFromUser = new ChatMessage(msgText, "User", Color.BLACK);
-            ChatRoom.addMessage(newMessageFromUser);
+            ChatMessage.addMessage(newMessageFromUser);
             addMessageToChatLogUI(newMessageFromUser);
 
             if (translationCheckbox.isSelected()) {
 
                 if (englishCheckBox.isSelected()) {
                     // Translate text to Morse code
-                     translation = MorseCodeTranslator.textToMorse(msgText);
+                     translation = Translator.textToMorse(msgText);
                     if (translation.isEmpty()) {
                         translation = "Empty english translation";
                     }
                     ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.RED);
                     addMessageToChatLogUI(newMessageFromTranslator);
 
-
                 } else {
                     // Translate Morse code to text
-                    translation = MorseCodeTranslator.morseToText(msgText);
+                    translation = Translator.morseToText(msgText);
                     if (translation.isEmpty()) {
                         translation = "Invalid Morse Code";
                     }
                     ChatMessage newMessageFromTranslator = new ChatMessage(translation, "Translator", Color.GREEN);
                     addMessageToChatLogUI(newMessageFromTranslator);
-
                 }
 
                 String finalTranslation = translation;
@@ -103,13 +99,6 @@ public class ScenarioController {
             // Clear the input field and reset the input string
             userMessageTextField.clear();
             input = "";
-
-            Tone.line.drain();
-            Tone.line.close();
-
-            Tone.line.open(Tone.af, Note.SAMPLE_RATE);
-            Tone.line.start();
-
         }
     }
 
@@ -117,9 +106,9 @@ public class ScenarioController {
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             if (c == '.') {
-                userInput.playDotSound();
+                ToneGenerator.playDit(44100);
             } else if (c == '-') {
-                userInput.playDashSound();
+                ToneGenerator.playDah(44100);
             }
 
             try {
@@ -139,6 +128,7 @@ public class ScenarioController {
 
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
+    
     @FXML
     private void dit() throws LineUnavailableException {
         userMessageTextField.setText(userInput.userDitInput());
@@ -149,69 +139,6 @@ public class ScenarioController {
         userMessageTextField.setText(userInput.userDahInput());
     }
 
-//    @FXML
-//    private void userDitInput() throws LineUnavailableException {
-//        String msgText = ".";
-//        long currentTime = System.currentTimeMillis();
-//        playDotSound();
-//
-//        if (currentTime - lastClickTime < 2000) {
-//            input += ".";
-//        } else if(currentTime - lastClickTime < 3000){
-//            input += " ";
-//            input += ".";
-//        } else {
-//            input += " ";
-//            input += "|";
-//            input += " ";
-//            input += ".";
-//        }
-//        userMessageTextField.setText(input);
-//        lastClickTime = currentTime;
-//
-//
-//    }
-//
-//    @FXML
-//    private void userDahInput() throws LineUnavailableException {
-//        String msgText = "-";
-//        long currentTime = System.currentTimeMillis();
-//        playDashSound();
-//
-//        if (currentTime - lastClickTime < 2000) {
-//            input += "-";
-//        } else if(currentTime - lastClickTime < 3000){
-//
-//            input += " ";
-//            input += "-";
-//        } else {
-//            input += " ";
-//            input += "|";
-//            input += " ";
-//            input += "-";
-//        }
-//
-//        lastClickTime = currentTime;
-//        userMessageTextField.setText(input);
-//    }
-//
-//    @FXML
-//    void playDotSound() throws LineUnavailableException {
-//        Tone.play(Tone.SoundType.DOT);
-//    }
-//    @FXML
-//    void playDashSound() throws LineUnavailableException {
-//        Tone.play(Tone.SoundType.DASH);
-//    }
-
-    @FXML
-    void playDotSound() throws LineUnavailableException {
-        Tone.play(Tone.SoundType.DOT);
-    }
-    @FXML
-    void playDashSound() throws LineUnavailableException {
-        Tone.play(Tone.SoundType.DASH);
-    }
     private void replyMessage(String message) {
         new Thread(() -> {
             try {
@@ -244,14 +171,14 @@ public class ScenarioController {
 
 
         ChatMessage newMessageFromBot = new ChatMessage(message, "Bot", Color.BLUE);
-        ChatRoom.addMessage(newMessageFromBot);
+        ChatMessage.addMessage(newMessageFromBot);
         addMessageToChatLogUI(newMessageFromBot);
 
         if (translationCheckbox.isSelected()) {
             String translation;
             if (englishCheckBox.isSelected()) {
                 // Translate text to Morse code
-                translation = MorseCodeTranslator.textToMorse(message);
+                translation = Translator.textToMorse(message);
                 if (translation.isEmpty()) {
                     translation = "Empty english translation";
                 }
@@ -259,7 +186,7 @@ public class ScenarioController {
                 addMessageToChatLogUI(newMessageFromTranslator);
             } else {
                 // Translate Morse code to text
-                translation = MorseCodeTranslator.morseToText(message);
+                translation = Translator.morseToText(message);
                 if (translation.isEmpty()) {
                     translation = "Invalid Morse Code";
                 }
