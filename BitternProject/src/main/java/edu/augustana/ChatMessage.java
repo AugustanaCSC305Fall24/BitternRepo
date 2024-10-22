@@ -1,8 +1,6 @@
 package edu.augustana;
 
-import javafx.application.Platform;
 import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.List;
 
