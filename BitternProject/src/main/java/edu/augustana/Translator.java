@@ -32,7 +32,7 @@ public class Translator {
             "AGN", "QSB", "QRS", "QRQ", "WPM",
             "R", "TU", "73"};
 
-    public static String[] translateCodeWords
+    public static String[] codeWordTranslation
             = { "Calling all stations", "Good morning", "Good afternoon", "Good evening", "Good night",
             "Again", "Fading signal", "Send slower", "Send faster", "Words per minute",
             "Roger", "Thank you", "Best wishes"};
