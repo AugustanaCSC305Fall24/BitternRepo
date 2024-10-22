@@ -16,12 +16,12 @@ public class TrainingController {
     @FXML private Label letterLabel;
     @FXML private Label morseCodeLabel;
 
+    private int index = 0;
+
     @FXML
     private void switchToWelcome() throws IOException {
         RadioApp.setRoot("WelcomeScreen");
     }
-
-    private int index = 0;
 
     @FXML
     void initialize() {
@@ -52,8 +52,5 @@ public class TrainingController {
         letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
         morseCodeLabel.setText(Translator.morseCodeLetters[index]);
     }
-
-
-
 
 }
