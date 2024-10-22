@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import javafx.application.Platform;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -34,4 +35,6 @@ public class ChatMessage {
     public static void addMessage(ChatMessage message) {
         chatLogMessageList.add(message);
     }
+
+
 }

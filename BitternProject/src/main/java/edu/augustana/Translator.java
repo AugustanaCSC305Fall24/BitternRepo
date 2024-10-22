@@ -55,7 +55,12 @@ public class Translator {
                 morse.append(charToMorse.get(c)).append(" ");
             }
         }
-        return morse.toString().trim();
+        String translation = morse.toString().trim();
+        if (translation.isEmpty()) {
+            return "Empty english translation";
+        } else {
+            return translation;
+        }
     }
 
     public static String morseToText(String morse) {
@@ -66,11 +71,15 @@ public class Translator {
                 text.append(morseToChar.get(code));
             }
         }
-        if (text.length() == 0) {
-            return "nothing";
+        String translation = text.toString();
+        if (translation.isEmpty()) {
+            return "Invalid Morse Code";
+        } else {
+            return translation;
         }
-        return text.toString();
     }
+
+
 
 //    For testing purposes
 //    public static void main(String[] args) {
