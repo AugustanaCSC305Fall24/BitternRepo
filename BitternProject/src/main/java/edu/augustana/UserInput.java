@@ -12,19 +12,22 @@ public class UserInput {
     }
 
     public String userCWInput(String sound) throws LineUnavailableException {
+        char cw;
         if (sound.equalsIgnoreCase("dit")) {
             ToneGenerator.playDit(44100);
+            cw = '.';
         } else {
             ToneGenerator.playDah(44100);
+            cw = '-';
         }
-        long currentTime = System.currentTimeMillis();
 
+        long currentTime = System.currentTimeMillis();
         if (currentTime - lastClickTime < 1000) {
-            input += sound;
+            input += cw;
         } else if(currentTime - lastClickTime < 2000){
-            input += " " + sound;
+            input += " " + cw;
         } else {
-            input += " | " + sound;
+            input += " | " + cw;
         }
         lastClickTime = currentTime;
         return input;
