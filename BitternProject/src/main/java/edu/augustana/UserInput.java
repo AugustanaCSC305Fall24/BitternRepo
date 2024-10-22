@@ -11,32 +11,20 @@ public class UserInput {
         this.lastClickTime = System.currentTimeMillis();
     }
 
-    public String userDitInput() throws LineUnavailableException {
-        ToneGenerator.playDit(44100);
-        long currentTime = System.currentTimeMillis();
-
-        if (currentTime - lastClickTime < 2000) {
-            input += ".";
-        } else if(currentTime - lastClickTime < 3000){
-            input += " .";
+    public String userCWInput(String sound) throws LineUnavailableException {
+        if (sound.equalsIgnoreCase("dit")) {
+            ToneGenerator.playDit(44100);
         } else {
-            input += " | .";
+            ToneGenerator.playDah(44100);
         }
-        lastClickTime = currentTime;
-        return input;
-    }
-
-    public String userDahInput() throws LineUnavailableException {
-        ToneGenerator.playDah(44100);
         long currentTime = System.currentTimeMillis();
 
-        if (currentTime - lastClickTime < 2000) {
-            input += "-";
-        } else if(currentTime - lastClickTime < 3000){
-
-            input += " -";
+        if (currentTime - lastClickTime < 1000) {
+            input += sound;
+        } else if(currentTime - lastClickTime < 2000){
+            input += " " + sound;
         } else {
-            input += " | -";
+            input += " | " + sound;
         }
         lastClickTime = currentTime;
         return input;

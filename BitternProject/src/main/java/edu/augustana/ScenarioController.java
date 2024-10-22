@@ -95,12 +95,12 @@ public class ScenarioController {
 
     @FXML
     private void dit() throws LineUnavailableException {
-        userMessageTextField.setText(userInput.userDitInput());
+        userMessageTextField.setText(userInput.userCWInput("dit"));
     }
 
     @FXML
     private void dah() throws LineUnavailableException {
-        userMessageTextField.setText(userInput.userDahInput());
+        userMessageTextField.setText(userInput.userCWInput("dah"));
     }
 
     private void checkBoxHandler(String msgText) {

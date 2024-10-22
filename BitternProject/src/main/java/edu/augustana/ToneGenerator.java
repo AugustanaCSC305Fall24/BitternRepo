@@ -3,7 +3,7 @@ package edu.augustana;
 import javax.sound.sampled.*;
 
 //  Couldn't find much on the internet for making sound w/o an audio file
-//  so turned to ChatGTP to help write this class
+//  so turned to ChatGPT to help write this class
 public class ToneGenerator {
 
     public static void main(String[] args) throws LineUnavailableException {
@@ -65,7 +65,7 @@ public class ToneGenerator {
 
     public static void playDah(float sampleRate) throws LineUnavailableException {
         //float sampleRate = 44100;
-        byte[] tone = generateSineWave(440, .5, sampleRate);
+        byte[] tone = generateSineWave(440, .3, sampleRate);
         playSound(tone, sampleRate);
     }
 
