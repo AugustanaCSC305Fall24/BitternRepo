@@ -18,7 +18,7 @@ public class ServerController {
 
     // Method to switch to the Welcome screen
     @FXML
-    void switchToWelcome(ActionEvent event) throws IOException {
+    private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
     }
 
