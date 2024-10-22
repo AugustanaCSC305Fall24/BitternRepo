@@ -35,7 +35,6 @@ public class ScenarioController {
 //        frequencyLabel.setText("Frequency: " + (int) frequencySlider.getValue() + " Hz");
 //    }
 
-
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
@@ -57,14 +56,13 @@ public class ScenarioController {
     private void sendAction() throws LineUnavailableException{
         String msgText = userMessageTextField.getText();
 
-        userMessageTextField.clear();
-        input = "";
-
         if (!msgText.isBlank()) {
             sendMessage(msgText, "User", Color.BLACK);
             checkBoxHandler(msgText);
             replyMessage(msgText);
         }
+        userMessageTextField.clear();
+        input = "";
 
     }
 
@@ -76,7 +74,6 @@ public class ScenarioController {
             } else if (c == '-') {
                 ToneGenerator.playDah(44100);
             }
-
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
@@ -97,12 +94,14 @@ public class ScenarioController {
 
     @FXML
     private void dit() throws LineUnavailableException {
-        userMessageTextField.setText(userInput.userCWInput("dit"));
+        input = userInput.userCWInput("dit");
+        userMessageTextField.setText(input);
     }
 
     @FXML
     private void dah() throws LineUnavailableException {
-        userMessageTextField.setText(userInput.userCWInput("dah"));
+        input = userInput.userCWInput("dah");
+        userMessageTextField.setText(input);
     }
 
     private void checkBoxHandler(String msgText) {
