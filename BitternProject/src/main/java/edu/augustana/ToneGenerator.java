@@ -59,13 +59,13 @@ public class ToneGenerator {
 
     public static void playDit(float sampleRate) throws LineUnavailableException {
         //float sampleRate = 44100;
-        byte[] tone = generateSineWave(440, .1, sampleRate);
+        byte[] tone = generateSineWave(440, .06, sampleRate);
         playSound(tone, sampleRate);
     }
 
     public static void playDah(float sampleRate) throws LineUnavailableException {
         //float sampleRate = 44100;
-        byte[] tone = generateSineWave(440, .3, sampleRate);
+        byte[] tone = generateSineWave(440, .18, sampleRate);
         playSound(tone, sampleRate);
     }
 

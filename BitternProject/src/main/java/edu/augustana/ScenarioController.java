@@ -14,15 +14,13 @@ import java.util.List;
 
 public class ScenarioController {
 
-    @FXML private Slider volumeSlider;
+    @FXML private Slider wpmSlider;
     @FXML private ScrollPane chatLogScrollPane;
     @FXML private VBox chatLogVBox;
     @FXML private Button dahButton;
     @FXML private Button ditButton;
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
-    @FXML private Slider bandWidthSlider;
-    @FXML private Slider frequencySlider;
     @FXML private CheckBox englishCheckBox;
 
     private long lastClickTime = 0;
@@ -68,6 +66,9 @@ public class ScenarioController {
     private void playMessageSound(String message) throws LineUnavailableException, InterruptedException {
         while (messagePlaying) Thread.sleep(100);
 
+        double delay = 1000 * (1200 - 37.2 * wpmSlider.getValue()) / (20 * wpmSlider.getValue());
+        System.out.println(delay);
+
         messagePlaying = true;
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
@@ -75,6 +76,10 @@ public class ScenarioController {
                 ToneGenerator.playDit(44100);
             } else if (c == '-') {
                 ToneGenerator.playDah(44100);
+            } else if (c == ' ') {
+                Thread.sleep((long) (((double) 3 /19) * delay));
+            } else if (c == '|') {
+                Thread.sleep((long) (((double) 7 /19) * delay));
             }
             try {
                 Thread.sleep(50);
@@ -82,6 +87,7 @@ public class ScenarioController {
                 Thread.currentThread().interrupt();
             }
         }
+        Thread.sleep(2000);
         messagePlaying = false;
     }
 
