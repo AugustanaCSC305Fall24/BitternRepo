@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
@@ -64,6 +65,25 @@ public class ScenarioController {
 
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
+
+    // Found base code on Stack Overflow
+//    @FXML
+//    private void keyPressed() throws LineUnavailableException {
+//        KeyEvent event = null;
+//        switch (event.getKeyChar()) {
+//            case 'm':
+//                dah();
+//                break;
+//            case 'n':
+//                dit();
+//                break;
+//            case '\n':
+//                sendAction();
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 
     @FXML
     private void dit() throws LineUnavailableException {
