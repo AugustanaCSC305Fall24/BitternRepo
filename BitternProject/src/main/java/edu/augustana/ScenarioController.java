@@ -29,6 +29,7 @@ public class ScenarioController {
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
+    private Boolean messagePlaying = false;
 
     //    @FXML
 //    private void setFrequencyLabel() {
@@ -64,7 +65,10 @@ public class ScenarioController {
 
     }
 
-    private void playMessageSound(String message) throws LineUnavailableException {
+    private void playMessageSound(String message) throws LineUnavailableException, InterruptedException {
+        while (messagePlaying) Thread.sleep(100);
+
+        messagePlaying = true;
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             if (c == '.') {
@@ -78,6 +82,7 @@ public class ScenarioController {
                 Thread.currentThread().interrupt();
             }
         }
+        messagePlaying = false;
     }
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
@@ -117,7 +122,7 @@ public class ScenarioController {
             new Thread(() -> {
                 try {
                     playMessageSound(translation);
-                } catch (LineUnavailableException e) {
+                } catch (LineUnavailableException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }).start();
