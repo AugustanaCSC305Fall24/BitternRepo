@@ -1,6 +1,8 @@
 package edu.augustana;
 
 import javafx.scene.paint.Color;
+
+import javax.sound.sampled.LineUnavailableException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class ChatMessage {
     private String sender;
     private Color color;
     private static List<ChatMessage> chatLogMessageList = new ArrayList<>();
+    private static Boolean messagePlaying = false;
 
     public ChatMessage(String text, String sender, Color color) {
         this.text = text;
@@ -32,6 +35,33 @@ public class ChatMessage {
 
     public static void addMessage(ChatMessage message) {
         chatLogMessageList.add(message);
+    }
+
+    public static void playMessageSound(String message, double wpm) throws LineUnavailableException, InterruptedException {
+        while (messagePlaying) Thread.sleep(100);
+
+        double delay = 1000 * (1200 - 37.2 * wpm) / (20 * wpm);
+
+        messagePlaying = true;
+        for (int i = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+            if (c == '.') {
+                ToneGenerator.playDit(44100);
+            } else if (c == '-') {
+                ToneGenerator.playDah(44100);
+            } else if (c == ' ') {
+                Thread.sleep((long) (((double) 3 /19) * delay));
+            } else if (c == '|') {
+                Thread.sleep((long) (((double) 7 /19) * delay));
+            }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        Thread.sleep(2000);
+        messagePlaying = false;
     }
 
 

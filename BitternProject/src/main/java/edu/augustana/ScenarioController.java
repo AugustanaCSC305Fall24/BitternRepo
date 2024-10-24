@@ -23,16 +23,9 @@ public class ScenarioController {
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
 
-    private long lastClickTime = 0;
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
-    private Boolean messagePlaying = false;
-
-    //    @FXML
-//    private void setFrequencyLabel() {
-//        frequencyLabel.setText("Frequency: " + (int) frequencySlider.getValue() + " Hz");
-//    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
@@ -60,35 +53,6 @@ public class ScenarioController {
         }
         userMessageTextField.clear();
         input = "";
-
-    }
-
-    private void playMessageSound(String message) throws LineUnavailableException, InterruptedException {
-        while (messagePlaying) Thread.sleep(100);
-
-        double delay = 1000 * (1200 - 37.2 * wpmSlider.getValue()) / (20 * wpmSlider.getValue());
-        System.out.println(delay);
-
-        messagePlaying = true;
-        for (int i = 0; i < message.length(); i++) {
-            char c = message.charAt(i);
-            if (c == '.') {
-                ToneGenerator.playDit(44100);
-            } else if (c == '-') {
-                ToneGenerator.playDah(44100);
-            } else if (c == ' ') {
-                Thread.sleep((long) (((double) 3 /19) * delay));
-            } else if (c == '|') {
-                Thread.sleep((long) (((double) 7 /19) * delay));
-            }
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-        Thread.sleep(2000);
-        messagePlaying = false;
     }
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
@@ -127,7 +91,7 @@ public class ScenarioController {
             }
             new Thread(() -> {
                 try {
-                    playMessageSound(translation);
+                    ChatMessage.playMessageSound(translation, wpmSlider.getValue());
                 } catch (LineUnavailableException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -135,15 +99,15 @@ public class ScenarioController {
         }
     }
 
-    public void botMessage(String message) {
-        sendMessage(message, "Bot", Color.BLUE);
-        checkBoxHandler(message);
-    }
-
     public void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
+    }
+
+    public void botMessage(String message) {
+        sendMessage(message, "Bot", Color.BLUE);
+        checkBoxHandler(message);
     }
 
     public void replyMessage(String message) {
