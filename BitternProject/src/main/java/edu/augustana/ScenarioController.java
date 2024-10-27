@@ -9,31 +9,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
 public class ScenarioController {
 
-    @FXML private Slider volumeSlider;
+    @FXML private Slider wpmSlider;
     @FXML private ScrollPane chatLogScrollPane;
     @FXML private VBox chatLogVBox;
     @FXML private Button dahButton;
     @FXML private Button ditButton;
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
-    @FXML private Slider bandWidthSlider;
-    @FXML private Slider frequencySlider;
     @FXML private CheckBox englishCheckBox;
 
-    private long lastClickTime = 0;
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
-
-    //    @FXML
-//    private void setFrequencyLabel() {
-//        frequencyLabel.setText("Frequency: " + (int) frequencySlider.getValue() + " Hz");
-//    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
@@ -63,23 +56,6 @@ public class ScenarioController {
         }
         userMessageTextField.clear();
         input = "";
-
-    }
-
-    private void playMessageSound(String message) throws LineUnavailableException {
-        for (int i = 0; i < message.length(); i++) {
-            char c = message.charAt(i);
-            if (c == '.') {
-                ToneGenerator.playDit(44100);
-            } else if (c == '-') {
-                ToneGenerator.playDah(44100);
-            }
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
     }
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
@@ -92,14 +68,35 @@ public class ScenarioController {
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
 
+    // Found base code on Stack Overflow
+//    @FXML
+//    private void keyPressed() throws LineUnavailableException {
+//        KeyEvent event = null;
+//        switch (event.getKeyChar()) {
+//            case 'm':
+//                dah();
+//                break;
+//            case 'n':
+//                dit();
+//                break;
+//            case '\n':
+//                sendAction();
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+
     @FXML
     private void dit() throws LineUnavailableException {
+        clearInput();
         input = userInput.userCWInput("dit");
         userMessageTextField.setText(input);
     }
 
     @FXML
     private void dah() throws LineUnavailableException {
+        clearInput();
         input = userInput.userCWInput("dah");
         userMessageTextField.setText(input);
     }
@@ -118,23 +115,24 @@ public class ScenarioController {
             }
             new Thread(() -> {
                 try {
-                    playMessageSound(translation);
-                } catch (LineUnavailableException e) {
+                    ChatMessage.playMessageSound(translation, wpmSlider.getValue());
+                } catch (LineUnavailableException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }).start();
         }
     }
 
-    public void botMessage(String message) {
-        sendMessage(message, "Bot", Color.BLUE);
-        checkBoxHandler(message);
-    }
-
     public void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
+        userMessageTextField.clear();
+    }
+
+    public void botMessage(String message) {
+        sendMessage(message, "Bot", Color.BLUE);
+        checkBoxHandler(message);
     }
 
     public void replyMessage(String message) {
@@ -160,6 +158,11 @@ public class ScenarioController {
                 }
             });
         }).start();
+    }
+    public void clearInput() {
+        if (userMessageTextField.getText().isEmpty()){
+            userInput.clearInput();
+        }
     }
 
 }

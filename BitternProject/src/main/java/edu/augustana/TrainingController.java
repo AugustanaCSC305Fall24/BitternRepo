@@ -24,7 +24,7 @@ public class TrainingController {
     }
 
     @FXML
-    void initialize() {
+    public void initialize() {
         updateLabel();
     }
 

@@ -20,7 +20,6 @@ public class RadioApp extends Application {
         stage.show();
 
 
-
     }
 
     static void setRoot(String fxml) throws IOException {
