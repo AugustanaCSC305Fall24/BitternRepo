@@ -8,11 +8,13 @@ public class UserInput {
     private long lastClickTime;
 
     public UserInput() {
+        this.input = "";
         this.lastClickTime = System.currentTimeMillis();
     }
 
     public String userCWInput(String sound) throws LineUnavailableException {
         char cw;
+
         if (sound.equalsIgnoreCase("dit")) {
             ToneGenerator.playDit(44100);
             cw = '.';
@@ -24,13 +26,22 @@ public class UserInput {
         long currentTime = System.currentTimeMillis();
         if (currentTime - lastClickTime < 1000) {
             input += cw;
-        } else if(currentTime - lastClickTime < 2000){
-            input += " " + cw;
+//        } else if(currentTime - lastClickTime < 3000){  "i took this out because the morse translator doesn't understand spaces".
+//            input += " " + cw;
         } else {
-            input += " | " + cw;
+            if (!input.isEmpty()) {
+                input += " | " + cw;
+            } else {
+                input += cw;
+            }
+
         }
         lastClickTime = currentTime;
         return input;
+    }
+
+    public void clearInput() {
+        input = "";
     }
 
 }

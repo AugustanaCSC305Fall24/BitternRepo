@@ -40,6 +40,8 @@ public class ScenarioController {
         if (messages != null && !messages.isEmpty()) {
             messages.clear();
             chatLogVBox.getChildren().clear();
+
+
         }
     }
 
@@ -87,12 +89,14 @@ public class ScenarioController {
 
     @FXML
     private void dit() throws LineUnavailableException {
+        clearInput();
         input = userInput.userCWInput("dit");
         userMessageTextField.setText(input);
     }
 
     @FXML
     private void dah() throws LineUnavailableException {
+        clearInput();
         input = userInput.userCWInput("dah");
         userMessageTextField.setText(input);
     }
@@ -123,6 +127,7 @@ public class ScenarioController {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
+        userMessageTextField.clear();
     }
 
     public void botMessage(String message) {
@@ -153,6 +158,11 @@ public class ScenarioController {
                 }
             });
         }).start();
+    }
+    public void clearInput() {
+        if (userMessageTextField.getText().isEmpty()){
+            userInput.clearInput();
+        }
     }
 
 }
