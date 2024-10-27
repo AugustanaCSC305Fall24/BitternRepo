@@ -18,6 +18,9 @@ public class RadioApp extends Application {
         scene = new Scene(loadFXML("WelcomeScreen"), 640, 480);
         stage.setScene(scene);
         stage.show();
+
+
+
     }
 
     static void setRoot(String fxml) throws IOException {
