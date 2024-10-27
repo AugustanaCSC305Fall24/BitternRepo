@@ -16,10 +16,10 @@ public class UserInput {
         char cw;
 
         if (sound.equalsIgnoreCase("dit")) {
-            ToneGenerator.playDit(44100);
+            ToneGenerator.playDit();
             cw = '.';
         } else {
-            ToneGenerator.playDah(44100);
+            ToneGenerator.playDah();
             cw = '-';
         }
 

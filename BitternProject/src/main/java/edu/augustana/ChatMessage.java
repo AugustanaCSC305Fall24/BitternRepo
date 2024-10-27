@@ -46,9 +46,9 @@ public class ChatMessage {
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             if (c == '.') {
-                ToneGenerator.playDit(44100);
+                ToneGenerator.playDit();
             } else if (c == '-') {
-                ToneGenerator.playDah(44100);
+                ToneGenerator.playDah();
             } else if (c == ' ') {
                 Thread.sleep((long) (((double) 3 /19) * delay));
             } else if (c == '|') {

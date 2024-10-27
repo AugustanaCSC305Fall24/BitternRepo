@@ -46,7 +46,7 @@ public class ScenarioController {
     }
 
     @FXML
-    private void sendAction() throws LineUnavailableException{
+    public void sendAction() throws LineUnavailableException{
         String msgText = userMessageTextField.getText();
 
         if (!msgText.isBlank()) {
@@ -68,34 +68,32 @@ public class ScenarioController {
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
 
-    // Found base code on Stack Overflow
-//    @FXML
-//    private void keyPressed() throws LineUnavailableException {
-//        KeyEvent event = null;
-//        switch (event.getKeyChar()) {
-//            case 'm':
-//                dah();
-//                break;
-//            case 'n':
-//                dit();
-//                break;
-//            case '\n':
-//                sendAction();
-//                break;
-//            default:
-//                break;
-//        }
+//    private void keyPress() {
+//        KeyEvent event =
+//        event.getKeyChar();
 //    }
 
+//     Found base code on Stack Overflow
     @FXML
-    private void dit() throws LineUnavailableException {
+    private void keyPressed(KeyEvent event) throws LineUnavailableException {
+        if (event.getKeyCode() == 'm') {
+            dah();
+        } else if (event.getKeyCode() == 'n') {
+            dit();
+        } else if (event.getKeyCode() == '\n') {
+            sendAction();
+        }
+    }
+
+    @FXML
+    public void dit() throws LineUnavailableException {
         clearInput();
         input = userInput.userCWInput("dit");
         userMessageTextField.setText(input);
     }
 
     @FXML
-    private void dah() throws LineUnavailableException {
+    public void dah() throws LineUnavailableException {
         clearInput();
         input = userInput.userCWInput("dah");
         userMessageTextField.setText(input);
