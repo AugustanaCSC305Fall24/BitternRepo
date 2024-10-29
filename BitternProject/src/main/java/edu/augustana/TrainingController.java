@@ -17,17 +17,7 @@ public class TrainingController {
     @FXML private Label letterLabel;
     @FXML private Label morseCodeLabel;
 
-    private final String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-    private final String[] morseCodes = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
     private int index = 0;
-
-    private final String[] phrases = {"CQ", "73", "SOS", "QTH", "QRM"};
-    private final String[] phraseMorseCodes = {"-.-. --.-", "--... ...--", "... --- ...", "--.- - ....", "--.- .-. --"};
-
-    @FXML
-    void initialize() {
-        updateLabel();
-    }
 
     @FXML
     private void switchToWelcome() throws IOException {
@@ -35,11 +25,16 @@ public class TrainingController {
     }
 
     @FXML
+    public void initialize() {
+        updateLabel();
+    }
+
+    @FXML
     private void handleNextButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
-            randomizeLetters(event);
+            randomizeLetters();
         } else {
-            if (index < letters.length - 1) {
+            if (index < Translator.englishLetters.length - 1) {
                 index++;
             } else {
                 index = 0; // Loop back to the start
@@ -51,12 +46,12 @@ public class TrainingController {
     @FXML
     private void handlePrevButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
-            randomizeLetters(event);
+            randomizeLetters();
         } else {
             if (index > 0) {
                 index--;
             } else {
-                index = letters.length - 1; // Loop back to the end
+                index = Translator.englishLetters.length - 1; // Loop back to the end
             }
             updateLabel();
         }
@@ -65,18 +60,12 @@ public class TrainingController {
     @FXML
     private void updateLabel() {
         if (phrasesCheckbox.isSelected()) {
-            letterLabel.setText(phrases[index]);
-            morseCodeLabel.setText(phraseMorseCodes[index]);
+            letterLabel.setText(Translator.codeWords[index]);
+            morseCodeLabel.setText(Translator.codeWordTranslation[index]);
         } else {
-            letterLabel.setText(letters[index]);
-            morseCodeLabel.setText(morseCodes[index]);
+            letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
+            morseCodeLabel.setText(Translator.morseCodeLetters[index]);
         }
-    }
-
-    @FXML
-    private void handlePhrasesCheckboxAction(ActionEvent event) {
-        index = 0; // Reset index when switching modes
-        updateLabel();
     }
 
     @FXML
@@ -89,11 +78,23 @@ public class TrainingController {
             prevButton.setDisable(false);
         }
     }
+    @FXML
+    private void randomizeLetters() {
+        int randomIndex = (int) (Math.random() * Translator.englishLetters.length);
+        index = randomIndex;
+        updateLabel();
+    }
 
     @FXML
-    private void randomizeLetters(ActionEvent event) {
-        int randomIndex = (int) (Math.random() * letters.length);
-        index = randomIndex;
+    void handlePhrasesCheckbox(ActionEvent event) {
+        if (phrasesCheckbox.isSelected()) {
+            index = 0;
+            nextButton.setDisable(true);
+            prevButton.setDisable(true);
+        } else {
+            nextButton.setDisable(false);
+            prevButton.setDisable(false);
+        }
         updateLabel();
     }
 }

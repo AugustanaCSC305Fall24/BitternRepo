@@ -7,6 +7,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.HowToController">
    <children>
       <Button fx:id="backToHomeScreen" layoutX="560.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToWelcome" text="X" />
-      <TextArea editable="false" layoutX="112.0" layoutY="100.0" prefHeight="200.0" prefWidth="384.0" text="How to play:&#10;To practice your CW skills, choose the &quot;Training&quot; option.&#10;If you want to practice some real-life scenarios on your own, &#10;choose the &quot;Scenario&quot; option.&#10;If you want to communicate with another person using CW, choose&#10;the &quot;Server&quot; option.&#10;&#10;Use the '.' button to input dots, and the ',' button to input dashes." />
+      <TextArea editable="false" layoutX="112.0" layoutY="100.0" prefHeight="200.0" prefWidth="384.0" text="How to play:&#10;To practice your CW skills, choose the &quot;Training&quot; option.&#10;If you want to practice some real-life scenarios on your own, &#10;choose the &quot;Scenario&quot; option.&#10;If you want to communicate with another person using CW, choose&#10;the &quot;Server&quot; option.&#10;&#10;Use the '.' button to input dots, and the '-' button to input dashes." />
    </children>
 </AnchorPane>

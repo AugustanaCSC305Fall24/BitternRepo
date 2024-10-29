@@ -20,7 +20,7 @@
                   <Font size="10.0" />
                </font>
             </Button>
-            <CheckBox fx:id="phrasesCheckbox" mnemonicParsing="false" onAction="#handlePhrasesCheckboxAction" text="Include CW phrases" />
+            <CheckBox fx:id="phrasesCheckbox" mnemonicParsing="false" onAction="#handlePhrasesCheckbox" text="Include CW phrases" />
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize" />
          </children>
       </HBox>

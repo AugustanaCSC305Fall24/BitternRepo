@@ -3,10 +3,6 @@ package edu.augustana;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.io.File;
 import java.io.IOException;
 
 public class ServerController {
@@ -22,7 +18,7 @@ public class ServerController {
 
     // Method to switch to the Welcome screen
     @FXML
-    void switchToWelcome(ActionEvent event) throws IOException {
+    private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
     }
 
