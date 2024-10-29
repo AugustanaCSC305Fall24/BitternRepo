@@ -5,12 +5,13 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="426.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TrainingController">
+<VBox alignment="CENTER" prefHeight="426.0" prefWidth="621.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TrainingController">
     <children>
       <HBox alignment="CENTER" prefHeight="30.0" prefWidth="452.0" spacing="50.0">
          <children>
@@ -19,7 +20,8 @@
                   <Font size="10.0" />
                </font>
             </Button>
-            <CheckBox fx:id="phrasesCheckbox" mnemonicParsing="false" text="Include CW phrases" />
+            <CheckBox fx:id="phrasesCheckbox" mnemonicParsing="false" onAction="#handlePhrasesCheckboxAction" text="Include CW phrases" />
+            <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize" />
          </children>
       </HBox>
         <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="42.0" prefWidth="133.0" text="Training" textAlignment="CENTER">
@@ -29,7 +31,7 @@
          <VBox.margin>
             <Insets />
          </VBox.margin></Label>
-      <AnchorPane prefHeight="199.0" prefWidth="424.0">
+      <AnchorPane prefHeight="207.0" prefWidth="600.0">
          <children>
             <Label fx:id="letterLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="199.0" prefHeight="131.0" prefWidth="163.0" text="A" textAlignment="CENTER">
                <font>
@@ -44,6 +46,9 @@
             <Button fx:id="prevButton" layoutX="6.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlePrevButtonAction" text="←" />
             <Button fx:id="nextButton" layoutX="525.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleNextButtonAction" text="→" />
          </children>
+         <effect>
+            <Glow />
+         </effect>
       </AnchorPane>
       <TextArea prefHeight="49.0" prefWidth="383.0" />
     </children>

@@ -31,7 +31,7 @@ public class RadioApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(RadioApp.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
+    
     public static void main(String[] args) {
         launch();
     }

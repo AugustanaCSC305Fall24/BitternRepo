@@ -6,8 +6,8 @@ import javafx.scene.control.Slider;
 public class VolumeController {
 //    @FXML
 //    private Slider volumeSlider; // Link the FXML slider here
-
     // Called after FXML fields are initialized
+
     @FXML
     public void initialize(Slider volumeSlider) {
         // Set an initial volume value using the slider's value
