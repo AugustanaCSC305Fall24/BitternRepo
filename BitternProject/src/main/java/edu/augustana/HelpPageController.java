@@ -1,16 +1,9 @@
 package edu.augustana;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,27 +12,30 @@ public class HelpPageController implements Initializable {
     @FXML private Button exitButton;
     @FXML private ListView<String> letterListView;
     @FXML private ListView<String> phraseListView;
+    private static String[] lettersAndCode = new String[37];
+    private static String[] phrasesAndCodeWords = new String[13];
 
-    public static String[] lettersAndCode
-            = { "a   .-",   "b   -...", "c   -.-.", "d   -..",  "e   .",
-            "f   ..-.", "g   --.",  "h   ....", "i   ..",   "j   .---",
-            "k   -.-",  "l   .-..", "m   --",   "n   -.",   "o   ---",
-            "p   .--.", "q   --.-", "r   .-.",  "s   ...",  "t   -",
-            "u   ..-",  "v   ...-", "w   .--",  "x   -..-", "y   -.--",
-            "z   --..", "    |", "0   -----", "1   .----", "2   ..---",
-            "3   ...--", "4   ....-", "5   .....", "6   -....",
-            "7   --...", "8   ---..", "9   ----."};
+    //Make list to be displayed on the list view
+    //Tried to make this the same method and makeListCode, however was having an issue while char[] to String[]
+    private void makeListLetters(){
+        int size = Math.min(Translator.englishLetters.length, Translator.morseCodeLetters.length);
+        for (int i = 0; i < size; i++){
+            lettersAndCode[i] = (Translator.englishLetters[i] + "    " + Translator.morseCodeLetters[i]);
+        }
+    }
 
-    public static String[] phrasesAndCodeWords
-            = { "CQ - Calling all stations", "GM - Good morning", "GA - Good afternoon", "GE - Good evening", "GN - Good night",
-            "AGN - Again", "QSB - Fading signal", "QRS - Send slower", "QRQ - Send faster", "WPM - Words per minute",
-            "R - Roger", "TU - Thank you", "73 - Best wishes"};
+    private void makeListCode(){
+        int size = Math.min(Translator.codeWords.length, Translator.codeWordTranslation.length);
+        for (int i = 0; i < size; i++){
+            phrasesAndCodeWords[i] = (Translator.codeWords[i] + "    " + Translator.codeWordTranslation[i]);
+        }
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
+        makeListLetters();
+        makeListCode();
         letterListView.getItems().addAll(lettersAndCode);
         phraseListView.getItems().addAll(phrasesAndCodeWords);
     }
-
-
 }
