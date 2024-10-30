@@ -57,4 +57,16 @@ public class RadioApp extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+    public static void createNewWindow(String fxml, String title){
+        try {
+            Parent root1 = loadFXML((String)fxml);
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Can't Load New Window");
+        }
+    }
 }
