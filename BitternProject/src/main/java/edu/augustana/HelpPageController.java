@@ -37,9 +37,5 @@ public class HelpPageController implements Initializable {
         phraseListView.getItems().addAll(phrasesAndCodeWords);
     }
 
-    @FXML
-    private void switchToWelcome(ActionEvent event) throws IOException {
-        RadioApp.setRoot("WelcomeScreen");
-    }
 
 }

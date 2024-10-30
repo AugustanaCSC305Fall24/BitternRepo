@@ -17,7 +17,4 @@ public class WelcomeController {
     @FXML private void switchToHowTo() throws IOException {
         RadioApp.setRoot("HowToScreen");
     }
-    @FXML private void openHelpPage() throws IOException{
-        RadioApp.setRoot("HelpPageScreen");
-    }
 }
