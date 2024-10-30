@@ -12,7 +12,7 @@ public class HowToController {
     private Button backToHomeScreen;
 
     @FXML
-   private void switchToWelcome(ActionEvent event) throws IOException {
+    private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
     }
 

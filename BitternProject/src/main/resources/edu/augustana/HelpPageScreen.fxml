@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="461.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.HelpPageScreen">
+   <children>
+      <Button fx:id="exitButton" layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToWelcome" prefHeight="31.0" prefWidth="31.0" text="X" />
+      <VBox layoutX="41.0" layoutY="30.0" prefHeight="416.0" prefWidth="488.0">
+         <children>
+            <Label text="Letters To CW">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ListView fx:id="letterListView" prefHeight="174.0" prefWidth="91.0" />
+            <Label text="CW Phrases To English">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ListView fx:id="phraseListView" prefHeight="193.0" prefWidth="394.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -27,5 +27,6 @@
             <Font size="9.0" />
          </font>
       </Button>
+      <Button fx:id="helpPageButton" layoutX="452.0" layoutY="38.0" mnemonicParsing="false" onAction="#openHelpScreen" text="Help" />
     </children>
 </AnchorPane>
