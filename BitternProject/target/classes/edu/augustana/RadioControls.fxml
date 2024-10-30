@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.RadioControls">
+   <children>
+      <HBox layoutX="15.0" layoutY="200.0" prefHeight="100.0" prefWidth="577.0">
+         <children>
+            <VBox prefHeight="66.0" prefWidth="283.0">
+               <children>
+                  <Slider prefHeight="14.0" prefWidth="250.0" />
+                  <Label text="Frequency">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="286.0">
+               <children>
+                  <Slider prefHeight="14.0" prefWidth="250.0" />
+                  <Label text="Filter">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="12.0" layoutY="100.0" prefHeight="100.0" prefWidth="577.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="44.0" text="WPM:" textAlignment="RIGHT">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="30.0" min="10.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+               <HBox.margin>
+                  <Insets right="75.0" />
+               </HBox.margin>
+            </Slider>
+            <Button fx:id="ditButton" mnemonicParsing="false" onAction="#dit" prefHeight="39.0" prefWidth="43.0" text="Dit" />
+            <Button fx:id="dahButton" mnemonicParsing="false" onAction="#dah" onKeyPressed="#dah" prefHeight="39.0" prefWidth="43.0" text="Dah">
+               <HBox.margin>
+                  <Insets right="75.0" />
+               </HBox.margin>
+            </Button>
+            <VBox prefHeight="100.0" prefWidth="134.0">
+               <children>
+                  <CheckBox fx:id="englishCheckBox" mnemonicParsing="false" text="Type in English" />
+                  <CheckBox fx:id="translationCheckbox" mnemonicParsing="false" text="Turn on translation">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </CheckBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
