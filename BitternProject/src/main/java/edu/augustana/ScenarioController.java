@@ -23,14 +23,18 @@ public class ScenarioController {
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
-
+    private RadioApp app;
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
 
+    public void setApp(RadioApp app) {
+        this.app = app;
+    }
+
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        RadioApp.setRoot("WelcomeScreen");
+        app.switchToWelcome();
     }
 
     // got from exam 1 chatbots

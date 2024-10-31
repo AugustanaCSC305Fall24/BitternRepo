@@ -16,33 +16,58 @@ public class RadioApp extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException, LineUnavailableException{
-        scene = new Scene(loadFXML("WelcomeScreen"), 640, 480);
+    public void start(Stage stage) throws IOException, LineUnavailableException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
+        Parent root = loader.load();
+        scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.show();
-        ScenarioController controller = new ScenarioController();
+
+        // Assuming WelcomeController is the controller for WelcomeScreen.fxml
+        WelcomeController welcomeController = loader.getController();
+        welcomeController.setApp(this);
+    }
+
+    public void switchToScenario() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ScenarioScreen.fxml"));
+        Parent root = loader.load();
+
+        scene.setRoot(root);
+
+        ScenarioController scenarioController = loader.getController();
+        scenarioController.setApp(this); // Set the app field
+
         scene.setOnKeyPressed(event -> {
-            //System.out.println(event.getCode());
-            try{
-                switch(event.getCode()) {
+            try {
+                switch (event.getCode()) {
                     case N:
-                        controller.dit();
+                    case A: // Bind 'A' key to dit
+                        scenarioController.dit();
                         break;
                     case M:
-                        controller.dah();
+                    case S: // Bind 'S' key to dah
+                        scenarioController.dah();
                         break;
-                    case A:
-                        controller.sendAction();
+                    case ENTER:
+                        scenarioController.sendAction();
                         break;
                     default:
                         break;
                 }
-            } catch (LineUnavailableException e){
+            } catch (LineUnavailableException e) {
                 throw new RuntimeException(e);
             }
-
         });
 
+    }
+
+    public void switchToWelcome() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
+        Parent root = loader.load();
+        scene.setRoot(root);
+
+        WelcomeController welcomeController = loader.getController();
+        welcomeController.setApp(this);
     }
 
     static void setRoot(String fxml) throws IOException {
