@@ -1,32 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ServerController">
     <children>
-        <Button fx:id="dotButton" layoutX="141.0" layoutY="215.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="119.0" text="•">
-            <font>
-                <Font size="35.0" />
-            </font>
-        </Button>
-        <Button fx:id="dashButton" layoutX="320.0" layoutY="215.0" mnemonicParsing="false" prefHeight="78.0" prefWidth="102.0" text="-">
-            <font>
-                <Font name="System Bold" size="36.0" />
-            </font>
-        </Button>
-      <Text layoutX="178.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server Screen" textAlignment="CENTER" wrappingWidth="225.13671875">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="welcomeButton" layoutX="512.0" layoutY="39.0" mnemonicParsing="false" onAction="#switchToWelcome" text="x">
-         <font>
-            <Font size="9.0" />
-         </font>
-      </Button>
-      <Button fx:id="helpPageButton" layoutX="452.0" layoutY="38.0" mnemonicParsing="false" onAction="#openHelpScreen" text="Help" />
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="580.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Connect Server" textAlignment="CENTER" wrappingWidth="169.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="260.0" />
+               </HBox.margin>
+            </Text>
+            <Button fx:id="notepadButton" mnemonicParsing="false" text="Notepad">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="helpPageButton" mnemonicParsing="false" onAction="#openHelpScreen" text="Help">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="welcomeButton" mnemonicParsing="false" onAction="#switchToWelcome" prefHeight="25.0" prefWidth="25.0" text="X" />
+         </children>
+      </HBox>
+      <HBox layoutX="14.0" layoutY="70.0" prefHeight="158.0" prefWidth="574.0">
+         <children>
+            <VBox prefHeight="158.0" prefWidth="250.0">
+               <children>
+                  <Label fx:id="replyLabel" text="Reply from">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="replyTextbox" editable="false" promptText="loading...">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Send a Message">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="sendMessageTextbox" promptText="(type message here)">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="158.0" prefWidth="250.0">
+               <children>
+                  <Label text="Translation">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="replyTranslationTextbox" editable="false" prefWidth="242.0" promptText="laoding...">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label text="Translation">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="sendTranslationTextbox" editable="false" promptText="loading...">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="repeatSoundButton" mnemonicParsing="false" text="Repeat">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="sendMessage" mnemonicParsing="false" text="Send">
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="-9.0" layoutY="228.0" minHeight="-Infinity" prefHeight="134.0" prefWidth="618.0">
+         <children>
+            <HBox layoutX="7.0" layoutY="14.0" prefHeight="67.0" prefWidth="603.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="44.0" text="WPM:" textAlignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="30.0" min="10.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Slider>
+                  <Button fx:id="ditButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="43.0" text="Dit" />
+                  <Button fx:id="dahButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="43.0" text="Dah">
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Button>
+                  <VBox prefHeight="100.0" prefWidth="134.0">
+                     <children>
+                        <CheckBox fx:id="englishCheckBox" mnemonicParsing="false" text="Type in English" />
+                        <CheckBox fx:id="translationCheckbox" mnemonicParsing="false" text="Turn on translation">
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </CheckBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox layoutX="19.0" layoutY="74.0" prefHeight="67.0" prefWidth="580.0">
+               <children>
+                  <VBox prefHeight="67.0" prefWidth="291.0">
+                     <children>
+                        <Slider max="725.0" min="575.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                        <Label text="Frequency">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="67.0" prefWidth="306.0">
+                     <children>
+                        <Slider prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="25.0" />
+                        <Label text="Filter">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>
