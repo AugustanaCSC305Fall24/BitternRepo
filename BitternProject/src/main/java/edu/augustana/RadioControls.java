@@ -18,6 +18,8 @@ public class RadioControls extends AnchorPane {
     @FXML private CheckBox translationCheckbox;
     @FXML private Slider wpmSlider;
 
+    UserInput userInput = new UserInput();
+
 
     public RadioControls(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RadioControls.fxml"));
@@ -29,19 +31,5 @@ public class RadioControls extends AnchorPane {
             throw new RuntimeException(e);
         }
     }
-
-//    @FXML
-//    public void dit() throws LineUnavailableException {
-//        clearInput();
-//        input = userInput.userCWInput("dit");
-//        userMessageTextField.setText(input);
-//    }
-//
-//    @FXML
-//    public void dah() throws LineUnavailableException {
-//        clearInput();
-//        input = userInput.userCWInput("dah");
-//        userMessageTextField.setText(input);
-//    }
 
 }

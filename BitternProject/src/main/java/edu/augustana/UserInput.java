@@ -34,7 +34,6 @@ public class UserInput {
             } else {
                 input += cw;
             }
-
         }
         lastClickTime = currentTime;
         return input;
