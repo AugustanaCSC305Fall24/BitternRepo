@@ -54,9 +54,9 @@ public class RadioApp extends Application {
         launch();
     }
 
-    public static void createNewWindow(String fxml, String title){
+    public static void createNewWindow(String fxml, String title) {
         try {
-            Parent root1 = loadFXML((String)fxml);
+            Parent root1 = loadFXML(fxml);
             Stage stage = new Stage();
             stage.setTitle(title);
             stage.setScene(new Scene(root1));

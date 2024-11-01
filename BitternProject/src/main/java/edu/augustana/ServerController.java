@@ -29,6 +29,11 @@ public class ServerController {
         RadioApp.createNewWindow("HelpPageScreen", "Help Page");
     }
 
+    @FXML
+    void openNotepad(ActionEvent event){
+        RadioApp.createNewWindow("NotepadScreen", "Notepad");
+    }
+
     // Method to switch to the Welcome screen
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {

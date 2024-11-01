@@ -25,7 +25,7 @@
                   <Insets right="260.0" />
                </HBox.margin>
             </Text>
-            <Button fx:id="notepadButton" mnemonicParsing="false" text="Notepad">
+            <Button fx:id="notepadButton" mnemonicParsing="false" onAction="#openNotepad" text="Notepad">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
