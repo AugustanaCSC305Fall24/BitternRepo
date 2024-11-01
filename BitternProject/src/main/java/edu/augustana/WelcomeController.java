@@ -16,11 +16,6 @@ public class WelcomeController {
         this.app = app;
     }
 
-//    @FXML
-//    private void switchToScenario(ActionEvent event) throws IOException {
-//        app.switchToScenario();
-//    }
-
     @FXML
     public void switchToScenario(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ScenarioScreen.fxml"));

@@ -32,39 +32,6 @@ public class RadioApp extends Application {
         return scene;
     }
 
-//    public void switchToScenario() throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("ScenarioScreen.fxml"));
-//        Parent root = loader.load();
-//
-//        scene.setRoot(root);
-//
-//        ScenarioController scenarioController = loader.getController();
-//        scenarioController.setApp(this); // Set the app field
-//
-//        scene.setOnKeyPressed(event -> {
-//            try {
-//                switch (event.getCode()) {
-//                    case N:
-//                    case A: // Bind 'A' key to dit
-//                        scenarioController.dit();
-//                        break;
-//                    case M:
-//                    case S: // Bind 'S' key to dah
-//                        scenarioController.dah();
-//                        break;
-//                    case ENTER:
-//                        scenarioController.sendAction();
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            } catch (LineUnavailableException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//
-//    }
-
     public void switchToWelcome() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
         Parent root = loader.load();
