@@ -44,8 +44,6 @@ public class ScenarioController {
         if (messages != null && !messages.isEmpty()) {
             messages.clear();
             chatLogVBox.getChildren().clear();
-
-
         }
     }
 
