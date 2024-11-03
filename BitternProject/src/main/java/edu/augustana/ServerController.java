@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 
-public class ServerController {
+public class ServerController extends Controller {
 
     @FXML private Button welcomeButton;
     @FXML private Button helpPageButton;

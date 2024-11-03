@@ -53,14 +53,14 @@ public class WelcomeController {
     }
 
     @FXML private void switchToTraining() throws IOException {
-        RadioApp.setRoot("TrainingScreen");
+//        RadioApp.setRoot("TrainingScreen");
 
-//        switchSetUp("TrainingScreen");
+        switchSetUp("TrainingScreen");
     }
     @FXML private void switchToServer() throws IOException {
-        RadioApp.setRoot("ServerScreen");
+//        RadioApp.setRoot("ServerScreen");
 
-//        switchSetUp("ServerScreen");
+        switchSetUp("ServerScreen");
         // This gives errors? but still works
     }
     @FXML private void switchToHowTo() throws IOException {
