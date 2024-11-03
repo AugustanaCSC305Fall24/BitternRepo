@@ -9,7 +9,7 @@ public class Translator {
     private static final Map<String, Character> morseToChar = new HashMap<>();
 
     public static char[] englishLetters
-            = { 'a', 'b', 'c', 'd', 'e', 'f',
+            = {'a', 'b', 'c', 'd', 'e', 'f',
             'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r',
             's', 't', 'u', 'v', 'w', 'x',

@@ -34,14 +34,13 @@ public class UserInput {
             } else {
                 input += cw;
             }
-
         }
         lastClickTime = currentTime;
         return input;
     }
 
-    public void clearInput() {
-        input = "";
+    public void clearInput(Boolean isEmpty) {
+        if (isEmpty) { input = "";}
     }
 
 }

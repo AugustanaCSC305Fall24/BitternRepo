@@ -9,11 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
-public class ScenarioController {
+public class ScenarioController extends Controller {
 
     @FXML private Slider wpmSlider;
     @FXML private ScrollPane chatLogScrollPane;
@@ -23,14 +22,21 @@ public class ScenarioController {
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
+    @FXML private Slider frequencySlider;
 
+
+    private RadioApp app = new RadioApp();
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
 
+//    public void setApp(RadioApp app) {
+//        this.app = app;
+//    }
+
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        RadioApp.setRoot("WelcomeScreen");
+        app.switchToWelcome();
     }
 
     // got from exam 1 chatbots
@@ -40,12 +46,10 @@ public class ScenarioController {
         if (messages != null && !messages.isEmpty()) {
             messages.clear();
             chatLogVBox.getChildren().clear();
-
-
         }
     }
 
-    @FXML
+    @FXML @Override
     public void sendAction() throws LineUnavailableException{
         String msgText = userMessageTextField.getText();
 
@@ -68,33 +72,28 @@ public class ScenarioController {
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
     }
 
-//    private void keyPress() {
-//        KeyEvent event =
-//        event.getKeyChar();
+//     Found base code on Stack Overflow
+//    @FXML
+//    private void keyPressed(KeyEvent event) throws LineUnavailableException {
+//        if (event.getKeyCode() == 'm') {
+//            dah();
+//        } else if (event.getKeyCode() == 'n') {
+//            dit();
+//        } else if (event.getKeyCode() == '\n') {
+//            sendAction();
+//        }
 //    }
 
-//     Found base code on Stack Overflow
-    @FXML
-    private void keyPressed(KeyEvent event) throws LineUnavailableException {
-        if (event.getKeyCode() == 'm') {
-            dah();
-        } else if (event.getKeyCode() == 'n') {
-            dit();
-        } else if (event.getKeyCode() == '\n') {
-            sendAction();
-        }
-    }
-
-    @FXML
+    @FXML @Override
     public void dit() throws LineUnavailableException {
-        clearInput();
+        userInput.clearInput(userMessageTextField.getText().isEmpty());
         input = userInput.userCWInput("dit");
         userMessageTextField.setText(input);
     }
 
-    @FXML
+    @FXML @Override
     public void dah() throws LineUnavailableException {
-        clearInput();
+        userInput.clearInput(userMessageTextField.getText().isEmpty());
         input = userInput.userCWInput("dah");
         userMessageTextField.setText(input);
     }
@@ -157,10 +156,9 @@ public class ScenarioController {
             });
         }).start();
     }
-    public void clearInput() {
-        if (userMessageTextField.getText().isEmpty()){
-            userInput.clearInput();
-        }
+
+    public void setFrequency() {
+        ToneGenerator.setFrequency((int) frequencySlider.getValue());
     }
 
 }

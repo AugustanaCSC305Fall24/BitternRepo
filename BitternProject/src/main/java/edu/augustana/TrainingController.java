@@ -6,10 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-
 import javax.sound.sampled.LineUnavailableException;
 
-public class TrainingController {
+
+public class TrainingController extends Controller{
 
     @FXML private CheckBox phrasesCheckbox;
     @FXML private Button welcomeButton;
