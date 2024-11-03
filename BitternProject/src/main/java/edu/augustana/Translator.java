@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Translator {
 
-    private static final Map<Character, String> charToMorse = new HashMap<>();
+    public static final Map<Character, String> charToMorse = new HashMap<>();
     private static final Map<String, Character> morseToChar = new HashMap<>();
 
     public static char[] englishLetters
@@ -31,6 +31,11 @@ public class Translator {
             = { "CQ", "GM", "GA", "GE", "GN",
             "AGN", "QSB", "QRS", "QRQ", "WPM",
             "R", "TU", "73"};
+
+    public static String[] codeWordsMorse
+            = { "-.-.--.-", "--.--", "--.-.-", "--. .", "--. -.",
+            ".- --.", "--...-", "--.- .-. ...", "--.- .-. --.-", ".-- .-- .--",
+            ".-. --.", "- ..-", "- ..-"};
 
     public static String[] codeWordTranslation
             = { "Calling all stations", "Good morning", "Good afternoon", "Good evening", "Good night",
