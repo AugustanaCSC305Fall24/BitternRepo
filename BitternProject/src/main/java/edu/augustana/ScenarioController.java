@@ -84,14 +84,14 @@ public class ScenarioController extends Controller {
 
     @FXML @Override
     public void dit() throws LineUnavailableException {
-        clearInput();
+        userInput.clearInput(userMessageTextField.getText().isEmpty());
         input = userInput.userCWInput("dit");
         userMessageTextField.setText(input);
     }
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
-        clearInput();
+        userInput.clearInput(userMessageTextField.getText().isEmpty());
         input = userInput.userCWInput("dah");
         userMessageTextField.setText(input);
     }
@@ -153,11 +153,6 @@ public class ScenarioController extends Controller {
                 }
             });
         }).start();
-    }
-    public void clearInput() {
-        if (userMessageTextField.getText().isEmpty()){
-            userInput.clearInput();
-        }
     }
 
 }

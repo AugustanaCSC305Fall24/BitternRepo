@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
@@ -24,6 +25,10 @@ public class ServerController extends Controller {
     @FXML private TextField sendTranslationTextbox;
     @FXML private CheckBox translationCheckbox;
 
+    private String input = "";
+    private UserInput userInput = new UserInput();
+
+
     @FXML
     void openHelpScreen(ActionEvent event) {
         RadioApp.createNewWindow("HelpPageScreen", "Help Page");
@@ -39,5 +44,37 @@ public class ServerController extends Controller {
     private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
     }
+
+    @Override
+    public void dit() throws LineUnavailableException {
+        userInput.clearInput(sendMessageTextbox.getText().isEmpty());
+        input = userInput.userCWInput("dit");
+        sendMessageTextbox.setText(input);
+    }
+
+    @Override
+    public void dah() throws LineUnavailableException {
+        userInput.clearInput(sendMessageTextbox.getText().isEmpty());
+        input = userInput.userCWInput("dah");
+        sendMessageTextbox.setText(input);
+    }
+
+    @Override
+    public void sendAction() throws LineUnavailableException {
+        // Here for send to server
+        String msgText = sendMessageTextbox.getText();
+
+        translateMessage(msgText);
+
+        sendMessageTextbox.clear();
+        input = "";
+
+    }
+
+    public void translateMessage(String msgText){
+        sendTranslationTextbox.clear();
+        sendTranslationTextbox.setText(Translator.morseToText(msgText));
+    }
+
 
 }
