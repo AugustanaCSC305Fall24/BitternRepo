@@ -170,7 +170,7 @@
                <children>
                   <VBox prefHeight="67.0" prefWidth="291.0">
                      <children>
-                        <Slider max="725.0" min="575.0" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                        <Slider fx:id="frequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
                         <Label text="Frequency">
                            <VBox.margin>
                               <Insets />

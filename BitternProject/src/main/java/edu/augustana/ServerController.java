@@ -2,10 +2,7 @@ package edu.augustana;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -24,6 +21,7 @@ public class ServerController extends Controller {
     @FXML private TextField sendMessageTextbox;
     @FXML private TextField sendTranslationTextbox;
     @FXML private CheckBox translationCheckbox;
+    @FXML private Slider frequencySlider;
 
     private String input = "";
     private UserInput userInput = new UserInput();
@@ -76,5 +74,8 @@ public class ServerController extends Controller {
         sendTranslationTextbox.setText(Translator.morseToText(msgText));
     }
 
+    public void setFrequency() {
+        ToneGenerator.setFrequency((int) frequencySlider.getValue());
+    }
 
 }

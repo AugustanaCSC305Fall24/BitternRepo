@@ -22,6 +22,8 @@ public class ScenarioController extends Controller {
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
+    @FXML private Slider frequencySlider;
+
 
     private RadioApp app = new RadioApp();
     private String input = "";
@@ -153,6 +155,10 @@ public class ScenarioController extends Controller {
                 }
             });
         }).start();
+    }
+
+    public void setFrequency() {
+        ToneGenerator.setFrequency((int) frequencySlider.getValue());
     }
 
 }
