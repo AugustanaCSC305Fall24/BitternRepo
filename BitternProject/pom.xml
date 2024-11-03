@@ -44,7 +44,7 @@
                 <executions>
                     <execution>
                         <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
+                        <!-- Usage: mvn clean javafx:play -->
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>edu.augustana.RadioApp</mainClass>

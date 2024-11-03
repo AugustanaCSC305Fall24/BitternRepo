@@ -1,14 +1,18 @@
 package edu.augustana;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ServerController extends Controller {
+public class ServerController extends Controller implements Initializable {
 
     @FXML private Button welcomeButton;
     @FXML private Button helpPageButton;
@@ -22,9 +26,18 @@ public class ServerController extends Controller {
     @FXML private TextField sendTranslationTextbox;
     @FXML private CheckBox translationCheckbox;
     @FXML private Slider frequencySlider;
+    @FXML private Slider staticSlider;
 
     private String input = "";
     private UserInput userInput = new UserInput();
+    WhiteNoise whiteNoise = new WhiteNoise();
+
+    public void initialize(URL arg0, ResourceBundle arg1){
+//        new Thread(() -> {
+//            try { Thread.sleep(20); } catch (InterruptedException ex) { }
+//            Platform.runLater(() -> whiteNoise.play());
+//        }).start();
+    }
 
 
     @FXML
@@ -76,6 +89,10 @@ public class ServerController extends Controller {
 
     public void setFrequency() {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());
+    }
+
+    public void setWhiteNoiseVolume(){
+        WhiteNoise.setVolume((int) staticSlider.getValue());
     }
 
 }
