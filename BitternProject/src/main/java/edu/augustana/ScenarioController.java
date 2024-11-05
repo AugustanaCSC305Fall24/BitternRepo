@@ -35,8 +35,12 @@ public class ScenarioController extends Controller {
 //    }
 
     @FXML
-    private void switchToWelcome(ActionEvent event) throws IOException {
-        app.switchToWelcome();
+    public void switchScenarioMenu(ActionEvent actionEvent) {
+        try {
+            app.setRoot("ScenarioMenu");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // got from exam 1 chatbots
@@ -160,5 +164,7 @@ public class ScenarioController extends Controller {
     public void setFrequency() {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());
     }
+
+
 
 }

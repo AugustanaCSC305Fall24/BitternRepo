@@ -16,7 +16,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
             <Button fx:id="trainingButton" onAction="#switchToTraining" text="Training" />
-            <Button fx:id="scenarioButton" onAction="#switchToScenario" text="Scenarios" />
+            <Button fx:id="scenarioMenuButton" onAction="#switchToScenarioMenu" text="Scenarios" />
             <Button fx:id="serverButton" onAction="#switchToServer" text="Server" />
          </children>
       </HBox>

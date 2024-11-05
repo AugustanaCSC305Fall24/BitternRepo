@@ -1,6 +1,8 @@
 package edu.augustana;
 
 import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,9 +50,9 @@ public class WelcomeController {
 //        });
 //    }
 
-    @FXML private void switchToScenario() throws IOException {
-        switchSetUp("ScenarioScreen");
-    }
+//    @FXML private void switchToScenario() throws IOException {
+//        switchSetUp("ScenarioScreen");
+//    }
 
     @FXML private void switchToTraining() throws IOException {
 //        RadioApp.setRoot("TrainingScreen");
@@ -63,7 +65,11 @@ public class WelcomeController {
     @FXML private void switchToHowTo() throws IOException {
         RadioApp.setRoot("HowToScreen");
     }
+    @FXML
+    public void switchToScenarioMenu(ActionEvent actionEvent) throws IOException {
+        RadioApp.setRoot("ScenarioMenu");
 
+    }
     private void switchSetUp(String fxmlName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlName + ".fxml"));
         Parent root = loader.load();
