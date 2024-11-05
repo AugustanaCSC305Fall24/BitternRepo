@@ -35,12 +35,8 @@ public class ScenarioController extends Controller {
 //    }
 
     @FXML
-    public void switchScenarioMenu(ActionEvent actionEvent) {
-        try {
-            app.setRoot("ScenarioMenu");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void switchToWelcome(ActionEvent event) throws IOException {
+        RadioApp.setRoot("WelcomeScreen");
     }
 
     // got from exam 1 chatbots
