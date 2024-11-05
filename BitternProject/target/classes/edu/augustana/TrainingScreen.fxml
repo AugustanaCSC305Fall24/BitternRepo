@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,7 +19,6 @@
                   <Font size="10.0" />
                </font>
             </Button>
-            <CheckBox fx:id="phrasesCheckbox" mnemonicParsing="false" onAction="#handlePhrasesCheckbox" text="Include CW phrases" />
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize" />
          </children>
       </HBox>
@@ -45,12 +43,12 @@
             </Label>
             <Button fx:id="prevButton" layoutX="6.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlePrevButtonAction" text="←" />
             <Button fx:id="nextButton" layoutX="525.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleNextButtonAction" text="→" />
+            <Button fx:id="replayButton" layoutX="259.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleReplayButtonAction" text="Replay" />
          </children>
          <effect>
             <Glow />
          </effect>
       </AnchorPane>
-      <TextArea prefHeight="49.0" prefWidth="383.0" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
