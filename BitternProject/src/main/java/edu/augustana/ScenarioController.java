@@ -10,13 +10,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScenarioController extends Controller {
 
     @FXML private Slider wpmSlider;
-    @FXML private ScrollPane chatLogScrollPane;
-    @FXML private VBox chatLogVBox;
+    @FXML private static ScrollPane chatLogScrollPane;
+    @FXML private static VBox chatLogVBox;
     @FXML private Button dahButton;
     @FXML private Button ditButton;
     @FXML private CheckBox translationCheckbox;
@@ -27,6 +28,7 @@ public class ScenarioController extends Controller {
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
+    private ChatClient chatClient = new ChatClient();
 
 //    public void setApp(RadioApp app) {
 //        this.app = app;
@@ -60,7 +62,7 @@ public class ScenarioController extends Controller {
         input = "";
     }
 
-    private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
+    static void addMessageToChatLogUI(ChatMessage messageToDisplay) {
         Label label = new Label(messageToDisplay.getSender() + ":  " + messageToDisplay.getText());
         label.setTextFill(messageToDisplay.getColor());
         label.setWrapText(true);
@@ -123,6 +125,10 @@ public class ScenarioController extends Controller {
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
         userMessageTextField.clear();
+        chatClient.sendMessage(newMessage.getText());
+        ChatMessage lastMessage = chatClient.getMessages().get(-1);
+        addMessageToChatLogUI(lastMessage);
+
     }
 
     public void botMessage(String message) {
