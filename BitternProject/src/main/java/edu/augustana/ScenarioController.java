@@ -36,7 +36,7 @@ public class ScenarioController extends Controller {
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        app.switchToWelcome();
+        RadioApp.setRoot("WelcomeScreen");
     }
 
     @FXML
@@ -151,3 +151,4 @@ public class ScenarioController extends Controller {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());
     }
 }
+

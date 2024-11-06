@@ -37,6 +37,7 @@ public class ServerController extends Controller implements Initializable {
 //            try { Thread.sleep(20); } catch (InterruptedException ex) { }
 //            Platform.runLater(() -> whiteNoise.play());
 //        }).start();
+
     }
 
 

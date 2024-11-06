@@ -36,12 +36,13 @@ public class RadioApp extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
         Parent root = loader.load();
         scene.setRoot(root);
-
         WelcomeController welcomeController = loader.getController();
         welcomeController.setApp(this);
     }
 
+
     public static void setRoot(String fxml) throws IOException {
+        Parent root = loadFXML(fxml); // for debugging
         scene.setRoot(loadFXML(fxml));
     }
 
@@ -62,7 +63,8 @@ public class RadioApp extends Application {
             stage.setScene(new Scene(root1));
             stage.show();
         } catch (Exception e) {
-            System.out.println("Can't Load New Window");
+            System.out.println("Can't Load New Window: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

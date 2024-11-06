@@ -11,7 +11,6 @@ import javax.sound.sampled.LineUnavailableException;
 
 public class TrainingController extends Controller{
 
-    @FXML private CheckBox phrasesCheckbox;
     @FXML private Button welcomeButton;
     @FXML private CheckBox randomizeCheckbox;
     @FXML private Button nextButton;
@@ -35,13 +34,6 @@ public class TrainingController extends Controller{
     private void handleNextButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
             randomizeLetters();
-        } else if (phrasesCheckbox.isSelected()) {
-            if (index < Translator.codeWords.length - 1) {
-                index++;
-            } else {
-                index = 0; // Loop back to the start
-            }
-            updateLabel();
         }else {
             if (index < Translator.englishLetters.length - 1) {
                 index++;
@@ -69,14 +61,11 @@ public class TrainingController extends Controller{
     @FXML
     private void updateLabel() {
         // Update label texts based on checkbox selection
-        if (phrasesCheckbox.isSelected()) {
-            letterLabel.setText(Translator.codeWords[index]);
-            morseCodeLabel.setText(Translator.codeWordsMorse[index]);
-        } else {
+
             letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
             morseCodeLabel.setText(Translator.morseCodeLetters[index]);
-        }
 
+            // call method handle relpay button action instead of this code
         // Create a new thread for playing the Morse sound
         new Thread(() -> {
             // Add delay before playing Morse sound
@@ -107,13 +96,10 @@ public class TrainingController extends Controller{
 
     @FXML
     private void handleRandomizeCheckboxAction(ActionEvent event) {
-        if (phrasesCheckbox.isSelected()) {
-            nextButton.setDisable(true);
-            prevButton.setDisable(true);
-        } else {
+
             nextButton.setDisable(false);
             prevButton.setDisable(false);
-        }
+            randomizeLetters();
     }
     @FXML
     private void randomizeLetters() {
@@ -122,10 +108,30 @@ public class TrainingController extends Controller{
         updateLabel();
     }
 
+
+
     @FXML
-    void handlePhrasesCheckbox(ActionEvent event) {
-        if (phrasesCheckbox.isSelected()) {
-            index = 0;
-        updateLabel();
+    private void handleReplayButtonAction(ActionEvent event) {
+        handlePlayButtonAction();
     }
-}}
+
+    @FXML
+    private void handlePlayButtonAction() {
+        // Play Morse sound
+        String morseCode = morseCodeLabel.getText();
+        for (char c : morseCode.toCharArray()) {
+            try {
+                if (c == '.') {
+                    ToneGenerator.playDit();
+                } else if (c == '-') {
+                    ToneGenerator.playDah();
+                }
+                // Add a short pause between sounds
+                Thread.sleep(100);
+            } catch (LineUnavailableException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
