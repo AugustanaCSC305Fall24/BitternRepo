@@ -40,7 +40,6 @@ public class RadioApp extends Application {
         welcomeController.setApp(this);
     }
 
-
     public static void setRoot(String fxml) throws IOException {
         Parent root = loadFXML(fxml); // for debugging
         scene.setRoot(loadFXML(fxml));
