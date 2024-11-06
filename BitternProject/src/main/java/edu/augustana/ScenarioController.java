@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScenarioController extends Controller {
@@ -24,22 +25,20 @@ public class ScenarioController extends Controller {
     @FXML private CheckBox englishCheckBox;
     @FXML private Slider frequencySlider;
 
-
     private RadioApp app = new RadioApp();
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
 
-//    public void setApp(RadioApp app) {
-//        this.app = app;
-//    }
+    public void initialize() {
+        addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
+    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         RadioApp.setRoot("WelcomeScreen");
     }
 
-    // got from exam 1 chatbots
     @FXML
     private void clearChatLogAction() {
         List<ChatMessage> messages = ChatMessage.getChatMessageList();
@@ -50,13 +49,12 @@ public class ScenarioController extends Controller {
     }
 
     @FXML @Override
-    public void sendAction() throws LineUnavailableException{
+    public void sendAction() throws LineUnavailableException {
         String msgText = userMessageTextField.getText();
 
         if (!msgText.isBlank()) {
             sendMessage(msgText, "User", Color.BLACK);
             checkBoxHandler(msgText);
-            replyMessage(msgText);
         }
         userMessageTextField.clear();
         input = "";
@@ -69,20 +67,8 @@ public class ScenarioController extends Controller {
         label.setFont(Font.font("System", FontWeight.NORMAL, 11));
         chatLogVBox.getChildren().add(label);
 
-        Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
+        Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0));
     }
-
-//     Found base code on Stack Overflow
-//    @FXML
-//    private void keyPressed(KeyEvent event) throws LineUnavailableException {
-//        if (event.getKeyCode() == 'm') {
-//            dah();
-//        } else if (event.getKeyCode() == 'n') {
-//            dit();
-//        } else if (event.getKeyCode() == '\n') {
-//            sendAction();
-//        }
-//    }
 
     @FXML @Override
     public void dit() throws LineUnavailableException {
@@ -101,12 +87,9 @@ public class ScenarioController extends Controller {
     private void checkBoxHandler(String msgText) {
         if (translationCheckbox.isSelected()) {
             if (englishCheckBox.isSelected()) {
-                // Translate text to Morse code
                 translation = Translator.textToMorse(msgText);
                 sendMessage(translation, "Translator", Color.RED);
-
             } else {
-                // Translate Morse code to text
                 translation = Translator.morseToText(msgText);
                 sendMessage(translation, "Translator", Color.GREEN);
             }
@@ -125,6 +108,14 @@ public class ScenarioController extends Controller {
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
         userMessageTextField.clear();
+        if (englishCheckBox.isSelected()) {
+
+
+            ChatClient.sendMessage(newMessage.getText());
+            ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
+            ChatMessage.addMessage(lastMessage);
+            addMessageToChatLogUI(lastMessage);
+        }
     }
 
     public void botMessage(String message) {
@@ -135,10 +126,9 @@ public class ScenarioController extends Controller {
     public void replyMessage(String message) {
         new Thread(() -> {
             try {
-                // Introduce a delay of 2 seconds (2000 milliseconds)
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();  // Handle thread interruption
+                Thread.currentThread().interrupt();
             }
 
             Platform.runLater(() -> {
@@ -160,7 +150,5 @@ public class ScenarioController extends Controller {
     public void setFrequency() {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());
     }
-
-
-
 }
+
