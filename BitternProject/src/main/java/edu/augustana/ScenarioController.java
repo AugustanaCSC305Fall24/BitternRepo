@@ -16,30 +16,29 @@ import java.util.List;
 public class ScenarioController extends Controller {
 
     @FXML private Slider wpmSlider;
-    @FXML private static ScrollPane chatLogScrollPane;
-    @FXML private static VBox chatLogVBox;
+    @FXML private ScrollPane chatLogScrollPane;
+    @FXML private VBox chatLogVBox;
     @FXML private Button dahButton;
     @FXML private Button ditButton;
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
+    @FXML private Slider frequencySlider;
 
     private RadioApp app = new RadioApp();
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
-    private ChatClient chatClient = new ChatClient();
 
-//    public void setApp(RadioApp app) {
-//        this.app = app;
-//    }
+    public void initialize() {
+        addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
+    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         app.switchToWelcome();
     }
 
-    // got from exam 1 chatbots
     @FXML
     private void clearChatLogAction() {
         List<ChatMessage> messages = ChatMessage.getChatMessageList();
@@ -50,39 +49,26 @@ public class ScenarioController extends Controller {
     }
 
     @FXML @Override
-    public void sendAction() throws LineUnavailableException{
+    public void sendAction() throws LineUnavailableException {
         String msgText = userMessageTextField.getText();
 
         if (!msgText.isBlank()) {
             sendMessage(msgText, "User", Color.BLACK);
             checkBoxHandler(msgText);
-            replyMessage(msgText);
         }
         userMessageTextField.clear();
         input = "";
     }
 
-    static void addMessageToChatLogUI(ChatMessage messageToDisplay) {
+    private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
         Label label = new Label(messageToDisplay.getSender() + ":  " + messageToDisplay.getText());
         label.setTextFill(messageToDisplay.getColor());
         label.setWrapText(true);
         label.setFont(Font.font("System", FontWeight.NORMAL, 11));
         chatLogVBox.getChildren().add(label);
 
-        Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0)); // scroll the scrollpane to the bottom
+        Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0));
     }
-
-//     Found base code on Stack Overflow
-//    @FXML
-//    private void keyPressed(KeyEvent event) throws LineUnavailableException {
-//        if (event.getKeyCode() == 'm') {
-//            dah();
-//        } else if (event.getKeyCode() == 'n') {
-//            dit();
-//        } else if (event.getKeyCode() == '\n') {
-//            sendAction();
-//        }
-//    }
 
     @FXML @Override
     public void dit() throws LineUnavailableException {
@@ -101,12 +87,9 @@ public class ScenarioController extends Controller {
     private void checkBoxHandler(String msgText) {
         if (translationCheckbox.isSelected()) {
             if (englishCheckBox.isSelected()) {
-                // Translate text to Morse code
                 translation = Translator.textToMorse(msgText);
                 sendMessage(translation, "Translator", Color.RED);
-
             } else {
-                // Translate Morse code to text
                 translation = Translator.morseToText(msgText);
                 sendMessage(translation, "Translator", Color.GREEN);
             }
@@ -125,10 +108,14 @@ public class ScenarioController extends Controller {
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
         userMessageTextField.clear();
-        chatClient.sendMessage(newMessage.getText());
-        ChatMessage lastMessage = chatClient.getMessages().get(-1);
-        addMessageToChatLogUI(lastMessage);
+        if (englishCheckBox.isSelected()) {
 
+
+            ChatClient.sendMessage(newMessage.getText());
+            ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
+            ChatMessage.addMessage(lastMessage);
+            addMessageToChatLogUI(lastMessage);
+        }
     }
 
     public void botMessage(String message) {
@@ -139,10 +126,9 @@ public class ScenarioController extends Controller {
     public void replyMessage(String message) {
         new Thread(() -> {
             try {
-                // Introduce a delay of 2 seconds (2000 milliseconds)
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();  // Handle thread interruption
+                Thread.currentThread().interrupt();
             }
 
             Platform.runLater(() -> {
@@ -161,4 +147,7 @@ public class ScenarioController extends Controller {
         }).start();
     }
 
+    public void setFrequency() {
+        ToneGenerator.setFrequency((int) frequencySlider.getValue());
+    }
 }

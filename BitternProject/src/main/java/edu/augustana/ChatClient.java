@@ -32,10 +32,9 @@ public class ChatClient {
 
     public ChatClient() {
         messages.add(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
-        ScenarioController.addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
     }
 
-    public void sendMessage(String messageContent) {
+    public static void sendMessage(String messageContent) {
         try {
             // Add user message to the list
             messages.add(new ChatMessage(messageContent, "user", Color.BLACK));
@@ -58,7 +57,7 @@ public class ChatClient {
 
 
             // Send HTTP POST request
-            URL url = new URL("http://localhost:8000/rag/");
+            URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
@@ -88,7 +87,10 @@ public class ChatClient {
                 // Process the response
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 String assistantMessage = jsonResponse.getString("response");
+
                 messages.add(new ChatMessage(assistantMessage, "assistant", Color.BLACK));
+
+
 //                ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);
 //
 //                ChatMessage.addMessage(newMessage);
@@ -100,7 +102,7 @@ public class ChatClient {
         }
     }
 
-    public List<ChatMessage> getMessages() {
+    public static List<ChatMessage> getMessages() {
         return messages;
     }
 }

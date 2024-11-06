@@ -7,6 +7,7 @@ import javax.xml.transform.Source;
 //  so turned to ChatGPT to help write this class
 public class ToneGenerator {
     private static final float sampleRate = 44100;   // Standard CD-quality sample rate
+    private static int frequency = 650;
 
     public static void main(String[] args) throws LineUnavailableException {
         // Parameters for tone generation
@@ -75,15 +76,24 @@ public class ToneGenerator {
 //    }
 
     public static void playDit() throws LineUnavailableException {
-        byte[] tone = generateSineWave(440, .06);
+        byte[] tone = generateSineWave(frequency, .06);
         playSound(tone, sampleRate);
 //        line.write(tone, 0, tone.length);
     }
 
     public static void playDah() throws LineUnavailableException {
-        byte[] tone = generateSineWave(440, .18);
+        byte[] tone = generateSineWave(frequency, .18);
         playSound(tone, sampleRate);
 //        line.write(tone, 0, tone.length);
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public static void setFrequency(int frequencyInput) {
+        frequency = frequencyInput;
+        System.out.print(frequencyInput);
     }
 
 }
