@@ -50,6 +50,11 @@ public class ScenarioController extends Controller implements Initializable {
     }
 
     @FXML
+    void openHelpScreen(ActionEvent event) {
+        RadioApp.createNewWindow("HelpPageScreen", "Help Page");
+    }
+
+    @FXML
     private void clearChatLogAction() {
         List<ChatMessage> messages = ChatMessage.getChatMessageList();
         if (messages != null && !messages.isEmpty()) {

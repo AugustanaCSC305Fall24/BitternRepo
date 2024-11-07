@@ -140,5 +140,6 @@
             </HBox>
          </children>
       </AnchorPane>
+      <Button fx:id="helpButton" layoutX="526.0" layoutY="26.0" mnemonicParsing="false" onAction="#openHelpScreen" text="Help" />
    </children>
 </AnchorPane>
