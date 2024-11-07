@@ -2,7 +2,6 @@ package edu.augustana;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +24,8 @@ public class WelcomeController {
     @FXML private void switchToTraining() throws IOException {
         switchSetUp("TrainingScreen");
     }
+
+
     @FXML private void switchToServer() throws IOException {
         switchSetUp("ServerScreen");
     }

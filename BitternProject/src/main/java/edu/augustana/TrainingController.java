@@ -9,7 +9,7 @@ import javafx.scene.control.CheckBox;
 import javax.sound.sampled.LineUnavailableException;
 
 
-public class TrainingController extends Controller{
+public class TrainingController extends Controller {
 
     @FXML private Button welcomeButton;
     @FXML private CheckBox randomizeCheckbox;

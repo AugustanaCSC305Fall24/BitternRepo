@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ScenarioController extends Controller {

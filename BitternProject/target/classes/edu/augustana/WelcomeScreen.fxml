@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="370.0" prefWidth="455.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.WelcomeController">
+<VBox id="myVBox" alignment="CENTER" prefHeight="370.0" prefWidth="455.0" spacing="20.0" style="-fx-background-image: url(&quot;https://i.pinimg.com/564x/6f/b9/83/6fb9838f2d2c24b7b00a57fb4dc62317.jpg&quot;); -fx-background-repeat: no-repeat; -fx-background-size: cover;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.WelcomeController">
    <children>
       <Label text="HAM Radio Simulator">
          <font>

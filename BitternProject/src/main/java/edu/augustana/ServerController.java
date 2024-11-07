@@ -1,11 +1,9 @@
 package edu.augustana;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
