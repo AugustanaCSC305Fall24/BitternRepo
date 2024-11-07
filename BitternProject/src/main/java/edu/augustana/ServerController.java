@@ -53,6 +53,7 @@ public class ServerController extends Controller implements Initializable {
     // Method to switch to the Welcome screen
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
+        whiteNoise.exit();
         RadioApp.setRoot("WelcomeScreen");
     }
 
