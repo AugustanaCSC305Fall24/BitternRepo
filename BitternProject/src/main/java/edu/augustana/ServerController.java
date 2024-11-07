@@ -31,14 +31,8 @@ public class ServerController extends Controller implements Initializable {
     WhiteNoise whiteNoise = new WhiteNoise();
 
     public void initialize(URL arg0, ResourceBundle arg1){
-//        new Thread(() -> {
-//            try { Thread.sleep(20); } catch (InterruptedException ex) { }
-//            Platform.runLater(() -> whiteNoise.play());
-//        }).start();
         new Thread(whiteNoise::play).start();
-
     }
-
 
     @FXML
     void openHelpScreen(ActionEvent event) {

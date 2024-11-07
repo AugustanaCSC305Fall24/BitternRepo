@@ -3,6 +3,7 @@ package edu.augustana;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -10,9 +11,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class ScenarioController extends Controller {
+public class ScenarioController extends Controller implements Initializable {
 
     @FXML private Slider wpmSlider;
     @FXML private ScrollPane chatLogScrollPane;
@@ -23,18 +26,26 @@ public class ScenarioController extends Controller {
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
     @FXML private Slider frequencySlider;
+    @FXML private Slider staticSlider;
 
-    private RadioApp app = new RadioApp();
+//    private RadioApp app = new RadioApp();
     private String input = "";
     private String translation;
     private UserInput userInput = new UserInput();
+    private WhiteNoise whiteNoise = new WhiteNoise();
 
-    public void initialize() {
+    public void initialize(URL arg0, ResourceBundle arg1){
+        new Thread(whiteNoise::play).start();
         addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
     }
+//
+//    public void initialize() {
+//        addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
+//    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
+        whiteNoise.exit();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -148,6 +159,10 @@ public class ScenarioController extends Controller {
 
     public void setFrequency() {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());
+    }
+
+    public void setWhiteNoiseVolume(){
+        WhiteNoise.setVolume((int) staticSlider.getValue());
     }
 }
 
