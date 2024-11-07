@@ -20,4 +20,5 @@ public class NotepadController implements Initializable {
     public void setNotesText(String text) {
         notesText.setText(text);
     }
+
 }

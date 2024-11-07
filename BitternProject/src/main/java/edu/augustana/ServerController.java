@@ -37,6 +37,7 @@ public class ServerController extends Controller implements Initializable {
 //            try { Thread.sleep(20); } catch (InterruptedException ex) { }
 //            Platform.runLater(() -> whiteNoise.play());
 //        }).start();
+        new Thread(whiteNoise::play).start();
 
     }
 
@@ -95,5 +96,6 @@ public class ServerController extends Controller implements Initializable {
     public void setWhiteNoiseVolume(){
         WhiteNoise.setVolume((int) staticSlider.getValue());
     }
+
 
 }
