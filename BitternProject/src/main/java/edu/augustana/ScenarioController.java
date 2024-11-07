@@ -64,7 +64,7 @@ public class ScenarioController extends Controller implements Initializable {
 
         if (!msgText.isBlank()) {
             sendMessage(msgText, "User", Color.BLACK);
-            checkBoxHandler(msgText);
+
         }
         userMessageTextField.clear();
         input = "";
@@ -98,10 +98,10 @@ public class ScenarioController extends Controller implements Initializable {
         if (translationCheckbox.isSelected()) {
             if (englishCheckBox.isSelected()) {
                 translation = Translator.textToMorse(msgText);
-                sendMessage(translation, "Translator", Color.RED);
+                addTranslation(translation, "Translator", Color.RED);
             } else {
                 translation = Translator.morseToText(msgText);
-                sendMessage(translation, "Translator", Color.GREEN);
+                addTranslation(translation, "Translator", Color.GREEN);
             }
             new Thread(() -> {
                 try {
@@ -112,19 +112,32 @@ public class ScenarioController extends Controller implements Initializable {
             }).start();
         }
     }
+    public void addTranslation(String message, String sender, Color color){
+        ChatMessage newMessage = new ChatMessage(message, sender, color);
+        ChatMessage.addMessage(newMessage);
+        addMessageToChatLogUI(newMessage);
+    }
 
     public void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
         userMessageTextField.clear();
+        checkBoxHandler(message);
         if (englishCheckBox.isSelected()) {
+            new Thread(() -> {
 
 
-            ChatClient.sendMessage(newMessage.getText());
-            ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
-            ChatMessage.addMessage(lastMessage);
-            addMessageToChatLogUI(lastMessage);
+                ChatClient.sendMessage(newMessage.getText());
+                ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
+
+                Platform.runLater(() -> {
+                    ChatMessage.addMessage(lastMessage);
+                    addMessageToChatLogUI(lastMessage);
+
+            });
+        }).start();
+
         }
     }
 
