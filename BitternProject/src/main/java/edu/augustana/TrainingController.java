@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+
 import javax.sound.sampled.LineUnavailableException;
 
 
@@ -17,8 +19,13 @@ public class TrainingController extends Controller {
     @FXML private Button prevButton;
     @FXML private Label letterLabel;
     @FXML private Label morseCodeLabel;
+    @FXML private Button dahButton;
+    @FXML private Button ditButton;
+    @FXML private TextField userTextBox;
 
     private int index = 0;
+    private UserInput userInput = new UserInput();
+    String input = "";
 
     @FXML
     private void switchToWelcome() throws IOException {
@@ -28,6 +35,32 @@ public class TrainingController extends Controller {
     @FXML
     public void initialize() {
         updateLabel();
+    }
+
+    @FXML @Override
+    public void dit() throws LineUnavailableException {
+        input = userInput.userCWInput("dit");
+        userTextBox.setText(input);
+        if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
+            userInput.clearInput(true);
+            userTextBox.setText("");
+            handleNextButtonAction(new ActionEvent());
+        } else {
+            userInput.clearInput(userTextBox.getText().isEmpty());
+        }
+    }
+
+    @FXML @Override
+    public void dah() throws LineUnavailableException {
+        input = userInput.userCWInput("dah");
+        userTextBox.setText(input);
+        if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
+            userInput.clearInput(true);
+            userTextBox.setText("");
+            handleNextButtonAction(new ActionEvent());
+        } else {
+            userInput.clearInput(userTextBox.getText().isEmpty());
+        }
     }
 
     @FXML
@@ -96,11 +129,11 @@ public class TrainingController extends Controller {
 
     @FXML
     private void handleRandomizeCheckboxAction(ActionEvent event) {
-
             nextButton.setDisable(false);
             prevButton.setDisable(false);
             randomizeLetters();
     }
+
     @FXML
     private void randomizeLetters() {
         int randomIndex = (int) (Math.random() * Translator.englishLetters.length);
@@ -113,6 +146,8 @@ public class TrainingController extends Controller {
     @FXML
     private void handleReplayButtonAction(ActionEvent event) {
         handlePlayButtonAction();
+        userInput.clearInput(true);
+        userTextBox.setText("");
     }
 
     @FXML

@@ -19,10 +19,14 @@ public class ToneGenerator {
         byte[] tone = generateSineWave(frequency, duration);
 
         // Play the tone
-        playSound(tone, sampleRate);
+//        playSound(tone, sampleRate);
 
         //Play dit and dah
         playDah();
+        playDah();
+        playDah();
+        playDit();
+        playDit();
         playDit();
 
     }
