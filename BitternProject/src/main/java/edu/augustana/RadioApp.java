@@ -19,7 +19,7 @@ public class RadioApp extends Application {
     public void start(Stage stage) throws IOException, LineUnavailableException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
         Parent root = loader.load();
-        scene = new Scene(root, 640, 480);
+        scene = new Scene(root, 640, 560);
         stage.setScene(scene);
         stage.show();
 
