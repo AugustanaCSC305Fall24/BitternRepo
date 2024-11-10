@@ -128,7 +128,7 @@
                   <VBox prefHeight="67.0" prefWidth="291.0">
                      <children>
                         <Slider fx:id="frequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                        <Label text="Frequency">
+                        <Label text="Side Tone">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -144,7 +144,7 @@
                   <VBox prefHeight="67.0" prefWidth="306.0">
                      <children>
                         <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0" />
-                        <Label text="Filter">
+                        <Label text="Bandwidth Filter">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
