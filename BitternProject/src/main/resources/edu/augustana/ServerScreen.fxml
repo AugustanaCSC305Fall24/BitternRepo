@@ -159,8 +159,6 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="ditButton" layoutX="265.0" layoutY="-1.0" mnemonicParsing="false" onAction="#dit" prefHeight="39.0" prefWidth="43.0" text="Dit" />
-            <Button fx:id="dahButton" layoutX="308.0" layoutY="-1.0" mnemonicParsing="false" onAction="#dah" prefHeight="39.0" prefWidth="43.0" text="Dah" />
             <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="11.0" prefHeight="18.0" prefWidth="44.0" text="WPM:" textAlignment="RIGHT">
                <font>
                   <Font name="System Bold" size="12.0" />

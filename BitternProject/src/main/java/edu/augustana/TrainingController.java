@@ -19,8 +19,6 @@ public class TrainingController extends Controller {
     @FXML private Button prevButton;
     @FXML private Label letterLabel;
     @FXML private Label morseCodeLabel;
-    @FXML private Button dahButton;
-    @FXML private Button ditButton;
     @FXML private TextField userTextBox;
 
     private int index = 0;

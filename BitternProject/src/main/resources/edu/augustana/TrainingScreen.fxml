@@ -46,8 +46,6 @@
             <Button fx:id="prevButton" layoutX="6.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlePrevButtonAction" text="←" />
             <Button fx:id="nextButton" layoutX="525.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleNextButtonAction" text="→" />
             <TextField fx:id="userTextBox" editable="false" layoutX="253.0" layoutY="185.0" prefHeight="26.0" prefWidth="55.0" />
-            <Button fx:id="ditButton" layoutX="248.0" layoutY="222.0" mnemonicParsing="false" onAction="#dit" text="Dit" />
-            <Button fx:id="dahButton" layoutX="281.0" layoutY="222.0" mnemonicParsing="false" onAction="#dah" text="Dah" />
          </children>
          <effect>
             <Glow />

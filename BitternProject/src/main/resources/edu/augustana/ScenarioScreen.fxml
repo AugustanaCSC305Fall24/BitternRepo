@@ -81,12 +81,6 @@
                         <Insets right="100.0" />
                      </HBox.margin>
                   </Slider>
-                  <Button fx:id="ditButton" mnemonicParsing="false" onAction="#dit" prefHeight="39.0" prefWidth="43.0" text="Dit" />
-                  <Button fx:id="dahButton" mnemonicParsing="false" onAction="#dah" onKeyPressed="#dah" prefHeight="39.0" prefWidth="43.0" text="Dah">
-                     <HBox.margin>
-                        <Insets right="100.0" />
-                     </HBox.margin>
-                  </Button>
                   <VBox prefHeight="100.0" prefWidth="134.0">
                      <children>
                         <CheckBox fx:id="englishCheckBox" mnemonicParsing="false" text="Type in English" />
