@@ -143,7 +143,7 @@
                   </VBox>
                   <VBox prefHeight="67.0" prefWidth="306.0">
                      <children>
-                        <Slider fx:id="staticSlider" max="6.0" min="-80.0" onDragDetected="#setWhiteNoiseVolume" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0" />
+                        <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0" />
                         <Label text="Filter">
                            <VBox.margin>
                               <Insets top="10.0" />
