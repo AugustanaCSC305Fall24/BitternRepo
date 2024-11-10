@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 
 import javax.sound.sampled.LineUnavailableException;
 
+import static edu.augustana.Translator.morseCodeLetters;
+
 
 public class TrainingController extends Controller {
 
@@ -18,9 +20,10 @@ public class TrainingController extends Controller {
     @FXML private Button nextButton;
     @FXML private Button prevButton;
     @FXML private Label letterLabel;
-    @FXML private Label morseCodeLabel;
+//    @FXML private Label morseCodeLabel;
     @FXML private TextField userTextBox;
 
+    private String currentMorse;
     private int index = 0;
     private UserInput userInput = new UserInput();
     String input = "";
@@ -40,21 +43,18 @@ public class TrainingController extends Controller {
     @FXML @Override
     public void dit() throws LineUnavailableException {
         input = userInput.userCWInput("dit", wpmTraining);
-        userTextBox.setText(input);
-        if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
-            userInput.clearInput(true);
-            userTextBox.setText("");
-            handleNextButtonAction(new ActionEvent());
-        } else {
-            userInput.clearInput(userTextBox.getText().isEmpty());
-        }
+        ditDah();
     }
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
         input = userInput.userCWInput("dah", wpmTraining);
+        ditDah();
+    }
+
+    private void ditDah() {
         userTextBox.setText(input);
-        if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
+        if (userTextBox.getText().equalsIgnoreCase(currentMorse)) {
             userInput.clearInput(true);
             userTextBox.setText("");
             handleNextButtonAction(new ActionEvent());
@@ -96,7 +96,7 @@ public class TrainingController extends Controller {
         // Update label texts based on checkbox selection
 
             letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
-            morseCodeLabel.setText(Translator.morseCodeLetters[index]);
+            currentMorse = morseCodeLetters[index];
 
             // call method handle relpay button action instead of this code
         // Create a new thread for playing the Morse sound
@@ -125,6 +125,8 @@ public class TrainingController extends Controller {
     private void randomizeLetters() {
         int randomIndex = (int) (Math.random() * Translator.englishLetters.length);
         index = randomIndex;
+        userInput.clearInput(true);
+        userTextBox.setText("");
         updateLabel();
     }
 
@@ -140,8 +142,7 @@ public class TrainingController extends Controller {
     @FXML
     private void handlePlayButtonAction() {
         // Play Morse sound
-        String morseCode = morseCodeLabel.getText();
-        for (char c : morseCode.toCharArray()) {
+        for (char c : currentMorse.toCharArray()) {
             try {
                 if (c == '.') {
                     ToneGenerator.playDit();
