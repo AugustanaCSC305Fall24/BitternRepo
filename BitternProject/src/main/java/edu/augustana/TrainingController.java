@@ -20,7 +20,6 @@ public class TrainingController extends Controller {
     @FXML private Button nextButton;
     @FXML private Button prevButton;
     @FXML private Label letterLabel;
-//    @FXML private Label morseCodeLabel;
     @FXML private TextField userTextBox;
 
     private String currentMorse;
@@ -29,6 +28,7 @@ public class TrainingController extends Controller {
     String input = "";
 
     private final double wpmTraining = 20;
+    private final int englishSpaceIndex = 26;
 
     @FXML
     private void switchToWelcome() throws IOException {
@@ -55,8 +55,7 @@ public class TrainingController extends Controller {
     private void ditDah() {
         userTextBox.setText(input);
         if (userTextBox.getText().equalsIgnoreCase(currentMorse)) {
-            userInput.clearInput(true);
-            userTextBox.setText("");
+            resetTextBox();
             handleNextButtonAction(new ActionEvent());
         } else {
             userInput.clearInput(userTextBox.getText().isEmpty());
@@ -67,36 +66,35 @@ public class TrainingController extends Controller {
     private void handleNextButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
             randomizeLetters();
-        }else {
-            if (index < Translator.englishLetters.length - 1) {
-                index++;
-            } else {
-                index = 0; // Loop back to the start
-            }
-            updateLabel();
+        } else if (index == englishSpaceIndex - 1) {
+            index += 2;
+        } else if (index < Translator.englishLetters.length - 1) {
+            index++;
+        } else {
+            index = 0; // Loop back to the start
         }
+        updateLabel();
     }
 
     @FXML
     private void handlePrevButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
             randomizeLetters();
+        } else if (index == englishSpaceIndex + 1) {
+            index -= 2;
+        }else if (index > 0) {
+            index--;
         } else {
-            if (index > 0) {
-                index--;
-            } else {
-                index = Translator.englishLetters.length - 1; // Loop back to the end
-            }
-            updateLabel();
+            index = Translator.englishLetters.length - 1; // Loop back to the end
         }
+        updateLabel();
     }
 
     @FXML
     private void updateLabel() {
         // Update label texts based on checkbox selection
-
-            letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
-            currentMorse = morseCodeLetters[index];
+        letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
+        currentMorse = morseCodeLetters[index];
 
             // call method handle relpay button action instead of this code
         // Create a new thread for playing the Morse sound
@@ -125,16 +123,17 @@ public class TrainingController extends Controller {
     private void randomizeLetters() {
         int randomIndex = (int) (Math.random() * Translator.englishLetters.length);
         index = randomIndex;
-        userInput.clearInput(true);
-        userTextBox.setText("");
+        resetTextBox();
         updateLabel();
     }
-
-
 
     @FXML
     private void handleReplayButtonAction(ActionEvent event) {
         handlePlayButtonAction();
+        resetTextBox();
+    }
+
+    private void resetTextBox() {
         userInput.clearInput(true);
         userTextBox.setText("");
     }
