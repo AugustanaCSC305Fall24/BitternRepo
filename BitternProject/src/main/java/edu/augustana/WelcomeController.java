@@ -29,9 +29,7 @@ public class WelcomeController {
     @FXML private void switchToServer() throws IOException {
         switchSetUp("ServerScreen");
     }
-    @FXML private void switchToHowTo() throws IOException {
-        RadioApp.setRoot("HowToScreen");
-    }
+
     private void switchSetUp(String fxmlName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlName + ".fxml"));
         Parent root = loader.load();

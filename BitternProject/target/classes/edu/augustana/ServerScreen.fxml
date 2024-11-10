@@ -62,7 +62,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="sendMessageTextbox" promptText="(type message here)">
+                  <TextField fx:id="sendMessageTextbox" editable="false" promptText="(CW appears here)">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -166,7 +166,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Slider fx:id="wpmSlider" layoutX="72.0" majorTickUnit="5.0" max="30.0" min="10.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0">
+            <Slider fx:id="wpmSlider" layoutX="72.0" majorTickUnit="5.0" max="25.0" min="5.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="15.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

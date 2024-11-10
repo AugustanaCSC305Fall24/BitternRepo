@@ -55,6 +55,11 @@ public class ScenarioController extends Controller implements Initializable {
     }
 
     @FXML
+    void openHowTo(ActionEvent event) {
+        RadioApp.createNewWindow("HowToScreen", "How To Page");
+    }
+
+    @FXML
     private void clearChatLogAction() {
         List<ChatMessage> messages = ChatMessage.getChatMessageList();
         if (messages != null && !messages.isEmpty()) {

@@ -17,8 +17,8 @@
 
 <AnchorPane prefHeight="528.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ScenarioController">
    <children>
-      <Button fx:id="welcomeButton" layoutX="588.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToWelcome" text="X" />
-      <Text layoutX="154.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario " textAlignment="CENTER" wrappingWidth="356.95350646972656">
+      <Button fx:id="welcomeButton" layoutX="589.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToWelcome" text="X" />
+      <Text layoutX="29.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario " textAlignment="CENTER" wrappingWidth="298.4000000000001">
          <font>
             <Font size="36.0" />
          </font>
@@ -140,6 +140,7 @@
             </HBox>
          </children>
       </AnchorPane>
-      <Button fx:id="helpButton" layoutX="526.0" layoutY="26.0" mnemonicParsing="false" onAction="#openHelpScreen" text="Help" />
+      <Button fx:id="helpButton" layoutX="541.0" layoutY="26.0" mnemonicParsing="false" onAction="#openHelpScreen" text="Help" />
+      <Button layoutX="477.0" layoutY="26.0" mnemonicParsing="false" onAction="#openHowTo" text="How To" />
    </children>
 </AnchorPane>

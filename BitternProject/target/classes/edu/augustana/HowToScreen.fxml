@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.HowToController">
+<AnchorPane prefHeight="314.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.HowToController">
    <children>
-      <Button fx:id="backToHomeScreen" layoutX="560.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToWelcome" text="X" />
-      <TextArea editable="false" layoutX="112.0" layoutY="100.0" prefHeight="200.0" prefWidth="384.0" text="How to play:&#10;To practice your CW skills, choose the &quot;Training&quot; option.&#10;If you want to practice some real-life scenarios on your own, &#10;choose the &quot;Scenario&quot; option.&#10;If you want to communicate with another person using CW, choose&#10;the &quot;Server&quot; option.&#10;&#10;Use the '.' button to input dots, and the '-' button to input dashes." />
+      <TextArea editable="false" layoutX="22.0" layoutY="66.0" prefHeight="220.0" prefWidth="298.0" text="Use 'N' to input     .     (dit)&#10;Use 'M' to input    -     (dah)&#10;&#10;Training:&#10;Practice CW skills!&#10;&#10;Scenario:&#10;Real-life disaster scenarios, pick which one you would like!&#10;&#10;Server:&#10;Connect with others using CW!" wrapText="true" />
+      <Label layoutX="22.0" layoutY="18.0" text="How to Page">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
