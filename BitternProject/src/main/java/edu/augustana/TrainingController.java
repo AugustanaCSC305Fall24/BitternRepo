@@ -27,6 +27,8 @@ public class TrainingController extends Controller {
     private UserInput userInput = new UserInput();
     String input = "";
 
+    private final double wpmTraining = 20;
+
     @FXML
     private void switchToWelcome() throws IOException {
         RadioApp.setRoot("WelcomeScreen");
@@ -39,7 +41,7 @@ public class TrainingController extends Controller {
 
     @FXML @Override
     public void dit() throws LineUnavailableException {
-        input = userInput.userCWInput("dit");
+        input = userInput.userCWInput("dit", wpmTraining);
         userTextBox.setText(input);
         if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
             userInput.clearInput(true);
@@ -52,7 +54,7 @@ public class TrainingController extends Controller {
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
-        input = userInput.userCWInput("dah");
+        input = userInput.userCWInput("dah", wpmTraining);
         userTextBox.setText(input);
         if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
             userInput.clearInput(true);
@@ -109,20 +111,7 @@ public class TrainingController extends Controller {
             }
 
             // Play Morse sound
-            String morseCode = morseCodeLabel.getText();
-            for (char c : morseCode.toCharArray()) {
-                try {
-                    if (c == '.') {
-                        ToneGenerator.playDit();
-                    } else if (c == '-') {
-                        ToneGenerator.playDah();
-                    }
-                    // Add a short pause between sounds
-                    Thread.sleep(100);
-                } catch (LineUnavailableException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            handlePlayButtonAction();
         }).start(); // Start the new thread
     }
 
@@ -162,8 +151,8 @@ public class TrainingController extends Controller {
                     ToneGenerator.playDah();
                 }
                 // Add a short pause between sounds
-                Thread.sleep(100);
-            } catch (LineUnavailableException | InterruptedException e) {
+//                Thread.sleep(100);
+            } catch (LineUnavailableException e) {
                 e.printStackTrace();
             }
         }

@@ -88,14 +88,14 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML @Override
     public void dit() throws LineUnavailableException {
         userInput.clearInput(userMessageTextField.getText().isEmpty());
-        input = userInput.userCWInput("dit");
+        input = userInput.userCWInput("dit", wpmSlider.getValue());
         userMessageTextField.setText(input);
     }
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
         userInput.clearInput(userMessageTextField.getText().isEmpty());
-        input = userInput.userCWInput("dah");
+        input = userInput.userCWInput("dah", wpmSlider.getValue());
         userMessageTextField.setText(input);
     }
 

@@ -12,28 +12,30 @@ public class UserInput {
         this.lastClickTime = System.currentTimeMillis();
     }
 
-    public String userCWInput(String sound) throws LineUnavailableException {
+    public String userCWInput(String sound, double wpm) throws LineUnavailableException {
         char cw;
+        double delay = 1000 * (1200 - 37.2 * wpm) / (20 * wpm);
+        int soundLength;
 
         if (sound.equalsIgnoreCase("dit")) {
             ToneGenerator.playDit();
             cw = '.';
+            soundLength = 60;
         } else {
             ToneGenerator.playDah();
             cw = '-';
+            soundLength = 180;
         }
 
         long currentTime = System.currentTimeMillis();
-        if (currentTime - lastClickTime < 1000) {
+        if (currentTime - lastClickTime - soundLength < ((double) 3 /19)*delay) {
             input += cw;
-//        } else if(currentTime - lastClickTime < 3000){  "i took this out because the morse translator doesn't understand spaces".
-//            input += " " + cw;
-        } else {
-            if (!input.isEmpty()) {
+        } else if(currentTime - lastClickTime - soundLength < ((double) 7 /19)*delay){
+            input += " " + cw;
+        } else if (!input.isEmpty()) {
                 input += " | " + cw;
-            } else {
+        } else {
                 input += cw;
-            }
         }
         lastClickTime = currentTime;
         return input;
