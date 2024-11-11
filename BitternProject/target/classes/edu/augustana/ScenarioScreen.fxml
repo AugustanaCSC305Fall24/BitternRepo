@@ -48,7 +48,7 @@
          <bottom>
             <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="userMessageTextField" promptText="(type message here)" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="userMessageTextField" promptText="(type English messages here)" HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" onAction="#sendAction" text="Send" />
                   <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearChatLogAction" text="Clear" />
                </children>
@@ -81,12 +81,6 @@
                         <Insets right="100.0" />
                      </HBox.margin>
                   </Slider>
-                  <Button fx:id="ditButton" mnemonicParsing="false" onAction="#dit" prefHeight="39.0" prefWidth="43.0" text="Dit" />
-                  <Button fx:id="dahButton" mnemonicParsing="false" onAction="#dah" onKeyPressed="#dah" prefHeight="39.0" prefWidth="43.0" text="Dah">
-                     <HBox.margin>
-                        <Insets right="100.0" />
-                     </HBox.margin>
-                  </Button>
                   <VBox prefHeight="100.0" prefWidth="134.0">
                      <children>
                         <CheckBox fx:id="englishCheckBox" mnemonicParsing="false" text="Type in English" />

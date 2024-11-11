@@ -15,7 +15,6 @@
     <children>
       <HBox alignment="CENTER" prefHeight="30.0" prefWidth="452.0" spacing="50.0">
          <children>
-            <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" text="Retry" />
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize" />
               <Button fx:id="welcomeButton" alignment="TOP_CENTER" onAction="#switchToWelcome" text="X">
                <font>
@@ -38,16 +37,14 @@
                   <Font name="Rockwell Bold" size="96.0" />
                </font>
             </Label>
-            <Label fx:id="morseCodeLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="229.0" layoutY="120.0" prefHeight="32.0" prefWidth="103.0" text=".-" textAlignment="CENTER">
-               <font>
-                  <Font name="Rockwell Bold" size="47.0" />
-               </font>
-            </Label>
             <Button fx:id="prevButton" layoutX="6.0" layoutY="77.0" mnemonicParsing="false" onAction="#handlePrevButtonAction" text="←" />
             <Button fx:id="nextButton" layoutX="525.0" layoutY="77.0" mnemonicParsing="false" onAction="#handleNextButtonAction" text="→" />
-            <TextField fx:id="userTextBox" editable="false" layoutX="253.0" layoutY="185.0" prefHeight="26.0" prefWidth="55.0" />
-            <Button fx:id="ditButton" layoutX="248.0" layoutY="222.0" mnemonicParsing="false" onAction="#dit" text="Dit" />
-            <Button fx:id="dahButton" layoutX="281.0" layoutY="222.0" mnemonicParsing="false" onAction="#dah" text="Dah" />
+            <HBox alignment="CENTER" layoutX="181.0" layoutY="160.0" prefHeight="42.0" prefWidth="200.0" spacing="25.0">
+               <children>
+                  <TextField fx:id="userTextBox" editable="false" prefHeight="26.0" prefWidth="55.0" />
+                  <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" text="Retry" />
+               </children>
+            </HBox>
          </children>
          <effect>
             <Glow />

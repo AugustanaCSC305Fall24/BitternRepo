@@ -20,8 +20,6 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private Slider wpmSlider;
     @FXML private ScrollPane chatLogScrollPane;
     @FXML private VBox chatLogVBox;
-    @FXML private Button dahButton;
-    @FXML private Button ditButton;
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
