@@ -6,71 +6,120 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ServerController">
+<AnchorPane prefHeight="414.0" prefWidth="623.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ServerController">
     <children>
       <HBox layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="580.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Connect Server" textAlignment="CENTER" wrappingWidth="169.13671875">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Server" wrappingWidth="269.93670654296875">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Lucida Sans Typewriter Regular" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets right="160.0" />
+                  <Insets right="50.0" />
                </HBox.margin>
             </Text>
-            <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" text="How To">
+            <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #ffffff;" text="How To">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6313725709915161" green="0.6313725709915161" blue="0.6313725709915161" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </Button>
-            <Button fx:id="notepadButton" mnemonicParsing="false" onAction="#openNotepad" prefHeight="26.0" prefWidth="72.0" text="Notepad">
+            <Button fx:id="notepadButton" mnemonicParsing="false" onAction="#openNotepad" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #ffffff;" text="Notepad">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6313725709915161" green="0.6313725709915161" blue="0.6313725709915161" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </Button>
-            <Button fx:id="helpPageButton" mnemonicParsing="false" onAction="#openHelpScreen" prefHeight="26.0" prefWidth="48.0" text="Help">
+            <Button fx:id="helpPageButton" mnemonicParsing="false" onAction="#openHelpScreen" prefHeight="26.0" prefWidth="48.0" style="-fx-background-color: #ffffff;" text="Help">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+               </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.6313725709915161" green="0.6313725709915161" blue="0.6313725709915161" />
+                     </color>
+                  </InnerShadow>
+               </effect>
             </Button>
-            <Button fx:id="welcomeButton" mnemonicParsing="false" onAction="#switchToWelcome" prefHeight="25.0" prefWidth="25.0" text="X" />
+            <Button fx:id="welcomeButton" mnemonicParsing="false" onAction="#switchToWelcome" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #f00000;" text="X">
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow height="5.0" radius="2.0" width="5.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect></Button>
          </children>
       </HBox>
       <HBox layoutX="14.0" layoutY="70.0" prefHeight="158.0" prefWidth="574.0">
          <children>
             <VBox prefHeight="158.0" prefWidth="250.0">
                <children>
-                  <Label fx:id="replyLabel" text="Reply from">
+                  <Label fx:id="replyLabel" text="Reply from" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Sans Typewriter Regular" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="replyTextbox" editable="false" promptText="loading...">
+                  <TextField fx:id="replyTextbox" editable="false" promptText="loading..." style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
                   </TextField>
-                  <Label text="Send a Message">
+                  <Label text="Send a Message" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Sans Typewriter Regular" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="sendMessageTextbox" editable="false" promptText="(CW appears here)">
+                  <TextField fx:id="sendMessageTextbox" editable="false" promptText="(CW appears here)" style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
                   </TextField>
                </children>
                <HBox.margin>
@@ -79,31 +128,37 @@
             </VBox>
             <VBox prefHeight="158.0" prefWidth="250.0">
                <children>
-                  <Label text="Translation">
+                  <Label text="Translation" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Sans Typewriter Regular" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="replyTranslationTextbox" editable="false" prefWidth="242.0" promptText="loading...">
+                  <TextField fx:id="replyTranslationTextbox" editable="false" prefWidth="242.0" promptText="loading..." style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
                   </TextField>
-                  <Label text="Translation">
+                  <Label text="Translation" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Sans Typewriter Regular" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="sendTranslationTextbox" editable="false" promptText="loading...">
+                  <TextField fx:id="sendTranslationTextbox" editable="false" promptText="loading..." style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
                   </TextField>
                </children>
                <HBox.margin>
@@ -112,72 +167,95 @@
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="repeatSoundButton" mnemonicParsing="false" text="Repeat">
+                  <Button fx:id="repeatSoundButton" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Repeat">
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.6313725709915161" green="0.6313725709915161" blue="0.6313725709915161" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
                   </Button>
-                  <Button fx:id="sendMessage" mnemonicParsing="false" onAction="#sendAction" text="Send">
+                  <Button fx:id="sendMessage" mnemonicParsing="false" onAction="#sendAction" style="-fx-background-color: #ffffff;" text="Send">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="0.6315789222717285" green="0.6315789222717285" blue="0.6315789222717285" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
                   </Button>
                </children>
             </VBox>
          </children>
       </HBox>
-      <AnchorPane layoutX="-9.0" layoutY="228.0" minHeight="-Infinity" prefHeight="134.0" prefWidth="618.0">
+      <HBox layoutX="14.0" layoutY="216.0" prefHeight="174.0" prefWidth="562.0">
          <children>
-            <HBox layoutX="19.0" layoutY="74.0" prefHeight="67.0" prefWidth="580.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
-                  <VBox prefHeight="67.0" prefWidth="291.0">
-                     <children>
-                        <Slider fx:id="frequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                        <Label text="Side Tone">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </VBox>
-                  <VBox prefHeight="67.0" prefWidth="306.0">
-                     <children>
-                        <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0" />
-                        <Label text="Bandwidth Filter">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </VBox>
+                  <Label text="WPM" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Side Tone" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Bandwidth Filter" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Filter" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
                </children>
-            </HBox>
-            <Label alignment="CENTER_RIGHT" layoutX="19.0" layoutY="11.0" prefHeight="18.0" prefWidth="44.0" text="WPM:" textAlignment="RIGHT">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Slider fx:id="wpmSlider" layoutX="72.0" majorTickUnit="5.0" max="25.0" min="5.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="15.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <cursor>
-                  <Cursor fx:constant="CLOSED_HAND" />
-               </cursor>
-            </Slider>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="435.0" spacing="8.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="25.0" min="5.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="15.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
+                  </Slider>
+                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                  <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </Slider>
+                  <Slider majorTickUnit="0.1" max="7.67" min="7.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+               </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </VBox>
          </children>
-      </AnchorPane>
+      </HBox>
     </children>
 </AnchorPane>

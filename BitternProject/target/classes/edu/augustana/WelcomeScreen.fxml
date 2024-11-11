@@ -24,21 +24,21 @@
          </effect></Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <Button fx:id="trainingButton" onAction="#switchToTraining" text="Training">
+            <Button fx:id="trainingButton" onAction="#switchToTraining" style="-fx-background-color: #ffffff;" text="Training">
                <effect>
                   <DropShadow />
                </effect>
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="16.0" />
                </font></Button>
-            <Button fx:id="scenarioMenuButton" onAction="#switchToScenario" text="Scenarios">
+            <Button fx:id="scenarioMenuButton" onAction="#switchToScenario" style="-fx-background-color: #ffffff;" text="Scenarios">
                <effect>
                   <DropShadow />
                </effect>
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="16.0" />
                </font></Button>
-            <Button fx:id="serverButton" onAction="#switchToServer" text="Server">
+            <Button fx:id="serverButton" onAction="#switchToServer" style="-fx-background-color: #ffffff;" text="Server">
                <effect>
                   <DropShadow />
                </effect>

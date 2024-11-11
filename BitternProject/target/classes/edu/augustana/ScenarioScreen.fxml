@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,12 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="528.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ScenarioController">
+<AnchorPane prefHeight="669.0" prefWidth="666.0" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ScenarioController">
    <children>
-      <Button fx:id="welcomeButton" layoutX="589.0" layoutY="26.0" mnemonicParsing="false" onAction="#switchToWelcome" text="X" />
-      <Text layoutX="29.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario " textAlignment="CENTER" wrappingWidth="298.4000000000001">
+      <Text layoutX="38.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario" wrappingWidth="376.79996337890634">
          <font>
-            <Font size="36.0" />
+            <Font name="Lucida Sans Typewriter Regular" size="36.0" />
          </font>
       </Text>
       <BorderPane layoutX="55.0" layoutY="81.0" prefHeight="322.0" prefWidth="546.0">
@@ -41,16 +41,25 @@
          <top>
             <Label text="Chat Log" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Lucida Sans Typewriter Bold" size="13.0" />
                </font>
             </Label>
          </top>
          <bottom>
             <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="userMessageTextField" promptText="(type English messages here)" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#sendAction" text="Send" />
-                  <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearChatLogAction" text="Clear" />
+                  <TextField fx:id="userMessageTextField" promptText="(type English messages here)" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font></TextField>
+                  <Button mnemonicParsing="false" onAction="#sendAction" text="Send">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearChatLogAction" text="Clear">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font></Button>
                </children>
                <BorderPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -58,18 +67,50 @@
             </HBox>
          </bottom>
       </BorderPane>
-      <AnchorPane layoutX="19.0" layoutY="388.0" minHeight="-Infinity" prefHeight="134.0" prefWidth="618.0">
+      <CheckBox fx:id="translationCheckbox" alignment="TOP_LEFT" layoutX="270.0" layoutY="394.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="170.0" text="Turn on translation">
+         <font>
+            <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="englishCheckBox" layoutX="114.0" layoutY="394.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="141.0" text="Type in English">
+         <font>
+            <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+         </font>
+      </CheckBox>
+      <HBox layoutX="38.0" layoutY="430.0" prefHeight="178.0" prefWidth="562.0">
          <children>
-            <HBox layoutX="7.0" layoutY="14.0" prefHeight="67.0" prefWidth="603.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
-                  <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="44.0" text="WPM:" textAlignment="RIGHT">
+                  <Label text="WPM">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Label>
+                  <Label text="Side Tone">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Bandwidth Filter">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="Filter">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="435.0" spacing="8.0" style="-fx-background-color: #ffffff;">
+               <children>
                   <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="25.0" min="5.0" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="15.0">
                      <opaqueInsets>
                         <Insets />
@@ -77,64 +118,42 @@
                      <cursor>
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor>
-                     <HBox.margin>
-                        <Insets right="100.0" />
-                     </HBox.margin>
                   </Slider>
-                  <VBox prefHeight="100.0" prefWidth="134.0">
-                     <children>
-                        <CheckBox fx:id="englishCheckBox" mnemonicParsing="false" text="Type in English" />
-                        <CheckBox fx:id="translationCheckbox" mnemonicParsing="false" text="Turn on translation">
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </CheckBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </VBox>
-               </children>
-            </HBox>
-            <HBox layoutX="19.0" layoutY="74.0" prefHeight="67.0" prefWidth="580.0">
-               <children>
-                  <VBox prefHeight="67.0" prefWidth="291.0">
-                     <children>
-                        <Slider fx:id="frequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                        <Label text="Side Tone">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
+                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                  <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
                      <padding>
-                        <Insets left="5.0" />
+                        <Insets bottom="15.0" />
                      </padding>
-                  </VBox>
-                  <VBox prefHeight="67.0" prefWidth="306.0">
-                     <children>
-                        <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0" />
-                        <Label text="Bandwidth Filter">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </VBox>
+                  </Slider>
+                  <Slider majorTickUnit="0.1" max="7.67" min="7.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
                </children>
-            </HBox>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </VBox>
          </children>
-      </AnchorPane>
-      <Button fx:id="helpButton" layoutX="541.0" layoutY="26.0" mnemonicParsing="false" onAction="#openHelpScreen" text="Help" />
-      <Button layoutX="477.0" layoutY="26.0" mnemonicParsing="false" onAction="#openHowTo" text="How To" />
+      </HBox>
+      <HBox alignment="TOP_RIGHT" layoutX="440.0" layoutY="30.0" prefHeight="42.0" prefWidth="162.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#openHowTo" text="How To">
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpScreen" text="Help">
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="welcomeButton" mnemonicParsing="false" onAction="#switchToWelcome" style="-fx-background-color: #f00000;" text="X">
+               <font>
+                  <Font name="Lucida Sans Typewriter Bold" size="12.0" />
+               </font>
+               <effect>
+                  <DropShadow height="5.0" radius="2.0" width="5.0" />
+               </effect>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
