@@ -36,6 +36,11 @@ public class TrainingController extends Controller {
     }
 
     @FXML
+    void openHowTo(ActionEvent event) {
+        RadioApp.createNewWindow("HowToScreen", "How To Page");
+    }
+
+    @FXML
     public void initialize() {
         updateLabel();
     }

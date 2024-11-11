@@ -21,9 +21,14 @@
                   <Font size="24.0" />
                </font>
                <HBox.margin>
-                  <Insets right="220.0" />
+                  <Insets right="160.0" />
                </HBox.margin>
             </Text>
+            <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" text="How To">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="notepadButton" mnemonicParsing="false" onAction="#openNotepad" prefHeight="26.0" prefWidth="72.0" text="Notepad">
                <HBox.margin>
                   <Insets right="10.0" />

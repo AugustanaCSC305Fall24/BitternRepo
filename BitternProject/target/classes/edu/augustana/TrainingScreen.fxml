@@ -13,9 +13,10 @@
 
 <VBox alignment="CENTER" prefHeight="426.0" prefWidth="621.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.TrainingController">
     <children>
-      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="452.0" spacing="50.0">
+      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="452.0" spacing="20.0">
          <children>
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize" />
+            <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" text="How To" />
               <Button fx:id="welcomeButton" alignment="TOP_CENTER" onAction="#switchToWelcome" text="X">
                <font>
                   <Font size="10.0" />

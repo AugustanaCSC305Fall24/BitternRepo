@@ -45,6 +45,11 @@ public class ServerController extends Controller implements Initializable {
         RadioApp.createNewWindow("NotepadScreen", "Notepad");
     }
 
+    @FXML
+    void openHowTo(ActionEvent event) {
+        RadioApp.createNewWindow("HowToScreen", "How To Page");
+    }
+
     // Method to switch to the Welcome screen
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
