@@ -98,7 +98,7 @@ public class TrainingController extends Controller {
     @FXML
     private void updateLabel() {
         // Update label texts based on checkbox selection
-        letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
+        letterLabel.setText((String.valueOf(Translator.englishLetters[index])).toUpperCase());
         currentMorse = morseCodeLetters[index];
 
             // call method handle relpay button action instead of this code
