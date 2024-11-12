@@ -20,8 +20,6 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private Slider wpmSlider;
     @FXML private ScrollPane chatLogScrollPane;
     @FXML private VBox chatLogVBox;
-    @FXML private Button dahButton;
-    @FXML private Button ditButton;
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userMessageTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
@@ -52,6 +50,11 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML
     void openHelpScreen(ActionEvent event) {
         RadioApp.createNewWindow("HelpPageScreen", "Help Page");
+    }
+
+    @FXML
+    void openHowTo(ActionEvent event) {
+        RadioApp.createNewWindow("HowToScreen", "How To Page");
     }
 
     @FXML
@@ -88,14 +91,14 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML @Override
     public void dit() throws LineUnavailableException {
         userInput.clearInput(userMessageTextField.getText().isEmpty());
-        input = userInput.userCWInput("dit");
+        input = userInput.userCWInput("dit", wpmSlider.getValue());
         userMessageTextField.setText(input);
     }
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
         userInput.clearInput(userMessageTextField.getText().isEmpty());
-        input = userInput.userCWInput("dah");
+        input = userInput.userCWInput("dah", wpmSlider.getValue());
         userMessageTextField.setText(input);
     }
 

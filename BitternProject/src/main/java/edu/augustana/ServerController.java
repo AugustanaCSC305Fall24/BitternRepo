@@ -25,6 +25,7 @@ public class ServerController extends Controller implements Initializable {
     @FXML private CheckBox translationCheckbox;
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
+    @FXML private Slider wpmSlider;
 
     private String input = "";
     private UserInput userInput = new UserInput();
@@ -44,6 +45,11 @@ public class ServerController extends Controller implements Initializable {
         RadioApp.createNewWindow("NotepadScreen", "Notepad");
     }
 
+    @FXML
+    void openHowTo(ActionEvent event) {
+        RadioApp.createNewWindow("HowToScreen", "How To Page");
+    }
+
     // Method to switch to the Welcome screen
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
@@ -54,14 +60,14 @@ public class ServerController extends Controller implements Initializable {
     @Override
     public void dit() throws LineUnavailableException {
         userInput.clearInput(sendMessageTextbox.getText().isEmpty());
-        input = userInput.userCWInput("dit");
+        input = userInput.userCWInput("dit", wpmSlider.getValue());
         sendMessageTextbox.setText(input);
     }
 
     @Override
     public void dah() throws LineUnavailableException {
         userInput.clearInput(sendMessageTextbox.getText().isEmpty());
-        input = userInput.userCWInput("dah");
+        input = userInput.userCWInput("dah", wpmSlider.getValue());
         sendMessageTextbox.setText(input);
     }
 

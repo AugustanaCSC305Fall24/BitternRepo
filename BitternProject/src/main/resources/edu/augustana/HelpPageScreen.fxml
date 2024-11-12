@@ -13,7 +13,7 @@
          <children>
             <Label text="Letters To CW" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Lucida Sans Typewriter Regular" size="18.0" />
                </font>
                <VBox.margin>
                   <Insets />
@@ -22,7 +22,7 @@
             <ListView fx:id="letterListView" prefHeight="171.0" prefWidth="414.0" />
             <Label alignment="CENTER" text="CW Phrases To English" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Lucida Sans Typewriter Regular" size="18.0" />
                </font>
             </Label>
             <ListView fx:id="phraseListView" prefHeight="193.0" prefWidth="394.0" />

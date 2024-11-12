@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 
 import javax.sound.sampled.LineUnavailableException;
 
+import static edu.augustana.Translator.morseCodeLetters;
+
 
 public class TrainingController extends Controller {
 
@@ -18,18 +20,24 @@ public class TrainingController extends Controller {
     @FXML private Button nextButton;
     @FXML private Button prevButton;
     @FXML private Label letterLabel;
-    @FXML private Label morseCodeLabel;
-    @FXML private Button dahButton;
-    @FXML private Button ditButton;
     @FXML private TextField userTextBox;
 
+    private String currentMorse;
     private int index = 0;
     private UserInput userInput = new UserInput();
     String input = "";
 
+    private final double wpmTraining = 20;
+    private final int englishSpaceIndex = 26;
+
     @FXML
     private void switchToWelcome() throws IOException {
         RadioApp.setRoot("WelcomeScreen");
+    }
+
+    @FXML
+    void openHowTo(ActionEvent event) {
+        RadioApp.createNewWindow("HowToScreen", "How To Page");
     }
 
     @FXML
@@ -39,24 +47,20 @@ public class TrainingController extends Controller {
 
     @FXML @Override
     public void dit() throws LineUnavailableException {
-        input = userInput.userCWInput("dit");
-        userTextBox.setText(input);
-        if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
-            userInput.clearInput(true);
-            userTextBox.setText("");
-            handleNextButtonAction(new ActionEvent());
-        } else {
-            userInput.clearInput(userTextBox.getText().isEmpty());
-        }
+        input = userInput.userCWInput("dit", wpmTraining);
+        ditDah();
     }
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
-        input = userInput.userCWInput("dah");
+        input = userInput.userCWInput("dah", wpmTraining);
+        ditDah();
+    }
+
+    private void ditDah() {
         userTextBox.setText(input);
-        if (userTextBox.getText().equalsIgnoreCase(morseCodeLabel.getText())) {
-            userInput.clearInput(true);
-            userTextBox.setText("");
+        if (userTextBox.getText().equalsIgnoreCase(currentMorse)) {
+            resetTextBox();
             handleNextButtonAction(new ActionEvent());
         } else {
             userInput.clearInput(userTextBox.getText().isEmpty());
@@ -67,36 +71,35 @@ public class TrainingController extends Controller {
     private void handleNextButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
             randomizeLetters();
-        }else {
-            if (index < Translator.englishLetters.length - 1) {
-                index++;
-            } else {
-                index = 0; // Loop back to the start
-            }
-            updateLabel();
+        } else if (index == englishSpaceIndex - 1) {
+            index += 2;
+        } else if (index < Translator.englishLetters.length - 1) {
+            index++;
+        } else {
+            index = 0; // Loop back to the start
         }
+        updateLabel();
     }
 
     @FXML
     private void handlePrevButtonAction(ActionEvent event) {
         if (randomizeCheckbox.isSelected()) {
             randomizeLetters();
+        } else if (index == englishSpaceIndex + 1) {
+            index -= 2;
+        }else if (index > 0) {
+            index--;
         } else {
-            if (index > 0) {
-                index--;
-            } else {
-                index = Translator.englishLetters.length - 1; // Loop back to the end
-            }
-            updateLabel();
+            index = Translator.englishLetters.length - 1; // Loop back to the end
         }
+        updateLabel();
     }
 
     @FXML
     private void updateLabel() {
         // Update label texts based on checkbox selection
-
-            letterLabel.setText(String.valueOf(Translator.englishLetters[index]));
-            morseCodeLabel.setText(Translator.morseCodeLetters[index]);
+        letterLabel.setText((String.valueOf(Translator.englishLetters[index])).toUpperCase());
+        currentMorse = morseCodeLetters[index];
 
             // call method handle relpay button action instead of this code
         // Create a new thread for playing the Morse sound
@@ -109,20 +112,7 @@ public class TrainingController extends Controller {
             }
 
             // Play Morse sound
-            String morseCode = morseCodeLabel.getText();
-            for (char c : morseCode.toCharArray()) {
-                try {
-                    if (c == '.') {
-                        ToneGenerator.playDit();
-                    } else if (c == '-') {
-                        ToneGenerator.playDah();
-                    }
-                    // Add a short pause between sounds
-                    Thread.sleep(100);
-                } catch (LineUnavailableException | InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            handlePlayButtonAction();
         }).start(); // Start the new thread
     }
 
@@ -138,14 +128,17 @@ public class TrainingController extends Controller {
     private void randomizeLetters() {
         int randomIndex = (int) (Math.random() * Translator.englishLetters.length);
         index = randomIndex;
+        resetTextBox();
         updateLabel();
     }
-
-
 
     @FXML
     private void handleReplayButtonAction(ActionEvent event) {
         handlePlayButtonAction();
+        resetTextBox();
+    }
+
+    private void resetTextBox() {
         userInput.clearInput(true);
         userTextBox.setText("");
     }
@@ -153,8 +146,7 @@ public class TrainingController extends Controller {
     @FXML
     private void handlePlayButtonAction() {
         // Play Morse sound
-        String morseCode = morseCodeLabel.getText();
-        for (char c : morseCode.toCharArray()) {
+        for (char c : currentMorse.toCharArray()) {
             try {
                 if (c == '.') {
                     ToneGenerator.playDit();
@@ -162,8 +154,8 @@ public class TrainingController extends Controller {
                     ToneGenerator.playDah();
                 }
                 // Add a short pause between sounds
-                Thread.sleep(100);
-            } catch (LineUnavailableException | InterruptedException e) {
+//                Thread.sleep(100);
+            } catch (LineUnavailableException e) {
                 e.printStackTrace();
             }
         }
