@@ -39,28 +39,16 @@ public class TrainingController extends Controller {
 
     @FXML
     public void initialize() {
+        userText = userTextBox;
         updateLabel();
     }
 
-    @FXML @Override
-    public void dit() throws LineUnavailableException {
-        input = userInput.userCWInput("dit", WPM);
-        ditDah();
-    }
-
-    @FXML @Override
-    public void dah() throws LineUnavailableException {
-        input = userInput.userCWInput("dah", WPM);
-        ditDah();
-    }
-
-    private void ditDah() {
-        userTextBox.setText(input);
+    @Override
+    public void ditOrDah(UserInput.Sounds type) throws LineUnavailableException {
+        super.ditOrDah(type);
         if (userTextBox.getText().equalsIgnoreCase(currentMorse)) {
             resetTextBox();
             handleNextButtonAction(new ActionEvent());
-        } else {
-            userInput.clearInput(userTextBox.getText().isEmpty());
         }
     }
 

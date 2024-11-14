@@ -11,7 +11,6 @@ import javax.sound.sampled.LineUnavailableException;
 public class WelcomeController {
 
     private RadioApp app = new RadioApp();
-    private UserInput userInput = new UserInput();
 
     public void setApp(RadioApp app) {
         this.app = app;
@@ -43,11 +42,11 @@ public class WelcomeController {
                 switch (event.getCode()) {
                     case N:
                     case A: // Bind 'A' key to dit
-                        controller.dit();
+                        controller.ditOrDah(UserInput.Sounds.DIT);
                         break;
                     case M:
                     case S: // Bind 'S' key to dah
-                        controller.dah();
+                        controller.ditOrDah(UserInput.Sounds.DAH);
                         break;
                     case ENTER:
                         controller.sendAction();

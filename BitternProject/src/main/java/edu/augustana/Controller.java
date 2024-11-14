@@ -16,15 +16,9 @@ public abstract class Controller {
 
     public void setApp(RadioApp app) {this.app = app;}
 
-    public void dit() throws LineUnavailableException {
+    public void ditOrDah(UserInput.Sounds type) throws LineUnavailableException {
         userInput.clearInput(userText.getText().isEmpty());
-        input = userInput.userCWInput("dit", WPM);
-        userText.setText(input);
-    }
-
-    public void dah() throws LineUnavailableException {
-        userInput.clearInput(userText.getText().isEmpty());
-        input = userInput.userCWInput("dah", WPM);
+        input = userInput.userCWInput(type, WPM);
         userText.setText(input);
     }
 
