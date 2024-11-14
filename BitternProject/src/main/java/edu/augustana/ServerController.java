@@ -66,6 +66,8 @@ public class ServerController extends Controller implements Initializable {
         sendTranslationTextbox.setText(Translator.morseToText(msgText));
     }
 
+    public void setWPM() {WPM = wpmSlider.getValue();}
+
     public void setFrequency() {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());
     }
