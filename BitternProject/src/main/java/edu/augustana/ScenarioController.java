@@ -62,14 +62,10 @@ public class ScenarioController extends Controller implements Initializable {
 
     @FXML @Override
     public void sendAction() throws LineUnavailableException {
-        String msgText = userText.getText();
-
-        if (!msgText.isBlank()) {
-            sendMessage(msgText, "User", Color.BLACK);
-
+        if (!userText.getText().isBlank()) {
+            sendMessage(userText.getText(), "User", Color.BLACK);
         }
-        userText.clear();
-        input = "";
+        super.sendAction();
     }
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {

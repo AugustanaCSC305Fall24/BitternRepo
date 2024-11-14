@@ -22,7 +22,10 @@ public abstract class Controller {
         userText.setText(input);
     }
 
-    public void sendAction() throws LineUnavailableException {}
+    public void sendAction() throws LineUnavailableException {
+        userText.clear();
+        input = "";
+    }
 
 
 }
