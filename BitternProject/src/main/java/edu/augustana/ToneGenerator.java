@@ -100,4 +100,9 @@ public class ToneGenerator {
         System.out.print(frequencyInput);
     }
 
+    public static void playSilence() throws LineUnavailableException {
+        byte[] tone = generateSineWave(0, .06);
+        playSound(tone, sampleRate);
+    }
+
 }
