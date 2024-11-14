@@ -24,10 +24,7 @@ public class TrainingController extends Controller {
 
     private String currentMorse;
     private int index = 0;
-    private UserInput userInput = new UserInput();
-    String input = "";
 
-    private final double wpmTraining = 20;
     private final int englishSpaceIndex = 26;
 
     @FXML
@@ -47,13 +44,13 @@ public class TrainingController extends Controller {
 
     @FXML @Override
     public void dit() throws LineUnavailableException {
-        input = userInput.userCWInput("dit", wpmTraining);
+        input = userInput.userCWInput("dit", WPM);
         ditDah();
     }
 
     @FXML @Override
     public void dah() throws LineUnavailableException {
-        input = userInput.userCWInput("dah", wpmTraining);
+        input = userInput.userCWInput("dah", WPM);
         ditDah();
     }
 
