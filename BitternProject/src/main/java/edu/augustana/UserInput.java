@@ -6,18 +6,19 @@ import javax.sound.sampled.LineUnavailableException;
 public class UserInput {
     private String input;
     private long lastClickTime;
+    enum Sounds {DIT, DAH};
 
     public UserInput() {
         this.input = "";
         this.lastClickTime = System.currentTimeMillis();
     }
 
-    public String userCWInput(String sound, double wpm) throws LineUnavailableException {
+    public String userCWInput(Sounds type, double wpm) throws LineUnavailableException {
         char cw;
         double delay = 1000 * (1200 - 37.2 * wpm) / (20 * wpm);
         int soundLength;
 
-        if (sound.equalsIgnoreCase("dit")) {
+        if (type == Sounds.DIT) {
             ToneGenerator.playDit();
             cw = '.';
             soundLength = 60;

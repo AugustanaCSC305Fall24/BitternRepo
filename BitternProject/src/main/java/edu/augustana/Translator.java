@@ -88,7 +88,7 @@ public class Translator {
 
 //    For testing purposes
 //    public static void main(String[] args) {
-//        MorseCodeTranslator translator = new MorseCodeTranslator();
+//        Translator translator = new Translator();
 //        String text = "Hello, World!";
 //        String morse = translator.textToMorse(text);
 //        System.out.println("Text: " + text);

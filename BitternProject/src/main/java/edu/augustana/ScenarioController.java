@@ -21,25 +21,19 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private ScrollPane chatLogScrollPane;
     @FXML private VBox chatLogVBox;
     @FXML private CheckBox translationCheckbox;
-    @FXML public TextField userMessageTextField = new TextField();
+    @FXML public TextField userTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
 
-//    private RadioApp app = new RadioApp();
-    private String input = "";
     private String translation;
-    private UserInput userInput = new UserInput();
-    private WhiteNoise whiteNoise = new WhiteNoise();
 
     public void initialize(URL arg0, ResourceBundle arg1){
+        userText = userTextField;
+        WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
         addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
     }
-//
-//    public void initialize() {
-//        addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
-//    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
@@ -68,14 +62,10 @@ public class ScenarioController extends Controller implements Initializable {
 
     @FXML @Override
     public void sendAction() throws LineUnavailableException {
-        String msgText = userMessageTextField.getText();
-
-        if (!msgText.isBlank()) {
-            sendMessage(msgText, "User", Color.BLACK);
-
+        if (!userText.getText().isBlank()) {
+            sendMessage(userText.getText(), "User", Color.BLACK);
         }
-        userMessageTextField.clear();
-        input = "";
+        super.sendAction();
     }
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
@@ -86,20 +76,6 @@ public class ScenarioController extends Controller implements Initializable {
         chatLogVBox.getChildren().add(label);
 
         Platform.runLater(() -> chatLogScrollPane.setVvalue(1.0));
-    }
-
-    @FXML @Override
-    public void dit() throws LineUnavailableException {
-        userInput.clearInput(userMessageTextField.getText().isEmpty());
-        input = userInput.userCWInput("dit", wpmSlider.getValue());
-        userMessageTextField.setText(input);
-    }
-
-    @FXML @Override
-    public void dah() throws LineUnavailableException {
-        userInput.clearInput(userMessageTextField.getText().isEmpty());
-        input = userInput.userCWInput("dah", wpmSlider.getValue());
-        userMessageTextField.setText(input);
     }
 
     private void checkBoxHandler(String msgText) {
@@ -130,7 +106,7 @@ public class ScenarioController extends Controller implements Initializable {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatMessage.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
-        userMessageTextField.clear();
+        userText.clear();
         checkBoxHandler(message);
         if (englishCheckBox.isSelected()) {
             new Thread(() -> {
@@ -177,6 +153,8 @@ public class ScenarioController extends Controller implements Initializable {
             });
         }).start();
     }
+
+    public void setWPM() {WPM = wpmSlider.getValue();}
 
     public void setFrequency() {
         ToneGenerator.setFrequency((int) frequencySlider.getValue());

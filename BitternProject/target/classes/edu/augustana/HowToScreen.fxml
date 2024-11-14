@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="314.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.HowToController">
+<AnchorPane prefHeight="314.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/22" >
    <children>
       <TextArea editable="false" layoutX="22.0" layoutY="66.0" prefHeight="220.0" prefWidth="298.0" text="Use 'N' to input     .     (dit)&#10;Use 'M' to input    -     (dah)&#10;&#10;Training:&#10;Practice CW skills!&#10;&#10;Scenario:&#10;Real-life disaster scenarios, pick which one you would like!&#10;&#10;Server:&#10;Connect with others using CW!" wrapText="true">
          <font>

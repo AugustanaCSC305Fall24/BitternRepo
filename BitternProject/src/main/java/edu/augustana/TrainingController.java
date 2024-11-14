@@ -24,10 +24,7 @@ public class TrainingController extends Controller {
 
     private String currentMorse;
     private int index = 0;
-    private UserInput userInput = new UserInput();
-    String input = "";
 
-    private final double wpmTraining = 20;
     private final int englishSpaceIndex = 26;
 
     @FXML
@@ -42,28 +39,16 @@ public class TrainingController extends Controller {
 
     @FXML
     public void initialize() {
+        userText = userTextBox;
         updateLabel();
     }
 
-    @FXML @Override
-    public void dit() throws LineUnavailableException {
-        input = userInput.userCWInput("dit", wpmTraining);
-        ditDah();
-    }
-
-    @FXML @Override
-    public void dah() throws LineUnavailableException {
-        input = userInput.userCWInput("dah", wpmTraining);
-        ditDah();
-    }
-
-    private void ditDah() {
-        userTextBox.setText(input);
+    @Override
+    public void ditOrDah(UserInput.Sounds type) throws LineUnavailableException {
+        super.ditOrDah(type);
         if (userTextBox.getText().equalsIgnoreCase(currentMorse)) {
             resetTextBox();
             handleNextButtonAction(new ActionEvent());
-        } else {
-            userInput.clearInput(userTextBox.getText().isEmpty());
         }
     }
 
