@@ -57,13 +57,8 @@ public class ServerController extends Controller implements Initializable {
     @Override
     public void sendAction() throws LineUnavailableException {
         // Here for send to server
-        String msgText = userText.getText();
-
-        translateMessage(msgText);
-
-        userText.clear();
-        input = "";
-
+        translateMessage(userText.getText());
+        super.sendAction();
     }
 
     public void translateMessage(String msgText){
