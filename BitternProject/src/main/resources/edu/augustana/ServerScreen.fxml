@@ -15,16 +15,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="414.0" prefWidth="623.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ServerController">
+<AnchorPane prefHeight="577.0" prefWidth="643.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ServerController">
     <children>
-      <HBox layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="580.0">
+      <HBox layoutX="21.0" layoutY="25.0" prefHeight="42.0" prefWidth="609.0">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Server" wrappingWidth="269.93670654296875">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets right="50.0" />
+                  <Insets right="80.0" />
                </HBox.margin>
             </Text>
             <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #ffffff;" text="How To">
@@ -85,7 +85,7 @@
                </effect></Button>
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="70.0" prefHeight="158.0" prefWidth="574.0">
+      <HBox layoutX="24.0" layoutY="140.0" prefHeight="158.0" prefWidth="599.0">
          <children>
             <VBox prefHeight="158.0" prefWidth="250.0">
                <children>
@@ -99,7 +99,7 @@
                   </Label>
                   <TextField fx:id="replyTextbox" editable="false" promptText="loading..." style="-fx-background-color: #ffffff;">
                      <VBox.margin>
-                        <Insets bottom="20.0" />
+                        <Insets bottom="40.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
@@ -138,7 +138,7 @@
                   </Label>
                   <TextField fx:id="replyTranslationTextbox" editable="false" prefWidth="242.0" promptText="loading..." style="-fx-background-color: #ffffff;">
                      <VBox.margin>
-                        <Insets bottom="20.0" />
+                        <Insets bottom="40.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
@@ -169,7 +169,7 @@
                <children>
                   <Button fx:id="repeatSoundButton" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Repeat">
                      <VBox.margin>
-                        <Insets top="30.0" />
+                        <Insets top="28.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Lucida Console" size="12.0" />
@@ -184,7 +184,7 @@
                   </Button>
                   <Button fx:id="sendMessage" mnemonicParsing="false" onAction="#sendAction" style="-fx-background-color: #ffffff;" text="Send">
                      <VBox.margin>
-                        <Insets top="50.0" />
+                        <Insets top="70.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Lucida Console" size="12.0" />
@@ -201,7 +201,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="216.0" prefHeight="174.0" prefWidth="562.0">
+      <HBox layoutX="23.0" layoutY="357.0" prefHeight="176.0" prefWidth="582.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
@@ -233,7 +233,7 @@
                   <Insets right="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="100.0" prefWidth="435.0" spacing="8.0" style="-fx-background-color: #ffffff;">
+            <VBox prefHeight="176.0" prefWidth="450.0" spacing="8.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="25.0" min="5.0" onMouseReleased="#setWPM" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0">
                      <opaqueInsets>
