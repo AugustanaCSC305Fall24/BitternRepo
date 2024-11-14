@@ -27,11 +27,8 @@ public class ServerController extends Controller implements Initializable {
     @FXML private Slider staticSlider;
     @FXML private Slider wpmSlider;
 
-    private String input = "";
-    private UserInput userInput = new UserInput();
-    WhiteNoise whiteNoise = new WhiteNoise();
-
     public void initialize(URL arg0, ResourceBundle arg1){
+        userText = sendMessageTextbox;
         new Thread(whiteNoise::play).start();
     }
 
@@ -58,27 +55,13 @@ public class ServerController extends Controller implements Initializable {
     }
 
     @Override
-    public void dit() throws LineUnavailableException {
-        userInput.clearInput(sendMessageTextbox.getText().isEmpty());
-        input = userInput.userCWInput("dit", wpmSlider.getValue());
-        sendMessageTextbox.setText(input);
-    }
-
-    @Override
-    public void dah() throws LineUnavailableException {
-        userInput.clearInput(sendMessageTextbox.getText().isEmpty());
-        input = userInput.userCWInput("dah", wpmSlider.getValue());
-        sendMessageTextbox.setText(input);
-    }
-
-    @Override
     public void sendAction() throws LineUnavailableException {
         // Here for send to server
-        String msgText = sendMessageTextbox.getText();
+        String msgText = userText.getText();
 
         translateMessage(msgText);
 
-        sendMessageTextbox.clear();
+        userText.clear();
         input = "";
 
     }
