@@ -8,13 +8,16 @@ class TranslatorTest {
 
     @Test
     void testTextToMorse() {
-        String text = "hello world";
-        assertEquals(".... . .-.. .-.. --- | .-- --- .-. .-.. -..", Translator.textToMorse(text));
+        assertEquals(".... . .-.. .-.. ---", Translator.textToMorse("hello"));
+        assertEquals(".... . .-.. .-.. --- | .-- --- .-. .-.. -..", Translator.textToMorse("hello world"));
+        assertEquals("Empty english translation", Translator.textToMorse(""));
+
     }
 
     @Test
     void TestMorseToText() {
-        String text = ".... . .-.. .-.. --- | .-- --- .-. .-.. -..";
-        assertEquals("hello world", Translator.morseToText(text));
+        assertEquals("hello", Translator.morseToText(".... . .-.. .-.. ---"));
+        assertEquals("hello world", Translator.morseToText(".... . .-.. .-.. --- | .-- --- .-. .-.. -.."));
+        assertEquals("Invalid Morse Code", Translator.morseToText(""));
     }
 }
