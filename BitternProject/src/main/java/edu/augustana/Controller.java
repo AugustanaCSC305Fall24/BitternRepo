@@ -9,7 +9,7 @@ public abstract class Controller {
     RadioApp app = new RadioApp();
     TextField userText;
     UserInput userInput = new UserInput();
-    double WPM = 20;
+    double WPM = 15;
     String input = "";
     WhiteNoise whiteNoise = new WhiteNoise();
 

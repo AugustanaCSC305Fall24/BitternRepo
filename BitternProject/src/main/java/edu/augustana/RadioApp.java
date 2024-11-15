@@ -16,7 +16,7 @@ public class RadioApp extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException, LineUnavailableException {
+    public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
         Parent root = loader.load();
         scene = new Scene(root, 640, 640);

@@ -56,7 +56,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="letterLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="131.0" prefWidth="163.0" text="A" textAlignment="CENTER">
+            <Label fx:id="letterLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="118.0" prefWidth="305.0" text="A" textAlignment="CENTER">
                <font>
                   <Font name="Lucida Sans Typewriter Bold" size="96.0" />
                </font>
@@ -73,7 +73,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <TextField fx:id="userTextBox" editable="false" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: #ffffff;" />
+            <TextField fx:id="userTextBox" editable="false" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: #ffffff;" />
             <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" style="-fx-background-color: #ffffff;" text="Retry">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="12.0" />
@@ -89,7 +89,11 @@
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="12.0" />
-               </font></CheckBox>
+               </font>
+               <padding>
+                  <Insets right="25.0" />
+               </padding></CheckBox>
+            <CheckBox fx:id="cwCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases" />
          </children>
       </HBox>
     </children>
