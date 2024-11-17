@@ -44,6 +44,8 @@ public class TrainingController extends Controller {
         userText = userTextBox;
         numTranslatableItems = Translator.englishLetters.length;
         updateLabel();
+        setWhiteNoiseVolume();
+        new Thread(whiteNoise::play).start();
     }
 
     @FXML
@@ -140,5 +142,10 @@ public class TrainingController extends Controller {
         userInput.clearInput(true);
         userTextBox.setText("");
     }
+
+    public void setWhiteNoiseVolume(){
+        WhiteNoise.setVolume(-80);
+    }
+
 }
 
