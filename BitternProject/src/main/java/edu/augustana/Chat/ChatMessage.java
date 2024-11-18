@@ -51,9 +51,9 @@ public class ChatMessage {
             } else if (c == '-') {
                 ToneGenerator.playDah();
             } else if (c == ' ') {
-                Thread.sleep((long) (((double) 3 /19) * delay));
+                ToneGenerator.playSilence(((double) 3 / 19) * delay / 1000);
             } else if (c == '|') {
-                Thread.sleep((long) (((double) 7 /19) * delay));
+                ToneGenerator.playSilence(((double) 7 / 19) * delay / 1000);
             }
             try {
                 Thread.sleep(50);
