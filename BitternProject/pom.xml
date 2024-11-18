@@ -39,6 +39,7 @@
 
     </dependencies>
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -58,7 +59,7 @@
                         <!-- Usage: mvn clean javafx:play -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>edu.augustana.RadioApp</mainClass>
+                            <mainClass>edu.augustana.Radio.RadioApp</mainClass>
                         </configuration>
                     </execution>
                 </executions>
