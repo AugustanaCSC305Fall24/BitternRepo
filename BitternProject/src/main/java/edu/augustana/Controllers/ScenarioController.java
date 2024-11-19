@@ -121,9 +121,22 @@ public class ScenarioController extends Controller implements Initializable {
                 ChatClient.sendMessage(newMessage.getText());
                 ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
 
+                new Thread (() -> {
+                    if (translationCheckbox.isSelected()){
+                        try {
+                            String translation = Translator.textToMorse(lastMessage.getText());
+                            ChatMessage.playMessageSound(translation, wpmSlider.getValue());
+                        } catch (LineUnavailableException | InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+                }).start();
+
                 Platform.runLater(() -> {
                     ChatMessage.addMessage(lastMessage);
                     addMessageToChatLogUI(lastMessage);
+
 
             });
         }).start();

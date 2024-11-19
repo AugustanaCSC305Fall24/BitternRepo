@@ -78,7 +78,9 @@ public class ChatClient {
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 String assistantMessage = jsonResponse.getString("response");
 
+
                 messages.add(new ChatMessage(assistantMessage, "assistant", Color.BLACK));
+
 
 
 //                ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);

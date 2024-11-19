@@ -81,6 +81,7 @@ public class WebsocketClientTestMain extends Application {
     private void connect() {
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+
             session = container.connectToServer(this, new URI("ws://localhost:8000/ws/penguin"));
         } catch (Exception e) {
             e.printStackTrace();
