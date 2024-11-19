@@ -46,8 +46,8 @@ public class ChatClient {
 
 
             // Send HTTP POST request
-            URL url = new URL("http://localhost:8000/rag/");
-            //"https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/"
+            URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
+
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
@@ -78,9 +78,7 @@ public class ChatClient {
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 String assistantMessage = jsonResponse.getString("response");
 
-
                 messages.add(new ChatMessage(assistantMessage, "assistant", Color.BLACK));
-
 
 
 //                ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);

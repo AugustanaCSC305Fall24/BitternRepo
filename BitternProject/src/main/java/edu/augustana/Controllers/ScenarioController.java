@@ -124,6 +124,7 @@ public class ScenarioController extends Controller implements Initializable {
                 new Thread (() -> {
                     if (translationCheckbox.isSelected()){
                         try {
+                            Thread.sleep(500);
                             String translation = Translator.textToMorse(lastMessage.getText());
                             ChatMessage.playMessageSound(translation, wpmSlider.getValue());
                         } catch (LineUnavailableException | InterruptedException e) {
