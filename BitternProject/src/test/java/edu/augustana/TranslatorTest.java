@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import edu.augustana.Input.Translator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
