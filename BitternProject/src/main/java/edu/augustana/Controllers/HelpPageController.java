@@ -14,7 +14,8 @@ public class HelpPageController implements Initializable {
     @FXML private ListView<String> letterListView;
     @FXML private ListView<String> phraseListView;
     private static String[] lettersAndCode = new String[37];
-    private static String[] phrasesAndCodeWords = new String[13];
+    private static int size = Math.min(Translator.codeWords.length, Translator.codeWordTranslation.length);
+    private static String[] phrasesAndCodeWords = new String[size];
 
     //Make list to be displayed on the list view
     //Tried to make this the same method and makeListCode, however was having an issue while char[] to String[]
@@ -26,7 +27,6 @@ public class HelpPageController implements Initializable {
     }
 
     private void makeListCode(){
-        int size = Math.min(Translator.codeWords.length, Translator.codeWordTranslation.length);
         for (int i = 0; i < size; i++){
             phrasesAndCodeWords[i] = (Translator.codeWords[i] + "    " + Translator.codeWordTranslation[i]);
         }
