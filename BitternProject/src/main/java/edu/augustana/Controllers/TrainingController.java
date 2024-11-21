@@ -124,6 +124,9 @@ public class TrainingController extends Controller {
     @FXML
     private void randomizeLetters() {
         int randomIndex = (int) (Math.random() * numTranslatableItems);
+        if (randomIndex == englishSpaceIndex) {
+            randomizeLetters();
+        }
         index = randomIndex;
         resetTextBox();
         updateLabel();
