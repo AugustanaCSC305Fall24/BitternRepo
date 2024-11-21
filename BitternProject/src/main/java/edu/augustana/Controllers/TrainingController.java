@@ -129,7 +129,6 @@ public class TrainingController extends Controller {
         }
         index = randomIndex;
         resetTextBox();
-        updateLabel();
     }
 
     @FXML
