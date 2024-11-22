@@ -121,11 +121,12 @@ public class ServerController extends Controller implements Initializable {
     }
 
     @OnMessage
-    public void onMessage(String jsonMessage) {
+    public void onMessage(String jsonMessage) throws LineUnavailableException, InterruptedException {
         System.out.println("Received WebSocket message: " + jsonMessage);
         ChatMessage chatMessage = new Gson().fromJson(jsonMessage, ChatMessage.class);
         replyTextbox.setText(chatMessage.getText());
         translateMessage(replyTextbox.getText(), replyTranslationTextbox);
+        ChatMessage.playMessageSound(replyTextbox.getText(), wpmSlider.getValue());
     }
 
     private void connect() {
