@@ -11,7 +11,7 @@ module edu.augustana {
     exports edu.augustana.Controllers;
     opens edu.augustana.Radio to javafx.fxml;
     exports edu.augustana.Radio;
-    opens edu.augustana.Chat to javafx.fxml;
+    opens edu.augustana.Chat to javafx.fxml, com.google.gson;
     exports edu.augustana.Chat;
     opens edu.augustana.Input to javafx.fxml;
     exports edu.augustana.Input;

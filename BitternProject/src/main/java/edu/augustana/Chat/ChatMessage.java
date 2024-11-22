@@ -10,14 +10,14 @@ import java.util.List;
 public class ChatMessage {
     private String text;
     private String sender;
-    private Color color;
+    private String colorCode;
     private static List<ChatMessage> chatLogMessageList = new ArrayList<>();
     private static Boolean messagePlaying = false;
 
     public ChatMessage(String text, String sender, Color color) {
         this.text = text;
         this.sender = sender;
-        this.color = color;
+        this.colorCode= color.toString();
     }
 
     public String getText() {
@@ -29,7 +29,7 @@ public class ChatMessage {
     }
 
     public Color getColor() {
-        return color;
+        return Color.valueOf(colorCode);
     }
 
     public static List<ChatMessage> getChatMessageList() {return chatLogMessageList;}

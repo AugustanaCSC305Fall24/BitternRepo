@@ -5,10 +5,7 @@ import edu.augustana.Chat.ChatMessage;
 import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
-import jakarta.websocket.ContainerProvider;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.Session;
-import jakarta.websocket.WebSocketContainer;
+import jakarta.websocket.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +18,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+@ClientEndpoint
 public class ServerController extends Controller implements Initializable {
 
     @FXML private Button welcomeButton;
@@ -75,7 +73,7 @@ public class ServerController extends Controller implements Initializable {
         translateMessage(userText.getText(), sendTranslationTextbox);
         ChatMessage chatMessage = new ChatMessage(userText.getText(), USER_NAME, Color.RED);
 //        System.out.println(chatMessage.getSender() + chatMessage.getText());
-        replyTextbox.setText(chatMessage.getText());
+//        replyTextbox.setText(chatMessage.getText());
         Gson gson = new Gson();
         String jsonText = gson.toJson(chatMessage);
         System.out.println("Sending WebSocket message: " + jsonText);
@@ -118,7 +116,7 @@ public class ServerController extends Controller implements Initializable {
     private void connect() {
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            session = container.connectToServer(this, new URI("ws://localhost:8000/ws/penguin"));
+            session = container.connectToServer(this, new URI("ws://34.41.147.186:8000/ws/penguin"));
         } catch (Exception e) {
             e.printStackTrace();
         }
