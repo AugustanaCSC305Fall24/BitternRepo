@@ -2,6 +2,7 @@ package edu.augustana.Controllers;
 
 import com.google.gson.Gson;
 import edu.augustana.Chat.ChatMessage;
+import edu.augustana.Input.Translator;
 import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
@@ -16,6 +17,7 @@ import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 @ClientEndpoint
@@ -35,14 +37,29 @@ public class ServerController extends Controller implements Initializable {
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
     @FXML private Slider wpmSlider;
+    @FXML private TextField callSignTextbox = new TextField();
 
-    private final String USER_NAME = "Penguin";
+
+    private String callSign;
     private Session session;
+    private Random randGen = new Random();
 
     public void initialize(URL arg0, ResourceBundle arg1){
         userText = sendMessageTextbox;
         new Thread(whiteNoise::play).start();
+        generateCallSign();
+        callSignTextbox.setText(callSign);
         connect();
+    }
+
+    private void generateCallSign() {
+        callSign = "K9";
+        for (int i = 0; i < 4; i++) {
+            int index = randGen.nextInt(37);
+            if (index != 26) { // skip if you get a space bar
+                callSign += String.valueOf(Translator.englishLetters[index]).toUpperCase();
+            }
+        }
     }
 
     @FXML
@@ -71,9 +88,7 @@ public class ServerController extends Controller implements Initializable {
     public void sendAction() throws LineUnavailableException {
         // Here for send to server
         translateMessage(userText.getText(), sendTranslationTextbox);
-        ChatMessage chatMessage = new ChatMessage(userText.getText(), USER_NAME, Color.RED);
-//        System.out.println(chatMessage.getSender() + chatMessage.getText());
-//        replyTextbox.setText(chatMessage.getText());
+        ChatMessage chatMessage = new ChatMessage(userText.getText(), callSign, Color.RED);
         Gson gson = new Gson();
         String jsonText = gson.toJson(chatMessage);
         System.out.println("Sending WebSocket message: " + jsonText);
@@ -116,7 +131,7 @@ public class ServerController extends Controller implements Initializable {
     private void connect() {
         try {
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            session = container.connectToServer(this, new URI("ws://34.41.147.186:8000/ws/penguin"));
+            session = container.connectToServer(this, new URI("ws://34.41.147.186:8000/ws/" + callSign));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -19,7 +19,7 @@
     <children>
       <HBox layoutX="21.0" layoutY="25.0" prefHeight="42.0" prefWidth="609.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Server" wrappingWidth="269.93670654296875">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Server" wrappingWidth="91.93670654296875">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="30.0" />
                </font>
@@ -27,6 +27,16 @@
                   <Insets right="80.0" />
                </HBox.margin>
             </Text>
+            <Label alignment="CENTER" prefHeight="23.0" prefWidth="92.0" text="Call Sign:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="callSignTextbox" editable="false" prefHeight="26.0" prefWidth="88.0">
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin>
+            </TextField>
             <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: #ffffff;" text="How To">
                <HBox.margin>
                   <Insets right="10.0" />
