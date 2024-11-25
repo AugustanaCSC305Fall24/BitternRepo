@@ -28,7 +28,7 @@ public class RadioApp extends Application {
         welcomeController.setApp(this);
     }
 
-    public Scene getScene() {
+    public static Scene getScene() {
         return scene;
     }
 
