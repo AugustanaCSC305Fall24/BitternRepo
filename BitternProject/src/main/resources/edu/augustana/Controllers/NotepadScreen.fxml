@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="336.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/22">
+<AnchorPane prefHeight="400.0" prefWidth="336.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.NotepadController">
    <children>
-      <TextArea layoutX="30.0" layoutY="71.0" prefHeight="307.0" prefWidth="271.0" promptText="(write notes here)" wrapText="true">
+      <TextArea fx:id="notepadContent" layoutX="30.0" layoutY="78.0" prefHeight="307.0" prefWidth="271.0" promptText="(write notes here)" wrapText="true">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="12.0" />
          </font></TextArea>
-      <HBox layoutX="30.0" layoutY="14.0" prefHeight="51.0" prefWidth="271.0">
+      <HBox layoutX="30.0" layoutY="36.0" prefHeight="51.0" prefWidth="271.0">
          <children>
             <Label text="Notepad" textFill="WHITE">
                <font>
@@ -21,5 +24,15 @@
             </Label>
          </children>
       </HBox>
+      <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="336.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#menuFileSave" text="Save" />
+                  <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#menuFileOpen" text="Open" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
