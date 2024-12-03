@@ -51,7 +51,7 @@ public class ScenarioController extends Controller implements Initializable {
         userText = userTextField;
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
-        addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
+        addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
         ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
         for (ChatMessage message : ChatRoom.getChatMessageList()) {
