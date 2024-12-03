@@ -2,10 +2,13 @@ package edu.augustana.Controllers;
 
 import edu.augustana.Chat.ChatClient;
 import edu.augustana.Chat.ChatMessage;
+import edu.augustana.Chat.ChatRoom;
 import edu.augustana.Input.Translator;
 import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
+import edu.augustana.bots.ChatBot;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,15 +18,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.util.Duration;
+
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ScenarioController extends Controller implements Initializable {
 
     @FXML private Slider wpmSlider;
+    @FXML private Button addBot;
     @FXML private ScrollPane chatLogScrollPane;
     @FXML private VBox chatLogVBox;
     @FXML private CheckBox translationCheckbox;
@@ -31,6 +39,11 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private CheckBox englishCheckBox;
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
+    @FXML
+    private ListView<ChatBot> botListView;
+
+    private List<ChatBot> bots;
+
 
     private String translation;
 
@@ -39,9 +52,58 @@ public class ScenarioController extends Controller implements Initializable {
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
         addMessageToChatLogUI(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
+        ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
+        botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
+        for (ChatMessage message : ChatRoom.getChatMessageList()) {
+            addMessageToChatLogUI(message);
+        }
+
+        int BOT_SPEED_DELAY = 11 - 5; // speed 1 means 10 sec delay, speed 10 means 1 sec delay
+        PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
+        pause.setOnFinished( e -> {
+            // STOP running if the scene switched roots, and thus this chatLogVBox is longer visible
+            if (chatLogVBox.getScene()!=null) {
+                sendMessageFromRandomBot();
+                pause.playFromStart(); // make it loop
+            }
+        });
+        pause.play();
     }
 
     @FXML
+    private void addBot (ActionEvent event) throws IOException{
+        RadioApp.setRoot("AddNewBotView");
+    }
+
+    private void sendMessageFromRandomBot() {
+        List<ChatMessage> messages = ChatRoom.getChatMessageList();
+        if (messages.isEmpty()) {
+            return; // No messages to respond to
+        }
+
+        ChatMessage lastMsg = messages.get(messages.size() - 1);
+        String lastSender = lastMsg.getSender();
+        List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
+        Collections.shuffle(bots);
+
+        ChatBot randomBot = null;
+        for (ChatBot bot : bots) {
+            if (!bot.getName().equals(lastSender)) {
+                randomBot = bot;
+                break;
+            }
+        }
+
+        if (randomBot != null) {
+            ChatMessage messageFromBot = randomBot.generateResponseMessage(lastMsg);
+            sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
+        }
+    }
+
+
+
+
+@FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         whiteNoise.exit();
         RadioApp.setRoot("WelcomeScreen");
@@ -59,7 +121,7 @@ public class ScenarioController extends Controller implements Initializable {
 
     @FXML
     private void clearChatLogAction() {
-        List<ChatMessage> messages = ChatMessage.getChatMessageList();
+        List<ChatMessage> messages = ChatRoom.getChatMessageList();
         if (messages != null && !messages.isEmpty()) {
             messages.clear();
             chatLogVBox.getChildren().clear();
@@ -104,25 +166,23 @@ public class ScenarioController extends Controller implements Initializable {
     }
     public void addTranslation(String message, String sender, Color color){
         ChatMessage newMessage = new ChatMessage(message, sender, color);
-        ChatMessage.addMessage(newMessage);
+        ChatRoom.addMessage(newMessage);
         addMessageToChatLogUI(newMessage);
     }
 
-    public void sendMessage(String message, String sender, Color color) {
+    private void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
-        ChatMessage.addMessage(newMessage);
-        addMessageToChatLogUI(newMessage);
+        ChatRoom.addMessage(newMessage);
         userText.clear();
         checkBoxHandler(message);
+
         if (englishCheckBox.isSelected()) {
             new Thread(() -> {
-
-
                 ChatClient.sendMessage(newMessage.getText());
                 ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
 
-                new Thread (() -> {
-                    if (translationCheckbox.isSelected()){
+                new Thread(() -> {
+                    if (translationCheckbox.isSelected()) {
                         try {
                             Thread.sleep(500);
                             String translation = Translator.textToMorse(lastMessage.getText());
@@ -130,18 +190,13 @@ public class ScenarioController extends Controller implements Initializable {
                         } catch (LineUnavailableException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-
                     }
                 }).start();
 
                 Platform.runLater(() -> {
-                    ChatMessage.addMessage(lastMessage);
-                    addMessageToChatLogUI(lastMessage);
-
-
-            });
-        }).start();
-
+                    ChatRoom.addMessage(lastMessage);
+                });
+            }).start();
         }
     }
 

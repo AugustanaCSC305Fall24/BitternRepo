@@ -1,4 +1,4 @@
-package edu.augustana.WebSocket;
+package edu.augustana.Chat;
 
 import com.google.gson.*;
 import javafx.scene.paint.Color;
