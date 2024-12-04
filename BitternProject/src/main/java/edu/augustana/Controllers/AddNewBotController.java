@@ -1,4 +1,5 @@
 package edu.augustana.Controllers;
+import edu.augustana.Chat.ChatClient;
 import edu.augustana.Chat.ChatRoom;
 import edu.augustana.Radio.RadioApp;
 import edu.augustana.bots.ChatBot;
@@ -7,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 
 import java.io.IOException;
 
@@ -20,6 +22,8 @@ public class AddNewBotController {
 
     @FXML
     private ColorPicker botColorPicker;
+
+    @FXML private Slider frequencySlider;
 
     @FXML
     private void initialize() {
@@ -49,7 +53,9 @@ public class AddNewBotController {
                 throw new IllegalStateException("Invalid personality type: " + personalityType);
 
         }
+        newBot.setFrequency((int) frequencySlider.getValue());
         ChatRoom.getBots().add(newBot);
+        ChatClient.setCurrentBot(newBot);  //sets bot type in client code
         RadioApp.setRoot("ScenarioScreen");
     }
 
@@ -57,5 +63,7 @@ public class AddNewBotController {
     private void cancelAddingBotAction(ActionEvent event) throws IOException {
         RadioApp.setRoot("ScenarioScreen");
     }
+
+
 
 }

@@ -37,8 +37,10 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private CheckBox translationCheckbox;
     @FXML public TextField userTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
+    @FXML private Slider toneFrequencySlider;
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
+
     @FXML
     private ListView<ChatBot> botListView;
 
@@ -54,6 +56,20 @@ public class ScenarioController extends Controller implements Initializable {
         addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
         ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
+
+        botListView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(ChatBot bot, boolean empty) {
+                super.updateItem(bot, empty);
+                if (empty || bot == null) {
+                    setText(null);
+                } else {
+                    setText(bot.getName() + "   Frequency: " + bot.getFrequency() );
+                }
+            }
+        });
+
+
         for (ChatMessage message : ChatRoom.getChatMessageList()) {
             addMessageToChatLogUI(message);
         }
@@ -86,16 +102,20 @@ public class ScenarioController extends Controller implements Initializable {
         List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
         Collections.shuffle(bots);
 
-        ChatBot randomBot = null;
+        ChatBot matchingBot = null;
+
         for (ChatBot bot : bots) {
             if (!bot.getName().equals(lastSender)) {
-                randomBot = bot;
-                break;
+                // Check if the frequency matches the bot's stored frequency
+                if ((int) frequencySlider.getValue() == bot.getFrequency()) {
+                    matchingBot = bot;
+                    break;
+                }
             }
         }
 
-        if (randomBot != null) {
-            ChatMessage messageFromBot = randomBot.generateResponseMessage(lastMsg);
+        if (matchingBot != null) {
+            ChatMessage messageFromBot = matchingBot.generateResponseMessage(lastMsg);
             sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
         }
     }
@@ -103,7 +123,8 @@ public class ScenarioController extends Controller implements Initializable {
 
 
 
-@FXML
+
+    @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         whiteNoise.exit();
         RadioApp.setRoot("WelcomeScreen");
@@ -136,7 +157,7 @@ public class ScenarioController extends Controller implements Initializable {
         super.sendAction();
     }
 
-    private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
+    public void addMessageToChatLogUI(ChatMessage messageToDisplay) {
         Label label = new Label(messageToDisplay.getSender() + ":  " + messageToDisplay.getText());
         label.setTextFill(messageToDisplay.getColor());
         label.setWrapText(true);
@@ -232,11 +253,14 @@ public class ScenarioController extends Controller implements Initializable {
     public void setWPM() {WPM = wpmSlider.getValue();}
 
     public void setFrequency() {
-        ToneGenerator.setFrequency((int) frequencySlider.getValue());
+        ToneGenerator.setFrequency((int) toneFrequencySlider.getValue());
     }
 
     public void setWhiteNoiseVolume(){
         WhiteNoise.setVolume((int) staticSlider.getValue());
     }
+
+
+
 }
 

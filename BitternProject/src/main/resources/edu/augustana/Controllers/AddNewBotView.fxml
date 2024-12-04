@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -33,13 +34,14 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <center>
-      <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" vgap="5.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="127.0" prefWidth="432.0" vgap="5.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -51,6 +53,8 @@
                   <Color />
                </value>
             </ColorPicker>
+            <Slider fx:id="frequencySlider" max="725.0" min="575.0" prefHeight="39.0" prefWidth="202.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="575.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Frequency:" GridPane.rowIndex="2" />
          </children>
          <BorderPane.margin>
             <Insets />

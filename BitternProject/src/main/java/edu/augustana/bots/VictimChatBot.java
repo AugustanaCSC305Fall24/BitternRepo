@@ -10,7 +10,7 @@ public class VictimChatBot extends ChatBot {
     }
 
     @Override
-    String getPersonalityType() {
+    public String getPersonalityType() {
         return "Pirate";
     }
 

@@ -10,7 +10,7 @@ public class FireDepartmentChatBot extends ChatBot {
     }
 
     @Override
-    String getPersonalityType() {
+    public String getPersonalityType() {
         return "Friendly";
     }
 

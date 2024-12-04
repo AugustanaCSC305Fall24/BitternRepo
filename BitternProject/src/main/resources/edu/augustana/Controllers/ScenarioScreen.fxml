@@ -120,13 +120,13 @@
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor>
                   </Slider>
-                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                  <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
                   <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
                   </Slider>
-                  <Slider fx:id="filterSlider" majorTickUnit="0.1" max="7.67" min="7.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" showTickLabels="true" showTickMarks="true" value="575.0" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
