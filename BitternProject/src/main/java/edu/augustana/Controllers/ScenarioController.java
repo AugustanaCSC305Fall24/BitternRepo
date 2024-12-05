@@ -78,34 +78,7 @@ public class ScenarioController extends Controller implements Initializable {
         RadioApp.setRoot("AddNewBotView");
     }
 
-    private void sendMessageFromRandomBot() {
-        List<ChatMessage> messages = ChatRoom.getChatMessageList();
-        if (messages.isEmpty()) {
-            return; // No messages to respond to
-        }
 
-        ChatMessage lastMsg = messages.get(messages.size() - 1);
-        String lastSender = lastMsg.getSender();
-        List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
-        Collections.shuffle(bots);
-
-        ChatBot matchingBot = null;
-
-        for (ChatBot bot : bots) {
-            if (!bot.getName().equals(lastSender)) {
-                // Check if the frequency matches the bot's stored frequency
-                if ((int) frequencySlider.getValue() == bot.getFrequency()) {
-                    matchingBot = bot;
-                    break;
-                }
-            }
-        }
-
-        if (matchingBot != null) {
-            ChatMessage messageFromBot = matchingBot.generateResponseMessage(lastMsg);
-            sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
-        }
-    }
 
 
 
