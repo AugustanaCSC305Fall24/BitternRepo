@@ -53,8 +53,10 @@
                   <Color />
                </value>
             </ColorPicker>
-            <Slider fx:id="frequencySlider" max="725.0" min="575.0" prefHeight="39.0" prefWidth="202.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="575.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Frequency:" GridPane.rowIndex="2" />
+
+            <Label layoutX="94.0" layoutY="16.0" text="Frequency" GridPane.rowIndex="2" />
+            <Slider fx:id="botFrequencySlider" max="725.0" min="575.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
          </children>
          <BorderPane.margin>
             <Insets />

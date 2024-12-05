@@ -23,10 +23,7 @@ import javafx.util.Duration;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ScenarioController extends Controller implements Initializable {
 
@@ -45,18 +42,21 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML
     private ListView<ChatBot> botListView;
 
-    private List<ChatBot> bots;
+
 
 
     private String translation;
+    private ChatBot bot;
 
     public void initialize(URL arg0, ResourceBundle arg1){
+
         userText = userTextField;
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
-        addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
+        //addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
         ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
+
 
         // Add a listener to the slider to update the hertz label text
        frequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -64,18 +64,23 @@ public class ScenarioController extends Controller implements Initializable {
             hertzLabel.setText(hertz + " Hz"); // Update the label text
         });
 
-       // adds frequency to the bot list view
-        botListView.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(ChatBot bot, boolean empty) {
-                super.updateItem(bot, empty);
-                if (empty || bot == null) {
-                    setText(null);
-                } else {
-                    setText(bot.getName() + "   Frequency: " + bot.getFrequency() );
-                }
-            }
-        });
+//       // adds frequency to the bot list view
+//        botListView.setCellFactory(lv -> new ListCell<>() {
+//            @Override
+//            protected void updateItem(ChatBot bot, boolean empty) {
+//                super.updateItem(bot, empty);
+//                if (empty || bot == null) {
+//                    setText(null);
+//                } else {
+//                    setText(bot.getName() + "   Frequency: " + bot.getFrequency() );
+//                }
+//            }
+//        });
+
+//        for (ChatMessage message : ChatRoom.getChatMessageList()) {
+//            addMessageToChatLogUI(message);
+//        }
+
 
         // Add Key Event Handler for the Enter Key
         userTextField.setOnKeyPressed(event -> {
@@ -93,21 +98,26 @@ public class ScenarioController extends Controller implements Initializable {
         });
 
 
+
         for (ChatMessage message : ChatRoom.getChatMessageList()) {
             addMessageToChatLogUI(message);
         }
 
-        int BOT_SPEED_DELAY = 11 - 5; // speed 1 means 10 sec delay, speed 10 means 1 sec delay
-        PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
-        pause.setOnFinished( e -> {
-            // STOP running if the scene switched roots, and thus this chatLogVBox is longer visible
-            if (chatLogVBox.getScene()!=null) {
-                sendMessageFromRandomBot();
-                pause.playFromStart(); // make it loop
-            }
-        });
-        pause.play();
+
+
 //        chatLogVBox.getScene().getWindow().setOnHidden(event -> resetScenario());
+
+//        int BOT_SPEED_DELAY = 11 - 5; // speed 1 means 10 sec delay, speed 10 means 1 sec delay
+//        PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
+//        pause.setOnFinished( e -> {
+//            // STOP running if the scene switched roots, and thus this chatLogVBox is longer visible
+//            if (chatLogVBox.getScene()!=null) {
+//                sendMessageFromRandomBot();
+//                pause.playFromStart(); // make it loop
+//            }
+//        });
+//        pause.play();
+
     }
 
     @FXML
@@ -178,8 +188,9 @@ public class ScenarioController extends Controller implements Initializable {
         super.sendAction();
     }
 
-    public void addMessageToChatLogUI(ChatMessage messageToDisplay) {
-        Label label = new Label(messageToDisplay.getSender() + ":  " + messageToDisplay.getText());
+    private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
+        Label label = new Label(messageToDisplay.getSender() +":  " + messageToDisplay.getText());
+
         label.setTextFill(messageToDisplay.getColor());
         label.setWrapText(true);
         label.setFont(Font.font("System", FontWeight.NORMAL, 11));
@@ -215,17 +226,31 @@ public class ScenarioController extends Controller implements Initializable {
 
     private void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
-        ChatRoom.addMessage(newMessage);
+        addMessageToChatLogUI(newMessage);
         userText.clear();
         checkBoxHandler(message);
 
+        int currFreq = (int) frequencySlider.getValue();
+
+        for (int i = 0; i < ChatRoom.getBots().size(); i++) {
+            if (currFreq == ChatRoom.getBots().get(i).getFrequency()) {
+                bot = ChatRoom.getBots().get(i);
+            }
+        }
+        if (bot == null) {
+            bot = ChatRoom.getBots().get(0); //default bot
+        }
+
+
+
         if (englishCheckBox.isSelected()) {
             new Thread(() -> {
-                ChatClient.sendMessage(newMessage.getText());
-                ChatMessage lastMessage = ChatClient.getMessages().get(ChatClient.getMessages().size() - 1);
+                ChatClient.sendMessage(newMessage.getText(), bot);
+                ChatMessage lastMessage = ChatRoom.getChatMessageList().get(ChatClient.getMessages().size() - 1);
 
                 new Thread(() -> {
                     if (translationCheckbox.isSelected()) {
+
                         try {
                             Thread.sleep(500);
                             String translation = Translator.textToMorse(lastMessage.getText());
@@ -237,7 +262,8 @@ public class ScenarioController extends Controller implements Initializable {
                 }).start();
 
                 Platform.runLater(() -> {
-                    ChatRoom.addMessage(lastMessage);
+                    //ChatRoom.addMessage(lastMessage);
+                    addMessageToChatLogUI(lastMessage);
                 });
             }).start();
         }

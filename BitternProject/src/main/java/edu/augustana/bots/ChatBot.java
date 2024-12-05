@@ -10,26 +10,16 @@ import java.util.Random;
 public abstract class ChatBot {
     private final String name;
     private final Color textColor;
-    private int frequency;
+
+    private double frequency = 0;
 
     private static final Random randomGen = new Random();
 
-    public ChatBot(String name, Color textColor, int frequency) {
+    public ChatBot(String name, Color textColor, double frequency) {
         this.name = name;
         this.textColor = textColor;
         this.frequency = frequency;
-    }
 
-    public ChatBot(String name, Color textColor) {
-        this(name, textColor, 0);
-    }
-
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
-    }
-
-    public int getFrequency() {
-        return frequency;
     }
 
     public String getName() {
@@ -41,13 +31,17 @@ public abstract class ChatBot {
 
     @Override
     public String toString() {
-        return name;
+        return name +"   "+ "Frequency:" +"  "+ frequency;
     }
 
     public abstract String getPersonalityType();
 
     public ChatMessage generateNewMessage() {
         return new ChatMessage(generateNewMessageText(), name, textColor);
+    }
+
+    public int getFrequency() {
+        return (int) frequency;
     }
 
     public ChatMessage generateResponseMessage(ChatMessage previousMessage) {
@@ -104,5 +98,9 @@ public abstract class ChatBot {
         String name =names[randomGen.nextInt(names.length)];
         String adjective = adjectives[randomGen.nextInt(adjectives.length)];
         return  name + " the " + adjective;
+    }
+
+    public Color getColor() {
+        return textColor;
     }
 }

@@ -7,12 +7,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+
 import edu.augustana.bots.ChatBot;
+import javafx.scene.paint.Color;
+
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-
-import javafx.scene.paint.Color;
 
 
 public class ChatClient {
@@ -32,7 +36,9 @@ public class ChatClient {
         return currentBot;
     }
 
-    public static void sendMessage(String messageContent) {
+    public static void sendMessage(String messageContent, ChatBot bot) {
+
+        String respondAs = bot.getName() + ":";
         try {
             if (currentBot == null) { //debugging
                 throw new IllegalStateException("No bot selected. Please choose a bot.");
@@ -40,26 +46,30 @@ public class ChatClient {
 
             // Add user message to the list
             messages.add(new ChatMessage(messageContent, "user", Color.BLACK));
+            ChatRoom.addMessage(new ChatMessage(messageContent, "user", Color.BLACK));
 
             // Prepare JSON payload
             JSONArray jsonMessages = new JSONArray();
             for (ChatMessage message : messages) {
                 JSONObject jsonMessage = new JSONObject();
                 jsonMessage.put("role", message.getSender());
-                jsonMessage.put("content", message.getText());
+                jsonMessage.put("content", respondAs + " "+message.getText());
+
                 jsonMessage.put("type", "text");
                 jsonMessages.put(jsonMessage);
             }
 
             JSONObject payload = new JSONObject();
             payload.put("query", jsonMessages);
-            payload.put("frequency",currentBot.getPersonalityType());
+
             // Log the JSON payload
             System.out.println("JSON Payload: " + payload.toString());
 
 
             // Send HTTP POST request
+
             URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
+
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -88,15 +98,31 @@ public class ChatClient {
 
 
                 // Process the response
+
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 String assistantMessage = jsonResponse.getString("response");
+            String sender = "";
+            if(bot.getName().equals("FireDepartment")) {
+                    sender = "FireDepartment";
+                }else if(bot.getName().equals("NationalGuard")) {
+                sender = "NationalGuard";
+                }else if(bot.getName().equals("RedCross")) {
+                sender = "RedCross";
+                }else{
+                    sender = "Victim";
+                }
 
-                messages.add(new ChatMessage(assistantMessage, currentBot.getName(), currentBot.getTextColor()));
+
+                messages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
+                ChatRoom.addMessage(new ChatMessage(assistantMessage, sender, bot.getColor()));
 
 
-                ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);
+                //ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);
 
-                ChatMessage.addMessage(newMessage);
+//                ChatMessage.addMessage(newMessage);
+//                ScenarioController.addMessageToChatLogUI(newMessage);
+
+
 
 
         } catch (Exception e) {
