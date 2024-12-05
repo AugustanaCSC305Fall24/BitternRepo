@@ -61,7 +61,7 @@ public class ChatMessage {
                 Thread.currentThread().interrupt();
             }
         }
-        Thread.sleep(2000);
+        Thread.sleep(500);
         messagePlaying = false;
     }
 

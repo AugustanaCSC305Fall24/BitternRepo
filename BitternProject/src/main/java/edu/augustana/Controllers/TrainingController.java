@@ -6,6 +6,7 @@ import edu.augustana.Input.UserInput;
 import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -66,11 +67,13 @@ public class TrainingController extends Controller {
             letterLabel.setText(currentCW);
             currentMorse = Translator.textToMorse(currentCW);
         }
+        nextButton.setDisable(true);
+        prevButton.setDisable(true);
 
         // Create a new thread for playing the Morse sound
         new Thread(() -> {
             try {
-                Thread.sleep(200); // 500 milliseconds delay
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -79,6 +82,8 @@ public class TrainingController extends Controller {
                 ChatMessage.playMessageSound(currentMorse, WPM);
             } catch (LineUnavailableException | InterruptedException e) {
                 throw new RuntimeException(e);
+            } finally {
+                Platform.runLater(() -> { nextButton.setDisable(false); prevButton.setDisable(false);});
             }
         }).start(); // Start the new thread
     }
