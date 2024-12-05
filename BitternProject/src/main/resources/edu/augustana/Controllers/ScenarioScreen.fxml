@@ -120,7 +120,7 @@
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor>
                   </Slider>
-                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="650.0" />
                   <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
                      <padding>
                         <Insets bottom="15.0" />

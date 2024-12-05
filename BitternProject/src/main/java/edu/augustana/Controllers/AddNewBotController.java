@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 
 import java.io.IOException;
 
@@ -20,11 +21,15 @@ public class AddNewBotController {
 
     @FXML
     private ColorPicker botColorPicker;
+    @FXML
+    private Slider botFrequencySlider;
 
     @FXML
     private void initialize() {
+
         personalityTypeComboBox.getItems().addAll("FireDepartment", "NationalGuard", "RedCross", "Victim");
         personalityTypeComboBox.setValue(personalityTypeComboBox.getItems().get(0));
+
     }
 
 
@@ -34,16 +39,16 @@ public class AddNewBotController {
         ChatBot newBot;
         switch (personalityType) {
             case "FireDepartment":
-                newBot = new FireDepartmentChatBot("FireDepartment", botColorPicker.getValue());
+                newBot = new FireDepartmentChatBot("FireDepartment", botColorPicker.getValue(), botFrequencySlider.getValue());
                 break;
             case "NationalGuard":
-                newBot = new NationalGuardChatBot("NationalGuard", botColorPicker.getValue());
+                newBot = new NationalGuardChatBot("NationalGuard", botColorPicker.getValue(), botFrequencySlider.getValue());
                 break;
             case "RedCross":
-                newBot = new RedCrossDepartmentChatBot("RedCross", botColorPicker.getValue());
+                newBot = new RedCrossDepartmentChatBot("RedCross", botColorPicker.getValue(), botFrequencySlider.getValue());
                 break;
             case "Victim":
-                newBot = new VictimChatBot("DisasterVictim", botColorPicker.getValue());
+                newBot = new VictimChatBot("DisasterVictim", botColorPicker.getValue(), botFrequencySlider.getValue());
                 break;
             default:
                 throw new IllegalStateException("Invalid personality type: " + personalityType);
