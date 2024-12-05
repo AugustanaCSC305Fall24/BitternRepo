@@ -102,6 +102,11 @@
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
+                  <Label fx:id="hertzLabel" alignment="CENTER" onDragDone="#setHertzLabel" prefHeight="17.0" prefWidth="94.0" text="- Hz" textAlignment="CENTER" underline="true">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -120,7 +125,6 @@
                         <Cursor fx:constant="CLOSED_HAND" />
                      </cursor>
                   </Slider>
-
                   <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
                   <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
                      <padding>

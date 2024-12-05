@@ -10,6 +10,7 @@ import java.util.List;
 
 
 
+
 import edu.augustana.bots.ChatBot;
 import javafx.scene.paint.Color;
 
@@ -114,6 +115,7 @@ public class ChatClient {
 
 //                ChatMessage.addMessage(newMessage);
 //                ScenarioController.addMessageToChatLogUI(newMessage);
+
 
 
 

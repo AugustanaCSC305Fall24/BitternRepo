@@ -15,7 +15,7 @@ public class WhiteNoise extends Thread {
     public static int volume = -10; // Volume ranges from -80 to 6
 
     SourceDataLine line;
-    public boolean exitExecution = false;
+    public static boolean exitExecution = false;
 
     public static void main(String[] args) {
         try {
@@ -82,7 +82,9 @@ public class WhiteNoise extends Thread {
         volume = volumeSet;
     }
 
-
+    public void stopPlaying() {
+        line.stop();
+    }
 
 
 }

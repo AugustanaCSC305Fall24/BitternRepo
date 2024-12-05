@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.util.Duration;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
@@ -37,9 +36,9 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private Slider toneFrequencySlider;
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
+    @FXML private Label hertzLabel;
 
-    @FXML
-    private ListView<ChatBot> botListView;
+    @FXML private ListView<ChatBot> botListView;
 
 
 
@@ -52,14 +51,59 @@ public class ScenarioController extends Controller implements Initializable {
         userText = userTextField;
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
-        addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
+        //addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
         ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
+
+
+        // Add a listener to the slider to update the hertz label text
+       frequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int hertz = newValue.intValue(); // Get the slider's value as an integer
+            hertzLabel.setText(hertz + " Hz"); // Update the label text
+        });
+
+//       // adds frequency to the bot list view
+//        botListView.setCellFactory(lv -> new ListCell<>() {
+//            @Override
+//            protected void updateItem(ChatBot bot, boolean empty) {
+//                super.updateItem(bot, empty);
+//                if (empty || bot == null) {
+//                    setText(null);
+//                } else {
+//                    setText(bot.getName() + "   Frequency: " + bot.getFrequency() );
+//                }
+//            }
+//        });
 
 //        for (ChatMessage message : ChatRoom.getChatMessageList()) {
 //            addMessageToChatLogUI(message);
 //        }
 
+
+        // Add Key Event Handler for the Enter Key
+        userTextField.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER:
+                    try {
+                        sendAction();
+                    } catch (LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+
+
+
+        for (ChatMessage message : ChatRoom.getChatMessageList()) {
+            addMessageToChatLogUI(message);
+        }
+
+
+
+//        chatLogVBox.getScene().getWindow().setOnHidden(event -> resetScenario());
 
 //        int BOT_SPEED_DELAY = 11 - 5; // speed 1 means 10 sec delay, speed 10 means 1 sec delay
 //        PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
@@ -71,6 +115,7 @@ public class ScenarioController extends Controller implements Initializable {
 //            }
 //        });
 //        pause.play();
+
     }
 
     @FXML
@@ -78,15 +123,37 @@ public class ScenarioController extends Controller implements Initializable {
         RadioApp.setRoot("AddNewBotView");
     }
 
-
-
-
-
-
+//
+//<<<<<<< HEAD
+//=======
+//        // Get the last message sent
+//        ChatMessage lastMsg = messages.get(messages.size() - 1);
+//        String lastSender = lastMsg.getSender();
+//        List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
+//        Collections.shuffle(bots);
+//
+//        ChatBot matchingBot = null;
+//
+//        for (ChatBot bot : bots) {
+//            if (!bot.getName().equals(lastSender)) {
+//                // Check if the frequency matches the bot's stored frequency
+//                if ((int) frequencySlider.getValue() == bot.getFrequency()) {
+//                    matchingBot = bot;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        if (matchingBot != null) {
+//            ChatMessage messageFromBot = matchingBot.generateResponseMessage(lastMsg);
+//            sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
+//        }
+//    }
+//>>>>>>> b5df0be4b568bb8e4cb832da458abd029ea7b3b8
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        whiteNoise.exit();
+        whiteNoise.stopPlaying();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -130,22 +197,30 @@ public class ScenarioController extends Controller implements Initializable {
 
     private void checkBoxHandler(String msgText) {
         if (translationCheckbox.isSelected()) {
-            if (englishCheckBox.isSelected()) {
-                translation = Translator.textToMorse(msgText);
-                addTranslation(translation, "Translator", Color.RED);
+            String morse;
+
+            // Check if the message matches any predefined phrase
+            if (Translator.phraseToCodeWord.containsKey(msgText.toLowerCase())) {
+                String codeWord = Translator.phraseToCodeWord.get(msgText.toLowerCase());
+                morse = Translator.textToMorse(codeWord);
             } else {
-                translation = Translator.morseToText(msgText);
-                addTranslation(translation, "Translator", Color.GREEN);
+                // Default to translating the whole message
+                morse = Translator.textToMorse(msgText);
             }
+
+            //addTranslation(morse, "Translator", Color.RED); check on this
+
+            // Play Morse code
             new Thread(() -> {
                 try {
-                    ChatMessage.playMessageSound(translation, wpmSlider.getValue());
+                    ChatMessage.playMessageSound(morse, wpmSlider.getValue());
                 } catch (LineUnavailableException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }).start();
         }
     }
+
     public void addTranslation(String message, String sender, Color color){
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatRoom.addMessage(newMessage);
@@ -156,7 +231,20 @@ public class ScenarioController extends Controller implements Initializable {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         addMessageToChatLogUI(newMessage);
         userText.clear();
-        checkBoxHandler(message);
+
+        String translation;
+
+        // Check if the message contains a phrase that maps to a code word
+        if (Translator.phraseToCodeWord.containsKey(message.toLowerCase())) {
+            String codeWord = Translator.phraseToCodeWord.get(message.toLowerCase());
+            translation = Translator.textToMorse(codeWord);
+        } else {
+            translation = Translator.textToMorse(message);
+        }
+
+
+
+        checkBoxHandler(translation); //was message variable
 
         int currFreq = (int) frequencySlider.getValue();
 
@@ -182,8 +270,8 @@ public class ScenarioController extends Controller implements Initializable {
 
                         try {
                             Thread.sleep(500);
-                            String translation = Translator.textToMorse(lastMessage.getText());
-                            ChatMessage.playMessageSound(translation, wpmSlider.getValue());
+                            String translationMessage = Translator.textToMorse(lastMessage.getText());
+                            ChatMessage.playMessageSound(translationMessage, wpmSlider.getValue());
                         } catch (LineUnavailableException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }
@@ -237,6 +325,11 @@ public class ScenarioController extends Controller implements Initializable {
         WhiteNoise.setVolume((int) staticSlider.getValue());
     }
 
+    @FXML
+    public void setHertzLabel(){
+        int hertz = (int) toneFrequencySlider.getValue();
+        hertzLabel.setText(hertz + " Hz");
+    }
 
 
 }
