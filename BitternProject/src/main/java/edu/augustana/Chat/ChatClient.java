@@ -9,8 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import edu.augustana.bots.ChatBot;
 import javafx.scene.paint.Color;
+
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,15 +21,28 @@ import org.json.JSONObject;
 public class ChatClient {
 
     private static List<ChatMessage> messages = new ArrayList<>();
+    private static ChatBot currentBot;
 
     public ChatClient() {
-        messages.add(new ChatMessage("Hi! Disaster Scenario Support Agent here, how can I assist you today?", "assistant", Color.BLACK));
+        messages.add(new ChatMessage("Hello! Help me", "assistant", Color.BLACK));
+    }
+
+    public static void setCurrentBot(ChatBot bot) {
+        currentBot = bot;
+    }
+
+    public static ChatBot getCurrentBot() {
+        return currentBot;
     }
 
     public static void sendMessage(String messageContent, ChatBot bot) {
 
         String respondAs = bot.getName() + ":";
         try {
+            if (currentBot == null) { //debugging
+                throw new IllegalStateException("No bot selected. Please choose a bot.");
+            }
+
             // Add user message to the list
             messages.add(new ChatMessage(messageContent, "user", Color.BLACK));
             ChatRoom.addMessage(new ChatMessage(messageContent, "user", Color.BLACK));
@@ -37,6 +53,7 @@ public class ChatClient {
                 JSONObject jsonMessage = new JSONObject();
                 jsonMessage.put("role", message.getSender());
                 jsonMessage.put("content", respondAs + " "+message.getText());
+
                 jsonMessage.put("type", "text");
                 jsonMessages.put(jsonMessage);
             }
@@ -49,23 +66,8 @@ public class ChatClient {
 
 
             // Send HTTP POST request
-            URL url = new URL("http://localhost:8000/rag/");
 
-//            switch (sender) {
-//                case "FireDepartment":
-//                    url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
-//                    break;
-//                case "NationalGuard":
-//                    url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
-//
-//                    break;
-//                case "RedCross":
-//                    url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
-//                    break;
-//                default:
-//                    url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
-//                    break;
-//            }
+            URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
 
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -118,6 +120,7 @@ public class ChatClient {
 
 //                ChatMessage.addMessage(newMessage);
 //                ScenarioController.addMessageToChatLogUI(newMessage);
+
 
 
         } catch (Exception e) {

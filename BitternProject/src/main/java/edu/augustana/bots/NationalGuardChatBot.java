@@ -10,7 +10,7 @@ public class NationalGuardChatBot extends ChatBot {
 
 
     @Override
-    String getPersonalityType() {
+    public String getPersonalityType() {
         return "Translator";
     }
 

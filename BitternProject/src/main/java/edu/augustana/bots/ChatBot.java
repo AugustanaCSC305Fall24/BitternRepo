@@ -10,6 +10,7 @@ import java.util.Random;
 public abstract class ChatBot {
     private final String name;
     private final Color textColor;
+
     private double frequency = 0;
 
     private static final Random randomGen = new Random();
@@ -18,6 +19,7 @@ public abstract class ChatBot {
         this.name = name;
         this.textColor = textColor;
         this.frequency = frequency;
+
     }
 
     public String getName() {
@@ -32,7 +34,7 @@ public abstract class ChatBot {
         return name +"   "+ "Frequency:" +"  "+ frequency;
     }
 
-    abstract String getPersonalityType();
+    public abstract String getPersonalityType();
 
     public ChatMessage generateNewMessage() {
         return new ChatMessage(generateNewMessageText(), name, textColor);

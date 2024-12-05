@@ -9,7 +9,7 @@ public class RedCrossDepartmentChatBot extends ChatBot {
     }
 
     @Override
-    String getPersonalityType() {
+    public String getPersonalityType() {
         return "Mean";
     }
 

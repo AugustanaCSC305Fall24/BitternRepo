@@ -34,7 +34,7 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <center>
-      <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" vgap="5.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="127.0" prefWidth="432.0" vgap="5.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,8 +53,10 @@
                   <Color />
                </value>
             </ColorPicker>
+
             <Label layoutX="94.0" layoutY="16.0" text="Frequency" GridPane.rowIndex="2" />
             <Slider fx:id="botFrequencySlider" max="725.0" min="575.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
          </children>
          <BorderPane.margin>
             <Insets />
