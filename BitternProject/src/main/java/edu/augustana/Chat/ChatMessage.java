@@ -20,6 +20,7 @@ public class ChatMessage {
         this.colorCode= color.toString();
     }
 
+
     public String getText() {
         return text;
     }

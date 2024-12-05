@@ -1,17 +1,16 @@
 package edu.augustana.bots;
 
-import edu.augustana.Chat.ChatMessage;
 import javafx.scene.paint.Color;
 
 public class NationalGuardChatBot extends ChatBot {
 
-    public NationalGuardChatBot(String name, Color textColor) {
-        super(name, textColor);
+    public NationalGuardChatBot(String name, Color textColor, double value) {
+        super(name, textColor, value);
     }
 
 
     @Override
-    String getPersonalityType() {
+    public String getPersonalityType() {
         return "Translator";
     }
 

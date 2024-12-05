@@ -3,19 +3,22 @@ package edu.augustana.bots;
 import edu.augustana.Chat.ChatMessage;
 import javafx.scene.paint.Color;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 public abstract class ChatBot {
     private final String name;
     private final Color textColor;
 
-    private static final Random randomGen = new Random();
+    private double frequency = 0;
 
-    public ChatBot(String name, Color textColor) {
+    private static final Random randomGen = new Random();
+    private ArrayList<ChatMessage> chatLog = new ArrayList<>();
+
+    public ChatBot(String name, Color textColor, double frequency) {
         this.name = name;
         this.textColor = textColor;
+        this.frequency = frequency;
+
     }
 
     public String getName() {
@@ -27,13 +30,21 @@ public abstract class ChatBot {
 
     @Override
     public String toString() {
-        return name;
+        return name +"   "+ "Frequency:" +"  "+ frequency;
     }
 
-    abstract String getPersonalityType();
+    public abstract String getPersonalityType();
 
     public ChatMessage generateNewMessage() {
         return new ChatMessage(generateNewMessageText(), name, textColor);
+    }
+
+    public int getFrequency() {
+        return (int) frequency;
+    }
+
+    public ArrayList<ChatMessage> getChatLog() {
+        return chatLog;
     }
 
     public ChatMessage generateResponseMessage(ChatMessage previousMessage) {
@@ -90,5 +101,9 @@ public abstract class ChatBot {
         String name =names[randomGen.nextInt(names.length)];
         String adjective = adjectives[randomGen.nextInt(adjectives.length)];
         return  name + " the " + adjective;
+    }
+
+    public Color getColor() {
+        return textColor;
     }
 }

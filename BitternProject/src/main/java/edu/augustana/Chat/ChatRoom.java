@@ -32,9 +32,7 @@ public class ChatRoom {
 
     public static void addMessage(ChatMessage message) {
         chatLogMessageList.add(message);
-        if (newMessageEventListener != null) {
-            newMessageEventListener.onNewMessage(message);
-        }
+
     }
 
     public static void setNewMessageEventListener(NewMessageEventListener listener) {
