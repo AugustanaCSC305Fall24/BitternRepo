@@ -44,16 +44,20 @@ public class ChatClient {
                 throw new IllegalStateException("No bot selected. Please choose a bot.");
             }
 
+            ArrayList<ChatMessage> botMessages = bot.getChatLog();
             // Add user message to the list
-            messages.add(new ChatMessage(messageContent, "user", Color.BLACK));
+//            messages.add(new ChatMessage(messageContent, "user", Color.BLACK));
+
+
+            botMessages.add(new ChatMessage(messageContent, "user", Color.BLACK));
             ChatRoom.addMessage(new ChatMessage(messageContent, "user", Color.BLACK));
 
             // Prepare JSON payload
             JSONArray jsonMessages = new JSONArray();
-            for (ChatMessage message : messages) {
+            for (ChatMessage message : botMessages) {
                 JSONObject jsonMessage = new JSONObject();
                 jsonMessage.put("role", message.getSender());
-                jsonMessage.put("content", respondAs + " "+message.getText());
+                jsonMessage.put("content", message.getText());
 
                 jsonMessage.put("type", "text");
                 jsonMessages.put(jsonMessage);
@@ -65,10 +69,17 @@ public class ChatClient {
             // Log the JSON payload
             System.out.println("JSON Payload: " + payload.toString());
 
-
-            // Send HTTP POST request
-
             URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
+            // Send HTTP POST request
+            if (bot.getName().equals("FireDepartment")) {
+                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/firedpt/");
+            } else if (bot.getName().equals("NationalGuard")) {
+                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/guard/");
+            } else if (bot.getName().equals("RedCross")) {
+                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/redcross/");
+            } else {
+                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/victim/");
+            }
 
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -113,8 +124,9 @@ public class ChatClient {
                 }
 
 
-                messages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
+                //messages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
                 ChatRoom.addMessage(new ChatMessage(assistantMessage, sender, bot.getColor()));
+                botMessages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
 
 
                 //ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);

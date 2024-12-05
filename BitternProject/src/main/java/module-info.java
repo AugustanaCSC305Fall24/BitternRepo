@@ -7,15 +7,15 @@ module edu.augustana {
     requires com.google.gson;
     requires tyrus.standalone.client;
 
-    opens edu.augustana.Controllers to javafx.fxml;
+    opens edu.augustana.Controllers to javafx.fxml, com.google.gson;
     exports edu.augustana.Controllers;
-    opens edu.augustana.Radio to javafx.fxml;
+    opens edu.augustana.Radio to javafx.fxml, com.google.gson;
     exports edu.augustana.Radio;
     opens edu.augustana.Chat to javafx.fxml, com.google.gson;
     exports edu.augustana.Chat;
-    opens edu.augustana.Input to javafx.fxml;
+    opens edu.augustana.Input to javafx.fxml, com.google.gson;
     exports edu.augustana.Input;
-    opens edu.augustana.WebSocket to javafx.fxml;
+    opens edu.augustana.WebSocket to javafx.fxml, com.google.gson;
     exports edu.augustana.WebSocket;
 
 
