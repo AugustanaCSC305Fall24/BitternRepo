@@ -56,5 +56,6 @@ public class Translator {
             return translation;
         }
     }
+
 }
 

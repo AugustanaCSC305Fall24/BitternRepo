@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.util.Duration;
 
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
@@ -39,8 +38,7 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private Slider staticSlider;
     @FXML private Label hertzLabel;
 
-    @FXML
-    private ListView<ChatBot> botListView;
+    @FXML private ListView<ChatBot> botListView;
 
 
 
@@ -201,16 +199,23 @@ public class ScenarioController extends Controller implements Initializable {
 
     private void checkBoxHandler(String msgText) {
         if (translationCheckbox.isSelected()) {
-            if (englishCheckBox.isSelected()) {
-                translation = Translator.textToMorse(msgText);
-                addTranslation(translation, "Translator", Color.RED);
+            String morse;
+
+            // Check if the message matches any predefined phrase
+            if (Translator.phraseToCodeWord.containsKey(msgText.toLowerCase())) {
+                String codeWord = Translator.phraseToCodeWord.get(msgText.toLowerCase());
+                morse = Translator.textToMorse(codeWord);
             } else {
-                translation = Translator.morseToText(msgText);
-                addTranslation(translation, "Translator", Color.GREEN);
+                // Default to translating the whole message
+                morse = Translator.textToMorse(msgText);
             }
+
+            //addTranslation(morse, "Translator", Color.RED); check on this
+
+            // Play Morse code
             new Thread(() -> {
                 try {
-                    ChatMessage.playMessageSound(translation, wpmSlider.getValue());
+                    ChatMessage.playMessageSound(morse, wpmSlider.getValue());
                 } catch (LineUnavailableException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -228,7 +233,20 @@ public class ScenarioController extends Controller implements Initializable {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         addMessageToChatLogUI(newMessage);
         userText.clear();
-        checkBoxHandler(message);
+
+        String translation;
+
+        // Check if the message contains a phrase that maps to a code word
+        if (Translator.phraseToCodeWord.containsKey(message.toLowerCase())) {
+            String codeWord = Translator.phraseToCodeWord.get(message.toLowerCase());
+            translation = Translator.textToMorse(codeWord);
+        } else {
+            translation = Translator.textToMorse(message);
+        }
+
+
+
+        checkBoxHandler(translation); //was message variable
 
         int currFreq = (int) frequencySlider.getValue();
 
@@ -253,8 +271,8 @@ public class ScenarioController extends Controller implements Initializable {
 
                         try {
                             Thread.sleep(500);
-                            String translation = Translator.textToMorse(lastMessage.getText());
-                            ChatMessage.playMessageSound(translation, wpmSlider.getValue());
+                            String translationMessage = Translator.textToMorse(lastMessage.getText());
+                            ChatMessage.playMessageSound(translationMessage, wpmSlider.getValue());
                         } catch (LineUnavailableException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }

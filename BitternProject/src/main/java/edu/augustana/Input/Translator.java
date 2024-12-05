@@ -7,6 +7,14 @@ public class Translator {
 
     public static final Map<Character, String> charToMorse = new HashMap<>();
     private static final Map<String, Character> morseToChar = new HashMap<>();
+    public static final Map<String, String> phraseToCodeWord = new HashMap<>();
+
+    static {
+        phraseToCodeWord.put("help", "SOS");
+        phraseToCodeWord.put("Good afternoon", "GA");
+        phraseToCodeWord.put("Goodbye", "73");
+        // Add more mappings later
+    }
 
     public static char[] englishLetters
             = {'a', 'b', 'c', 'd', 'e', 'f',
