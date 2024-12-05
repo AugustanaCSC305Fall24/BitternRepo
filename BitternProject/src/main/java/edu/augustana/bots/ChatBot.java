@@ -3,9 +3,7 @@ package edu.augustana.bots;
 import edu.augustana.Chat.ChatMessage;
 import javafx.scene.paint.Color;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 public abstract class ChatBot {
     private final String name;
@@ -14,6 +12,7 @@ public abstract class ChatBot {
     private double frequency = 0;
 
     private static final Random randomGen = new Random();
+    private ArrayList<ChatMessage> chatLog = new ArrayList<>();
 
     public ChatBot(String name, Color textColor, double frequency) {
         this.name = name;
@@ -42,6 +41,10 @@ public abstract class ChatBot {
 
     public int getFrequency() {
         return (int) frequency;
+    }
+
+    public ArrayList<ChatMessage> getChatLog() {
+        return chatLog;
     }
 
     public ChatMessage generateResponseMessage(ChatMessage previousMessage) {

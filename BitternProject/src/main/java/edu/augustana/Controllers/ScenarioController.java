@@ -195,13 +195,14 @@ public class ScenarioController extends Controller implements Initializable {
         if (bot == null) {
             bot = ChatRoom.getBots().get(0); //default bot
         }
+        System.out.println("Bot: " + bot.getName());
 
 
 
         if (englishCheckBox.isSelected()) {
             new Thread(() -> {
                 ChatClient.sendMessage(newMessage.getText(), bot);
-                ChatMessage lastMessage = ChatRoom.getChatMessageList().get(ChatClient.getMessages().size() - 1);
+                ChatMessage lastMessage = ChatRoom.getChatMessageList().get(ChatRoom.getChatMessageList().size() - 1);
 
                 new Thread(() -> {
                     if (translationCheckbox.isSelected()) {
