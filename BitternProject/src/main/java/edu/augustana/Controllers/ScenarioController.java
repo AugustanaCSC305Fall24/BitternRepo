@@ -40,6 +40,7 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private Slider toneFrequencySlider;
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
+    @FXML private Label hertzLabel;
 
     @FXML
     private ListView<ChatBot> botListView;
@@ -57,6 +58,13 @@ public class ScenarioController extends Controller implements Initializable {
         ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
 
+        // Add a listener to the slider to update the hertz label text
+       frequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int hertz = newValue.intValue(); // Get the slider's value as an integer
+            hertzLabel.setText(hertz + " Hz"); // Update the label text
+        });
+
+       // adds frequency to the bot list view
         botListView.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(ChatBot bot, boolean empty) {
@@ -66,6 +74,21 @@ public class ScenarioController extends Controller implements Initializable {
                 } else {
                     setText(bot.getName() + "   Frequency: " + bot.getFrequency() );
                 }
+            }
+        });
+
+        // Add Key Event Handler for the Enter Key
+        userTextField.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case ENTER:
+                    try {
+                        sendAction();
+                    } catch (LineUnavailableException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
             }
         });
 
@@ -84,6 +107,7 @@ public class ScenarioController extends Controller implements Initializable {
             }
         });
         pause.play();
+//        chatLogVBox.getScene().getWindow().setOnHidden(event -> resetScenario());
     }
 
     @FXML
@@ -97,6 +121,7 @@ public class ScenarioController extends Controller implements Initializable {
             return; // No messages to respond to
         }
 
+        // Get the last message sent
         ChatMessage lastMsg = messages.get(messages.size() - 1);
         String lastSender = lastMsg.getSender();
         List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
@@ -120,13 +145,9 @@ public class ScenarioController extends Controller implements Initializable {
         }
     }
 
-
-
-
-
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        whiteNoise.exit();
+        whiteNoise.stopPlaying();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -185,6 +206,7 @@ public class ScenarioController extends Controller implements Initializable {
             }).start();
         }
     }
+
     public void addTranslation(String message, String sender, Color color){
         ChatMessage newMessage = new ChatMessage(message, sender, color);
         ChatRoom.addMessage(newMessage);
@@ -260,6 +282,11 @@ public class ScenarioController extends Controller implements Initializable {
         WhiteNoise.setVolume((int) staticSlider.getValue());
     }
 
+    @FXML
+    public void setHertzLabel(){
+        int hertz = (int) toneFrequencySlider.getValue();
+        hertzLabel.setText(hertz + " Hz");
+    }
 
 
 }

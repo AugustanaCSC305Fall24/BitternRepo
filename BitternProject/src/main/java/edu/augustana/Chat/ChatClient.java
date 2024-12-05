@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import edu.augustana.Controllers.ScenarioController;
 import edu.augustana.bots.ChatBot;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -98,8 +97,6 @@ public class ChatClient {
                 ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);
 
                 ChatMessage.addMessage(newMessage);
-            ScenarioController controller = new ScenarioController();
-            controller.addMessageToChatLogUI(newMessage);
 
 
         } catch (Exception e) {

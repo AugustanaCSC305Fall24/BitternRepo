@@ -48,6 +48,7 @@ public class Translator {
                 morse.append(charToMorse.get(c)).append(" ");
             }
         }
+
         String translation = morse.toString().trim();
         if (translation.isEmpty()) {
             return "Empty english translation";
