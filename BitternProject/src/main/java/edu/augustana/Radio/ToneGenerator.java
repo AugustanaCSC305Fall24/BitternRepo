@@ -7,6 +7,11 @@ import javax.sound.sampled.*;
 public class ToneGenerator {
     private static final float sampleRate = 44100;   // Standard CD-quality sample rate
     private static int frequency = 650;
+    private static int gain = 100; // Default gain: 100%
+
+    public static void setGain(int newGain) {
+        gain = Math.max(0, Math.min(newGain, 100)); // Clamp gain between 0% and 100%
+    }
 
     public static void main(String[] args) throws LineUnavailableException {
         // Parameters for tone generation
@@ -37,7 +42,7 @@ public class ToneGenerator {
 
         for (int i = 0; i < numSamples; i++) {
             double angle = 2.0 * Math.PI * i / (sampleRate / freq);
-            short sample = (short)(Math.sin(angle) * Short.MAX_VALUE);
+            short sample = (short)(Math.sin(angle) * Short.MAX_VALUE * (gain / 100.0));
 
             // Convert sample to bytes (little-endian)
             output[2 * i] = (byte)(sample & 0xFF);         // LSB

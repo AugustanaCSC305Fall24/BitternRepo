@@ -8,7 +8,6 @@ import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
 import edu.augustana.bots.ChatBot;
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,9 +33,14 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML public TextField userTextField = new TextField();
     @FXML private CheckBox englishCheckBox;
     @FXML private Slider toneFrequencySlider;
-    @FXML private Slider frequencySlider;
-    @FXML private Slider staticSlider;
-    @FXML private Label hertzLabel;
+    @FXML private Slider bandwidthSlider;
+    @FXML private Slider  bandPassSlider;
+    @FXML private Label bandwidthLabel;
+    @FXML private Label bandPassLabel;
+    @FXML private Slider gainSlider;
+    @FXML private Label toneLabel;
+    @FXML private Label gainLabel;
+
 
     @FXML private ListView<ChatBot> botListView;
 
@@ -57,27 +61,39 @@ public class ScenarioController extends Controller implements Initializable {
 
 
         // Add a listener to the slider to update the hertz label text
-       frequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+        bandwidthSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int hertz = newValue.intValue(); // Get the slider's value as an integer
-            hertzLabel.setText(hertz + " Hz"); // Update the label text
+            bandwidthLabel.setText(hertz + " Hz"); // Update the label text
         });
 
-//       // adds frequency to the bot list view
-//        botListView.setCellFactory(lv -> new ListCell<>() {
-//            @Override
-//            protected void updateItem(ChatBot bot, boolean empty) {
-//                super.updateItem(bot, empty);
-//                if (empty || bot == null) {
-//                    setText(null);
-//                } else {
-//                    setText(bot.getName() + "   Frequency: " + bot.getFrequency() );
-//                }
-//            }
-//        });
+        // Add a listener to the slider to update the hertz label text
+        toneFrequencySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int hertz = newValue.intValue(); // Get the slider's value as an integer
+            toneLabel.setText(hertz + " Hz"); // Update the label text
+        });
 
-//        for (ChatMessage message : ChatRoom.getChatMessageList()) {
-//            addMessageToChatLogUI(message);
-//        }
+        // Add a listener to the slider to update the hertz label text
+        bandPassSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double minInput = 7.000;  // Minimum slider value
+            double maxInput = 7.067;  // Maximum slider value
+            int minOutput = -80;      // Minimum volume (mute)
+            int maxOutput = 6;        // Maximum volume (loud)
+
+            double sliderValue = newValue.doubleValue(); // Current slider value
+            int volumeLevel = (int) ((sliderValue - minInput) / (maxInput - minInput) * (maxOutput - minOutput) + minOutput);
+
+            WhiteNoise.setVolume(volumeLevel); // Adjust white noise volume
+            bandPassLabel.setText(String.format("%.3f MHz", sliderValue)); // Update label with MHz value
+        });
+
+
+
+        gainSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int gainValue = newValue.intValue();// Get gain from slider (0 to 100%)
+            setWhiteNoiseVolume();
+            ToneGenerator.setGain(gainValue);// Adjust gain in ToneGenerator
+            gainLabel.setText(gainValue + "%"); // Update label to reflect current gain
+        });
 
 
         // Add Key Event Handler for the Enter Key
@@ -140,7 +156,7 @@ public class ScenarioController extends Controller implements Initializable {
         for (ChatBot bot : bots) {
             if (!bot.getName().equals(lastSender)) {
                 // Check if the frequency matches the bot's stored frequency
-                if ((int) frequencySlider.getValue() == bot.getFrequency()) {
+                if ((int) bandwidthSlider.getValue() == bot.getFrequency()) {
                     matchingBot = bot;
                     break;
                 }
@@ -248,7 +264,7 @@ public class ScenarioController extends Controller implements Initializable {
 
         checkBoxHandler(translation); //was message variable
 
-        int currFreq = (int) frequencySlider.getValue();
+        int currFreq = (int) bandwidthSlider.getValue();
 
         for (int i = 0; i < ChatRoom.getBots().size(); i++) {
             if (currFreq == ChatRoom.getBots().get(i).getFrequency()) {
@@ -316,21 +332,21 @@ public class ScenarioController extends Controller implements Initializable {
             });
         }).start();
     }
-
+    @FXML
     public void setWPM() {WPM = wpmSlider.getValue();}
-
+    @FXML
     public void setFrequency() {
         ToneGenerator.setFrequency((int) toneFrequencySlider.getValue());
     }
 
     public void setWhiteNoiseVolume(){
-        WhiteNoise.setVolume((int) staticSlider.getValue());
+        WhiteNoise.setVolume((int) bandPassSlider.getValue());
     }
 
     @FXML
     public void setHertzLabel(){
         int hertz = (int) toneFrequencySlider.getValue();
-        hertzLabel.setText(hertz + " Hz");
+        bandwidthLabel.setText(hertz + " Hz");
     }
 
 

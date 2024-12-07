@@ -21,8 +21,11 @@ public class WhiteNoise extends Thread {
         try {
             generatorThread = new WhiteNoise();
             generatorThread.start();
+            generatorThread.setVolume(50);
             Thread.sleep(10000);
             generatorThread.exit();
+
+
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -30,7 +33,6 @@ public class WhiteNoise extends Thread {
     }
 
     public void play() {
-
         try {
             AudioFormat format = new AudioFormat(44100, 16, 1, true, true);
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, format, PACKET_SIZE * 2);
@@ -39,48 +41,44 @@ public class WhiteNoise extends Thread {
                 throw new LineUnavailableException();
             }
 
-            line = (SourceDataLine)AudioSystem.getLine(info);
+            line = (SourceDataLine) AudioSystem.getLine(info);
             line.open(format);
             line.start();
 
+            FloatControl volumeControl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
 
+            ByteBuffer buffer = ByteBuffer.allocate(PACKET_SIZE);
+            Random random = new Random();
 
+            while (!exitExecution) {
+                buffer.clear();
+                for (int i = 0; i < PACKET_SIZE / SAMPLE_SIZE; i++) {
+                    // Scale sample amplitude by volume
+                    short sample = (short) (random.nextGaussian() * Short.MAX_VALUE * Math.pow(10.0, volume / 20.0));
+                    buffer.putShort(sample);
+                }
+
+                line.write(buffer.array(), 0, buffer.position());
+            }
+
+            line.drain();
+            line.close();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
             System.exit(-1);
         }
-
-        FloatControl volumeControl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
-        volumeControl.setValue(volume);
-
-        ByteBuffer buffer = ByteBuffer.allocate(PACKET_SIZE);
-
-        Random random = new Random();
-        while (exitExecution == false) {
-            buffer.clear();
-            for (int i=0; i < PACKET_SIZE /SAMPLE_SIZE; i++) {
-                buffer.putShort((short) (random.nextGaussian() * Short.MAX_VALUE));
-            }
-            volumeControl.setValue(volume);
-            line.write(buffer.array(), 0, buffer.position());
-        }
-
-
-
-//        System.out.println(volume.getMaximum());
-//        System.out.println(volume.getMinimum());
-
-        line.drain();
-        line.close();
     }
+
 
     public void exit() {
         exitExecution =true;
     }
 
     public static void setVolume(int volumeSet) {
-        volume = volumeSet;
+       volume = volumeSet;
+        System.out.println("White Noise Volume Set to: " + volumeSet + " dB");
     }
+
 
     public void stopPlaying() {
         line.stop();

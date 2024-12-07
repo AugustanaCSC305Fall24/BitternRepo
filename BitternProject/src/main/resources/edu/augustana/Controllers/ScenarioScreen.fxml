@@ -78,7 +78,7 @@
             <Font name="Lucida Sans Typewriter Regular" size="12.0" />
          </font>
       </CheckBox>
-      <HBox layoutX="38.0" layoutY="430.0" prefHeight="178.0" prefWidth="562.0">
+      <HBox layoutX="45.0" layoutY="429.0" prefHeight="242.0" prefWidth="621.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
@@ -87,7 +87,7 @@
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Tone Frequency">
+                  <Label text="Side Tone">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
@@ -97,12 +97,70 @@
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Frequency Filter">
+                  <Label prefHeight="45.0" prefWidth="116.0" text="Band Pass Filter">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="hertzLabel" alignment="CENTER" onDragDone="#setHertzLabel" prefHeight="17.0" prefWidth="94.0" text="- Hz" textAlignment="CENTER" underline="true">
+                  <Label text="Gain">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="242.0" prefWidth="375.0" spacing="8.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="25.0" min="5.0" onDragDetected="#setWPM" onMouseReleased="#setWPM" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
+                  </Slider>
+                  <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
+                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" minorTickCount="5" onMouseReleased="#setWhiteNoiseVolume" prefHeight="34.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </Slider>
+                  <Slider fx:id="bandPassSlider" blockIncrement="0.1" majorTickUnit="0.02" max="7.067" min="7.0" onDragDetected="#setWhiteNoiseVolume" prefHeight="25.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Slider fx:id="gainSlider" max="6.0" min="-80.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+               </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="242.0" prefWidth="101.0" spacing="30.0">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="125.0">
+                     <font>
+                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="toneLabel" alignment="BOTTOM_CENTER" onDragDone="#setHertzLabel" prefHeight="33.0" prefWidth="91.0" text="- Hz" textAlignment="CENTER" underline="true">
+                     <opaqueInsets>
+                        <Insets top="1.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="bandwidthLabel" alignment="BOTTOM_CENTER" onDragDone="#setHertzLabel" prefHeight="33.0" prefWidth="91.0" text="- Hz" textAlignment="CENTER" underline="true">
+                     <opaqueInsets>
+                        <Insets top="1.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="bandPassLabel" alignment="CENTER" onDragDone="#setHertzLabel" prefHeight="34.0" prefWidth="91.0" text="- MHz" textAlignment="CENTER" underline="true">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="gainLabel" alignment="CENTER" onDragDone="#setHertzLabel" prefHeight="27.0" prefWidth="91.0" text="- dB" textAlignment="CENTER" underline="true">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -113,28 +171,6 @@
                </opaqueInsets>
                <padding>
                   <Insets right="10.0" />
-               </padding>
-            </VBox>
-            <VBox prefHeight="100.0" prefWidth="435.0" spacing="8.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="25.0" min="5.0" onMouseReleased="#setWPM" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <cursor>
-                        <Cursor fx:constant="CLOSED_HAND" />
-                     </cursor>
-                  </Slider>
-                  <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                  <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
-                     <padding>
-                        <Insets bottom="15.0" />
-                     </padding>
-                  </Slider>
-                  <Slider fx:id="frequencySlider" max="725.0" min="575.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="575.0" />
-               </children>
-               <padding>
-                  <Insets left="5.0" right="5.0" />
                </padding>
             </VBox>
          </children>
