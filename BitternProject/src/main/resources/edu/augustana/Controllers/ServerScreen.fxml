@@ -225,12 +225,12 @@
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Bandwidth Filter" textFill="WHITE">
+                  <Label text="Filter Bandwidth" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Filter" textFill="WHITE">
+                  <Label prefHeight="44.0" prefWidth="109.0" text="Band Pass Fiter" textFill="WHITE">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
@@ -254,12 +254,12 @@
                      </cursor>
                   </Slider>
                   <Slider fx:id="frequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                  <Slider fx:id="staticSlider" max="6.0" min="-80.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickMarks="true" value="-10.0">
+                  <Slider fx:id="staticSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="50.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
                   </Slider>
-                  <Slider majorTickUnit="0.1" max="7.67" min="7.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+                  <Slider fx:id="bandPassSlider" blockIncrement="0.01" majorTickUnit="0.02" max="7.067" min="7.0" onDragDetected="#setWhiteNoiseVolume" showTickLabels="true" showTickMarks="true" value="7.06" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />

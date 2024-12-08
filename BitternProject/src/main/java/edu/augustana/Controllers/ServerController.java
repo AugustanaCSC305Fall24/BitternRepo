@@ -38,7 +38,7 @@ public class ServerController extends Controller implements Initializable {
     @FXML private Slider staticSlider;
     @FXML private Slider wpmSlider;
     @FXML private TextField callSignTextbox = new TextField();
-
+    @FXML private Slider bandPassSlider;
 
     private String callSign;
     private Session session;
@@ -47,6 +47,19 @@ public class ServerController extends Controller implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1){
         userText = sendMessageTextbox;
         new Thread(whiteNoise::play).start();
+
+        bandPassSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double minInput = 7.000;  // Minimum slider value
+            double maxInput = 7.067;  // Maximum slider value
+            int minOutput = -80;      // Minimum volume (mute) -80 dB
+            int maxOutput = 6;        // Maximum volume (loud)
+
+            double sliderValue = newValue.doubleValue(); // Current slider value
+            int volumeLevel = (int) ((sliderValue - minInput) / (maxInput - minInput) * (maxOutput - minOutput) + minOutput);
+
+            WhiteNoise.setVolume(volumeLevel); // Adjust white noise volume
+        });
+
         generateCallSign();
         callSignTextbox.setText(callSign);
         connect();

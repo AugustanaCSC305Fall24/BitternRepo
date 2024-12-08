@@ -55,6 +55,7 @@ public class ScenarioController extends Controller implements Initializable {
         userText = userTextField;
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
+
         //addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
         ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
@@ -76,7 +77,7 @@ public class ScenarioController extends Controller implements Initializable {
         bandPassSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             double minInput = 7.000;  // Minimum slider value
             double maxInput = 7.067;  // Maximum slider value
-            int minOutput = -80;      // Minimum volume (mute)
+            int minOutput = -80;      // Minimum volume (mute) -80 dB
             int maxOutput = 6;        // Maximum volume (loud)
 
             double sliderValue = newValue.doubleValue(); // Current slider value
@@ -88,12 +89,6 @@ public class ScenarioController extends Controller implements Initializable {
 
 
 
-        gainSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int gainValue = newValue.intValue();// Get gain from slider (0 to 100%)
-            setWhiteNoiseVolume();
-            ToneGenerator.setGain(gainValue);// Adjust gain in ToneGenerator
-            gainLabel.setText(gainValue + "%"); // Update label to reflect current gain
-        });
 
 
         // Add Key Event Handler for the Enter Key
@@ -139,6 +134,7 @@ public class ScenarioController extends Controller implements Initializable {
         RadioApp.setRoot("AddNewBotView");
     }
 
+
     private void sendMessageFromRandomBot() {
         List<ChatMessage> messages = ChatRoom.getChatMessageList();
         if (messages.isEmpty()) {
@@ -163,11 +159,36 @@ public class ScenarioController extends Controller implements Initializable {
             }
         }
 
-        if (matchingBot != null) {
-            ChatMessage messageFromBot = matchingBot.generateResponseMessage(lastMsg);
-            sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
-        }
     }
+
+//
+//<<<<<<< HEAD
+//=======
+//        // Get the last message sent
+//        ChatMessage lastMsg = messages.get(messages.size() - 1);
+//        String lastSender = lastMsg.getSender();
+//        List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
+//        Collections.shuffle(bots);
+//
+//        ChatBot matchingBot = null;
+//
+//        for (ChatBot bot : bots) {
+//            if (!bot.getName().equals(lastSender)) {
+//                // Check if the frequency matches the bot's stored frequency
+//                if ((int) frequencySlider.getValue() == bot.getFrequency()) {
+//                    matchingBot = bot;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        if (matchingBot != null) {
+//            ChatMessage messageFromBot = matchingBot.generateResponseMessage(lastMsg);
+//            sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
+//        }
+//    }
+
+
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {

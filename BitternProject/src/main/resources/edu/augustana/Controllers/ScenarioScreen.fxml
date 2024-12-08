@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="677.0" prefWidth="979.0" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.ScenarioController">
+<AnchorPane prefHeight="640.0" prefWidth="1019.0" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.ScenarioController">
    <children>
       <Text layoutX="38.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario" wrappingWidth="376.79996337890634">
          <font>
@@ -78,7 +78,7 @@
             <Font name="Lucida Sans Typewriter Regular" size="12.0" />
          </font>
       </CheckBox>
-      <HBox layoutX="45.0" layoutY="429.0" prefHeight="242.0" prefWidth="621.0">
+      <HBox layoutX="45.0" layoutY="429.0" prefHeight="189.0" prefWidth="621.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
@@ -102,11 +102,6 @@
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Gain">
-                     <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
-                     </font>
-                  </Label>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -115,7 +110,7 @@
                   <Insets right="10.0" />
                </padding>
             </VBox>
-            <VBox prefHeight="242.0" prefWidth="375.0" spacing="8.0" style="-fx-background-color: #ffffff;">
+            <VBox prefHeight="141.0" prefWidth="375.0" spacing="8.0" style="-fx-background-color: #ffffff;">
                <children>
                   <Slider fx:id="wpmSlider" majorTickUnit="5.0" max="25.0" min="5.0" onDragDetected="#setWPM" onMouseReleased="#setWPM" prefHeight="39.0" prefWidth="141.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0">
                      <opaqueInsets>
@@ -126,13 +121,12 @@
                      </cursor>
                   </Slider>
                   <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" minorTickCount="5" onMouseReleased="#setWhiteNoiseVolume" prefHeight="34.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
+                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="36.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
                   </Slider>
-                  <Slider fx:id="bandPassSlider" blockIncrement="0.1" majorTickUnit="0.02" max="7.067" min="7.0" onDragDetected="#setWhiteNoiseVolume" prefHeight="25.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-                  <Slider fx:id="gainSlider" max="6.0" min="-80.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                  <Slider fx:id="bandPassSlider" blockIncrement="0.1" majorTickUnit="0.02" max="7.067" min="7.0" prefHeight="27.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="7.06" />
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />
@@ -145,22 +139,17 @@
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="toneLabel" alignment="BOTTOM_CENTER" onDragDone="#setHertzLabel" prefHeight="33.0" prefWidth="91.0" text="- Hz" textAlignment="CENTER" underline="true">
+                  <Label fx:id="toneLabel" alignment="TOP_CENTER" onDragDone="#setHertzLabel" prefHeight="33.0" prefWidth="91.0" text="650 Hz" textAlignment="CENTER" underline="true">
                      <opaqueInsets>
                         <Insets top="1.0" />
                      </opaqueInsets>
                   </Label>
-                  <Label fx:id="bandwidthLabel" alignment="BOTTOM_CENTER" onDragDone="#setHertzLabel" prefHeight="33.0" prefWidth="91.0" text="- Hz" textAlignment="CENTER" underline="true">
+                  <Label fx:id="bandwidthLabel" alignment="TOP_CENTER" onDragDone="#setHertzLabel" prefHeight="31.0" prefWidth="91.0" text="50 Hz" textAlignment="CENTER" underline="true">
                      <opaqueInsets>
                         <Insets top="1.0" />
                      </opaqueInsets>
                   </Label>
-                  <Label fx:id="bandPassLabel" alignment="CENTER" onDragDone="#setHertzLabel" prefHeight="34.0" prefWidth="91.0" text="- MHz" textAlignment="CENTER" underline="true">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <Label fx:id="gainLabel" alignment="CENTER" onDragDone="#setHertzLabel" prefHeight="27.0" prefWidth="91.0" text="- dB" textAlignment="CENTER" underline="true">
+                  <Label fx:id="bandPassLabel" alignment="TOP_CENTER" onDragDone="#setHertzLabel" prefHeight="34.0" prefWidth="91.0" text="7.04 MHz" textAlignment="CENTER" underline="true">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
