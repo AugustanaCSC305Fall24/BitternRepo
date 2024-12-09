@@ -10,7 +10,6 @@ public class ChatRoom {
     private String roomTitle;
     private static List<ChatBot> bots= new ArrayList<>();
     private static List<ChatMessage> chatLogMessageList = new ArrayList<>();;
-    private static NewMessageEventListener newMessageEventListener = null;
 
     public ChatRoom(String roomTitle) {
         this.roomTitle = roomTitle;
