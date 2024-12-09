@@ -1,4 +1,5 @@
 package edu.augustana.Controllers;
+
 import edu.augustana.Chat.ChatMessage;
 import edu.augustana.Chat.ChatRoom;
 import edu.augustana.Radio.RadioApp;
@@ -12,32 +13,13 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-
 public class AddNewBotController {
 
 
-    @FXML
-    private TextField nameText;
-
-    @FXML
-    private TextField personalityText;
-
-    @FXML
-    private ComboBox<String> personalityTypeComboBox;
-
-    @FXML
-    private ColorPicker botColorPicker;
-    @FXML
-    private Slider botFrequencySlider;
-
-    @FXML private Slider frequencySlider;
-
-    @FXML
-    private void initialize() {
-
-
-    }
-
+    @FXML private TextField nameText;
+    @FXML private TextField personalityText;
+    @FXML private ColorPicker botColorPicker;
+    @FXML private Slider botFrequencySlider;
 
     @FXML
     private void finishAddingBotAction(ActionEvent event) throws IOException {
@@ -54,7 +36,5 @@ public class AddNewBotController {
     private void cancelAddingBotAction(ActionEvent event) throws IOException {
         RadioApp.setRoot("ScenarioScreen");
     }
-
-
 
 }

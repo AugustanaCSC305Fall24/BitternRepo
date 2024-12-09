@@ -21,7 +21,6 @@ import static edu.augustana.Input.Translator.morseCodeLetters;
 
 public class TrainingController extends Controller {
 
-    @FXML private Button welcomeButton;
     @FXML private CheckBox randomizeCheckbox;
     @FXML private Button nextButton;
     @FXML private Button prevButton;
