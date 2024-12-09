@@ -40,14 +40,7 @@ public class NotepadController {
         return gson.toJson(data);
     }
 
-    public void saveToFile(File file) throws IOException {
-//        System.out.println(getContent());
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        String notePadText = gson.toJson(notepadContent);
-//        PrintWriter writer = new PrintWriter(new FileWriter(file));
-//        writer.println(notePadText);
-//        writer.close();
-//        System.out.println("debug wrote to file: "+notePadText);
+    public void saveToFile(File file) {
         try {
             PrintWriter out = new PrintWriter(file);
             out.println(toJSON());

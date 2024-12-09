@@ -1,29 +1,4 @@
 {
   "chatMessages": [],
-  "bots": [
-    {
-      "name": "EthanTheFireman",
-      "frequency": 150.0,
-      "personalityType": "Fireman",
-      "chatLog": [
-        {
-          "text": "Fireman",
-          "sender": "user",
-          "colorCode": "0x000000ff"
-        }
-      ]
-    },
-    {
-      "name": "AlexTheRed cross",
-      "frequency": 400.0,
-      "personalityType": "Red cross",
-      "chatLog": [
-        {
-          "text": "Red cross",
-          "sender": "user",
-          "colorCode": "0xff00ffff"
-        }
-      ]
-    }
-  ]
+  "bots": []
 }
