@@ -25,6 +25,7 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileReader;
@@ -130,6 +131,7 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         whiteNoise.stopPlaying();
+        saveScenarioToFile();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -286,6 +288,68 @@ public class ScenarioController extends Controller implements Initializable {
         bandwidthLabel.setText(hertz + " Hz");
     }
 
+
+    //Save to JSON file
+    public String toJSON() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        ScenarioData data = new ScenarioData(ChatRoom.getChatMessageList(), ChatRoom.getBots());
+        return gson.toJson(data);
+    }
+
+    public void saveToFile(File file) {
+        try {
+            PrintWriter out = new PrintWriter(file);
+            out.println(toJSON());
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Error saving to file " + file + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static ScenarioData loadFromJSONFile(File file) {
+        Gson gson = new Gson();
+        try {
+            return gson.fromJson(new FileReader(file), ScenarioData.class);
+        } catch (Exception e) {
+            System.out.println(" file " + file + " not found or invalid. Setting to empty instead.");
+            return new ScenarioData(new ArrayList<>(), new ArrayList<>());
+        }
+    }
+
+    @FXML
+    private void saveCurrentScenario() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Notepad");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        File choosenFile = fileChooser.showSaveDialog(RadioApp.getScene().getWindow());
+        saveToFile(choosenFile);
+    }
+
+    @FXML
+    private void loadNewScenario() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Notepad");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        File choosenFile = fileChooser.showOpenDialog(RadioApp.getScene().getWindow());
+
+        ScenarioData scenarioData = loadFromJSONFile(choosenFile);
+        try {
+            List<ChatMessage> chatMessages = scenarioData.getChatMessages();
+            List<ChatBot> bots = scenarioData.getBots();
+            ChatRoom.setChatMessageList(chatMessages);
+            ChatRoom.setBots(bots);
+            chatLogVBox.getChildren().clear();
+            for (ChatMessage message : chatMessages) {
+                addMessageToChatLogUI(message);
+            }
+            botListView.getItems().clear();
+            botListView.getItems().addAll(ChatRoom.getBots());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void saveScenarioToFile() {
         List<ChatMessage> chatMessages = ChatRoom.getChatMessageList();
@@ -320,7 +384,6 @@ public class ScenarioController extends Controller implements Initializable {
             e.printStackTrace();
         }
     }
-
 
 }
 

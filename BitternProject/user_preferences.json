@@ -2,26 +2,26 @@
   "chatMessages": [],
   "bots": [
     {
-      "name": "EthanTheFireman",
-      "frequency": 150.0,
-      "personalityType": "Fireman",
+      "name": "Betty the fireman",
+      "frequency": 50.0,
+      "personalityType": "fireman",
       "chatLog": [
         {
-          "text": "Fireman",
+          "text": "fireman",
           "sender": "user",
-          "colorCode": "0x000000ff"
+          "colorCode": "0xff00ffff"
         }
       ]
     },
     {
-      "name": "AlexTheRed cross",
-      "frequency": 400.0,
-      "personalityType": "Red cross",
+      "name": "hello the victum",
+      "frequency": 337.5,
+      "personalityType": "victum",
       "chatLog": [
         {
-          "text": "Red cross",
+          "text": "victum",
           "sender": "user",
-          "colorCode": "0xff00ffff"
+          "colorCode": "0x800080ff"
         }
       ]
     }

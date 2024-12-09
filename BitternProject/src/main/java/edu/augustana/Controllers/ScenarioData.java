@@ -4,6 +4,9 @@ import edu.augustana.bots.ChatBot;
 import edu.augustana.Chat.ChatMessage;
 import java.util.List;
 
+//This class is used to store the data for a scenario and assist in
+//     the serialization and deserialization of the data. Essentially,
+//     to help convert data into a JSON format and back.
 public class ScenarioData {
     private List<ChatMessage> chatMessages;
     private List<ChatBot> bots;
