@@ -1,6 +1,6 @@
 package edu.augustana.Controllers;
 
-import edu.augustana.bots.ChatBot;
+import edu.augustana.Chat.ChatBot;
 import edu.augustana.Chat.ChatMessage;
 import java.util.List;
 
@@ -18,10 +18,6 @@ public class ScenarioData {
 
     public List<ChatMessage> getChatMessages() {
         return chatMessages;
-    }
-
-    public void setChatMessages(List<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
     }
 
     public List<ChatBot> getBots() {

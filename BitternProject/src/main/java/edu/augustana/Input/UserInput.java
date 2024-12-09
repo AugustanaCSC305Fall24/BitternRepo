@@ -4,11 +4,10 @@ import edu.augustana.Radio.ToneGenerator;
 
 import javax.sound.sampled.LineUnavailableException;
 
-
 public class UserInput {
     private String input;
     private long lastClickTime;
-    public enum Sounds {DIT, DAH};
+    public enum Sounds {DIT, DAH}
 
     public UserInput() {
         this.input = "";

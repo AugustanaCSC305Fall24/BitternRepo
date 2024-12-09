@@ -1,6 +1,5 @@
-package edu.augustana.bots;
+package edu.augustana.Chat;
 
-import edu.augustana.Chat.ChatMessage;
 import javafx.scene.paint.Color;
 
 import java.util.*;

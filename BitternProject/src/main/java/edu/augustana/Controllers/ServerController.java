@@ -23,23 +23,15 @@ import java.util.ResourceBundle;
 @ClientEndpoint
 public class ServerController extends Controller implements Initializable {
 
-    @FXML private Button welcomeButton;
-    @FXML private Button helpPageButton;
-    @FXML private Button notepadButton;
-    @FXML private Button repeatSoundButton;
-    @FXML private Label replyLabel;
     @FXML private TextField replyTextbox;
     @FXML private TextField replyTranslationTextbox;
-    @FXML private Button sendMessage;
     @FXML private TextField sendMessageTextbox;
     @FXML private TextField sendTranslationTextbox;
-    @FXML private CheckBox translationCheckbox;
+    @FXML private TextField callSignTextbox = new TextField();
     @FXML private Slider frequencySlider;
     @FXML private Slider staticSlider;
     @FXML private Slider wpmSlider;
-    @FXML private TextField callSignTextbox = new TextField();
     @FXML private Slider bandPassSlider;
-
 
     private String callSign;
     private Session session;
@@ -91,7 +83,6 @@ public class ServerController extends Controller implements Initializable {
         RadioApp.createNewWindow("HowToScreen", "How To Page");
     }
 
-    // Method to switch to the Welcome screen
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         WhiteNoise.reset(); // Reset white noise to default settings
@@ -131,7 +122,6 @@ public class ServerController extends Controller implements Initializable {
         WhiteNoise.setVolume((int) staticSlider.getValue());
     }
 
-
     public void stop() {
         try {
             session.close();
@@ -157,6 +147,5 @@ public class ServerController extends Controller implements Initializable {
             e.printStackTrace();
         }
     }
-
 
 }

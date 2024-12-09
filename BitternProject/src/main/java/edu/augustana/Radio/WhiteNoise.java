@@ -17,6 +17,7 @@ public class WhiteNoise extends Thread {
     static SourceDataLine line;
     public static boolean exitExecution = false;
 
+    // Testing the WhiteNoise
     public static void main(String[] args) {
         try {
             generatorThread = new WhiteNoise();
