@@ -93,7 +93,7 @@
                <padding>
                   <Insets right="25.0" />
                </padding></CheckBox>
-            <CheckBox fx:id="cwCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases">
+            <CheckBox fx:id="cwAndEnglishCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases">
                <font>
                   <Font name="Lucida Console" size="14.0" />
                </font>
