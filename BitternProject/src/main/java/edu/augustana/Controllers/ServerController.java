@@ -94,7 +94,8 @@ public class ServerController extends Controller implements Initializable {
     // Method to switch to the Welcome screen
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        whiteNoise.exit();
+        WhiteNoise.reset(); // Reset white noise to default settings
+        WhiteNoise.stopPlaying(); // Stop playing white noise
         RadioApp.setRoot("WelcomeScreen");
     }
 

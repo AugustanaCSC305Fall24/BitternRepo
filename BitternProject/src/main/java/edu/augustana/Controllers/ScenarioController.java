@@ -66,6 +66,7 @@ public class ScenarioController extends Controller implements Initializable {
 
         userText = userTextField;
         WPM = wpmSlider.getValue();
+        whiteNoise.reset();
         new Thread(whiteNoise::play).start();
 
 
@@ -134,10 +135,9 @@ public class ScenarioController extends Controller implements Initializable {
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
-        whiteNoise.stopPlaying();
         whiteNoise.reset();
+        whiteNoise.stopPlaying();
         saveScenarioToFile();
-
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -255,7 +255,6 @@ public class ScenarioController extends Controller implements Initializable {
                 ChatMessage lastMessage = ChatRoom.getChatMessageList().get(ChatRoom.getChatMessageList().size() - 1);
 
                 new Thread(() -> {
-                    if (translationCheckbox.isSelected()) {
 
                         try {
                             Thread.sleep(500);
@@ -264,7 +263,7 @@ public class ScenarioController extends Controller implements Initializable {
                         } catch (LineUnavailableException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-                    }
+
                 }).start();
 
                 Platform.runLater(() -> {

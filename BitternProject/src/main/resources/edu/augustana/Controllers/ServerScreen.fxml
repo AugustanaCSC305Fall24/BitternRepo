@@ -271,7 +271,7 @@
                         <Insets bottom="15.0" left="5.0" right="5.0" />
                      </padding>
                   </Slider>
-                  <Slider fx:id="bandPassSlider" blockIncrement="0.01" majorTickUnit="0.02" max="7.067" min="7.0" onDragDetected="#setWhiteNoiseVolume" showTickLabels="true" showTickMarks="true" value="7.06">
+                  <Slider fx:id="bandPassSlider" blockIncrement="0.01" majorTickUnit="0.02" max="7.067" min="7.0" onDragDetected="#setWhiteNoiseVolume" showTickLabels="true" showTickMarks="true" value="7.035">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

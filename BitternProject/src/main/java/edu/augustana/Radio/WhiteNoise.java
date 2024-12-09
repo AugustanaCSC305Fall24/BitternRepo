@@ -12,7 +12,7 @@ public class WhiteNoise extends Thread {
 
     final static public int SAMPLE_SIZE = 2;
     final static public int PACKET_SIZE = 5000;
-    public static int volume = -20; // Volume ranges from -80 to 6 default is -10
+    public static int volume = -30; // Volume ranges from -80 to 6 default is -10
 
     static SourceDataLine line;
     public static boolean exitExecution = false;
@@ -87,7 +87,9 @@ public class WhiteNoise extends Thread {
 
     public static void reset() {
         stopPlaying();
-        volume = 0;
+        volume = -30; //defalut volume
+        exitExecution = false;
+        System.out.println("White Noise Reset to Default Settings");
     }
 
 }
