@@ -4,7 +4,6 @@ import edu.augustana.Chat.ChatMessage;
 import edu.augustana.Input.Translator;
 import edu.augustana.Input.UserInput;
 import edu.augustana.Radio.RadioApp;
-import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -28,7 +27,7 @@ public class TrainingController extends Controller {
     @FXML private Button prevButton;
     @FXML private Label letterLabel;
     @FXML private TextField userTextBox;
-    @FXML private CheckBox cwCheckbox;
+    @FXML private CheckBox cwAndEnglishCheckbox;
     @FXML private CheckBox onlyCWCheckbox;
 
     private String currentMorse;
@@ -60,11 +59,10 @@ public class TrainingController extends Controller {
     private void updateLabel() {
         // Check if CW phrase or English letter
         if (onlyCWCheckbox.isSelected()) {
-            int tempIndex = index;
-            String currentCW = Translator.codeWords[tempIndex];
+            String currentCW = Translator.codeWords[index];
             letterLabel.setText(currentCW);
             currentMorse = Translator.textToMorse(currentCW);
-        } else if (cwCheckbox.isSelected()) {
+        } else if (cwAndEnglishCheckbox.isSelected() && index > Translator.englishLetters.length) {
             int tempIndex = index - Translator.englishLetters.length;
             String currentCW = Translator.codeWords[tempIndex];
             letterLabel.setText(currentCW);
@@ -144,22 +142,24 @@ public class TrainingController extends Controller {
 
     @FXML
     private void handleCWCheckboxAction() {
-        if (cwCheckbox.isSelected()) {
+        if (cwAndEnglishCheckbox.isSelected()) {
             numTranslatableItems = Translator.englishLetters.length + Translator.codeWords.length;
         } else {
             numTranslatableItems = Translator.englishLetters.length;
         }
+        index = 0;
+        updateLabel();
+        resetTextBox();
     }
 
     @FXML
     private void handleOnlyCWCheckboxAction() {
         if (onlyCWCheckbox.isSelected()) {
             numTranslatableItems = Translator.codeWords.length;
-        } else {
-            handleCWCheckboxAction();
         }
-        resetTextBox();
+        index = 0;
         updateLabel();
+        resetTextBox();
     }
 
     @FXML
