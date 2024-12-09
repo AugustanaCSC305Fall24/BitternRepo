@@ -45,7 +45,7 @@ public class AddNewBotController {
     private void finishAddingBotAction(ActionEvent event) throws IOException {
         String personalityType = personalityText.getText();
         String name = nameText.getText();
-        ChatBot newBot = new ChatBot(name + "The" + personalityType, personalityType, botColorPicker.getValue(), botFrequencySlider.getValue());
+        ChatBot newBot = new ChatBot(name + " the " + personalityType, personalityType, botColorPicker.getValue(), botFrequencySlider.getValue());
         newBot.getChatLog().add(new ChatMessage(personalityType, "user", botColorPicker.getValue()));
         ChatRoom.getBots().add(newBot);
         RadioApp.setRoot("ScenarioScreen");
