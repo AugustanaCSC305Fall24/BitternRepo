@@ -1,10 +1,8 @@
 package edu.augustana.Controllers;
-import edu.augustana.Chat.ChatClient;
 import edu.augustana.Chat.ChatMessage;
 import edu.augustana.Chat.ChatRoom;
 import edu.augustana.Radio.RadioApp;
-import edu.augustana.bots.ChatBot;
-import edu.augustana.bots.*;
+import edu.augustana.Chat.ChatBot;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;

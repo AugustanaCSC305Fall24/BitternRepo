@@ -1,6 +1,6 @@
 package edu.augustana.Controllers;
 
-import edu.augustana.bots.ChatBot;
+import edu.augustana.Chat.ChatBot;
 import edu.augustana.Chat.ChatMessage;
 import java.util.List;
 

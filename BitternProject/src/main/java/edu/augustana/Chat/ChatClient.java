@@ -9,16 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-
-import edu.augustana.bots.ChatBot;
 import javafx.scene.paint.Color;
 
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import static java.awt.Color.red;
 
 
 public class ChatClient {
