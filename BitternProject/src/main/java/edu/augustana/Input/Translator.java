@@ -40,11 +40,6 @@ public class Translator {
             "AGN", "QSB", "QRS", "QRQ", "WPM",
             "SOS", "R", "TU", "73"};
 
-//    public static String[] codeWordsMorse
-//            = { "-.-.--.-", "--.--", "--.-.-", "--. .", "--. -.",
-//            ".- --.", "--...-", "--.- .-. ...", "--.- .-. --.-", ".-- .-- .--",
-//            "... --- ...", ".-. --.", "- ..-", "- ..-"};
-
     public static String[] codeWordTranslation
             = { "Calling all stations", "Good morning", "Good afternoon", "Good evening", "Good night",
             "Again", "Fading signal", "Send slower", "Send faster", "Words per minute",
@@ -92,15 +87,13 @@ public class Translator {
         }
     }
 
-
-
-//    For testing purposes
-//    public static void main(String[] args) {
-//        Translator translator = new Translator();
-//        String text = "Hello, World!";
-//        String morse = translator.textToMorse(text);
-//        System.out.println("Text: " + text);
-//        System.out.println("Morse: " + morse);
-//        System.out.println("Decoded: " + translator.morseToText(morse));
-//    }
+    // Testing the translator
+    public static void main(String[] args) {
+        Translator translator = new Translator();
+        String text = "Hello, World!";
+        String morse = translator.textToMorse(text);
+        System.out.println("Text: " + text);
+        System.out.println("Morse: " + morse);
+        System.out.println("Decoded: " + translator.morseToText(morse));
+    }
 }
