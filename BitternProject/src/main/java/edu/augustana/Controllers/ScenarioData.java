@@ -20,10 +20,6 @@ public class ScenarioData {
         return chatMessages;
     }
 
-    public void setChatMessages(List<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
-    }
-
     public List<ChatBot> getBots() {
         return bots;
     }
