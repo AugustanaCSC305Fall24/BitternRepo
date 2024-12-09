@@ -186,16 +186,18 @@
             </Button>
          </children>
       </HBox>
-      <Text layoutX="726.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" wrappingWidth="288.79996337890634">
+      <Text layoutX="705.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" wrappingWidth="288.79996337890634">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="24.0" />
          </font>
       </Text>
-      <ListView fx:id="botListView" layoutX="726.0" layoutY="258.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button fx:id="addBot" layoutX="792.0" layoutY="474.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
+      <ListView fx:id="botListView" layoutX="681.0" layoutY="258.0" prefHeight="200.0" prefWidth="243.0" />
+      <Button fx:id="addBot" layoutX="769.0" layoutY="475.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="12.0" />
          </font>
       </Button>
+      <Button fx:id="saveScenario" layoutX="713.0" layoutY="581.0" mnemonicParsing="false" onAction="#saveScenarioToFile" text="Save Scenario" />
+      <Button fx:id="loadScenario" layoutX="813.0" layoutY="581.0" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Scenario" />
    </children>
 </AnchorPane>

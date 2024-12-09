@@ -1,0 +1,90 @@
+{
+  "chatMessages": [
+    {
+      "text": "Hello",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Meow! Need help, human?",
+      "sender": "AbdulTheCat",
+      "colorCode": "0x008080ff"
+    },
+    {
+      "text": "Status?",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "SOS! Water rising, need help!",
+      "sender": "LeroyTheVictim",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Someone is drowning send help",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "SOS! Quick, call for lifeguards!",
+      "sender": "AbdulTheCat",
+      "colorCode": "0x008080ff"
+    }
+  ],
+  "bots": [
+    {
+      "name": "AbdulTheCat",
+      "frequency": 50.0,
+      "personalityType": "Cat",
+      "chatLog": [
+        {
+          "text": "Cat",
+          "sender": "user",
+          "colorCode": "0x008080ff"
+        },
+        {
+          "text": "Hello",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Meow! Need help, human?",
+          "sender": "assistant",
+          "colorCode": "0x008080ff"
+        },
+        {
+          "text": "Someone is drowning send help",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "SOS! Quick, call for lifeguards!",
+          "sender": "assistant",
+          "colorCode": "0x008080ff"
+        }
+      ]
+    },
+    {
+      "name": "LeroyTheVictim",
+      "frequency": 100.0,
+      "personalityType": "Victim",
+      "chatLog": [
+        {
+          "text": "Victim",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Status?",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "SOS! Water rising, need help!",
+          "sender": "assistant",
+          "colorCode": "0x000000ff"
+        }
+      ]
+    }
+  ]
+}

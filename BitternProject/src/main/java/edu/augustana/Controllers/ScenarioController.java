@@ -23,6 +23,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.util.List;
+
 public class ScenarioController extends Controller implements Initializable {
 
     @FXML private Slider wpmSlider;
@@ -40,8 +48,6 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML private Slider gainSlider;
     @FXML private Label toneLabel;
     @FXML private Label gainLabel;
-
-
     @FXML private ListView<ChatBot> botListView;
 
 
@@ -49,6 +55,7 @@ public class ScenarioController extends Controller implements Initializable {
 
     private String translation;
     private ChatBot bot;
+    public static final File DEFAULT_USER_PREFERENCES_FILE = new File("user_preferences.json");
 
     public void initialize(URL arg0, ResourceBundle arg1){
 
@@ -56,8 +63,7 @@ public class ScenarioController extends Controller implements Initializable {
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
 
-        //addMessageToChatLogUI(new ChatMessage("Hey! Help Me", "assistant", Color.BLACK));
-        ChatRoom.setNewMessageEventListener(msg -> Platform.runLater(()->addMessageToChatLogUI(msg)));
+
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
 
 
@@ -112,81 +118,12 @@ public class ScenarioController extends Controller implements Initializable {
             addMessageToChatLogUI(message);
         }
 
-
-
-//        chatLogVBox.getScene().getWindow().setOnHidden(event -> resetScenario());
-
-//        int BOT_SPEED_DELAY = 11 - 5; // speed 1 means 10 sec delay, speed 10 means 1 sec delay
-//        PauseTransition pause = new PauseTransition(Duration.seconds(BOT_SPEED_DELAY));
-//        pause.setOnFinished( e -> {
-//            // STOP running if the scene switched roots, and thus this chatLogVBox is longer visible
-//            if (chatLogVBox.getScene()!=null) {
-//                sendMessageFromRandomBot();
-//                pause.playFromStart(); // make it loop
-//            }
-//        });
-//        pause.play();
-
     }
 
     @FXML
     private void addBot (ActionEvent event) throws IOException{
         RadioApp.setRoot("AddNewBotView");
     }
-
-
-    private void sendMessageFromRandomBot() {
-        List<ChatMessage> messages = ChatRoom.getChatMessageList();
-        if (messages.isEmpty()) {
-            return; // No messages to respond to
-        }
-
-        // Get the last message sent
-        ChatMessage lastMsg = messages.get(messages.size() - 1);
-        String lastSender = lastMsg.getSender();
-        List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
-        Collections.shuffle(bots);
-
-        ChatBot matchingBot = null;
-
-        for (ChatBot bot : bots) {
-            if (!bot.getName().equals(lastSender)) {
-                // Check if the frequency matches the bot's stored frequency
-                if ((int) bandwidthSlider.getValue() == bot.getFrequency()) {
-                    matchingBot = bot;
-                    break;
-                }
-            }
-        }
-
-    }
-
-//
-//<<<<<<< HEAD
-//=======
-//        // Get the last message sent
-//        ChatMessage lastMsg = messages.get(messages.size() - 1);
-//        String lastSender = lastMsg.getSender();
-//        List<ChatBot> bots = new ArrayList<>(ChatRoom.getBots());
-//        Collections.shuffle(bots);
-//
-//        ChatBot matchingBot = null;
-//
-//        for (ChatBot bot : bots) {
-//            if (!bot.getName().equals(lastSender)) {
-//                // Check if the frequency matches the bot's stored frequency
-//                if ((int) frequencySlider.getValue() == bot.getFrequency()) {
-//                    matchingBot = bot;
-//                    break;
-//                }
-//            }
-//        }
-//
-//        if (matchingBot != null) {
-//            ChatMessage messageFromBot = matchingBot.generateResponseMessage(lastMsg);
-//            sendMessage(messageFromBot.getText(), messageFromBot.getSender(), messageFromBot.getColor());
-//        }
-//    }
 
 
 
@@ -247,7 +184,6 @@ public class ScenarioController extends Controller implements Initializable {
                 morse = Translator.textToMorse(msgText);
             }
 
-            //addTranslation(morse, "Translator", Color.RED); check on this
 
             // Play Morse code
             new Thread(() -> {
@@ -330,31 +266,11 @@ public class ScenarioController extends Controller implements Initializable {
         checkBoxHandler(message);
     }
 
-    public void replyMessage(String message) {
-        new Thread(() -> {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
 
-            Platform.runLater(() -> {
-                switch (message) {
-                    case "Hello":
-                        botMessage("CW");
-                        break;
-                    case "Goodbye":
-                        botMessage("73");
-                        break;
-                    default:
-                        botMessage("AGN");
-                        break;
-                }
-            });
-        }).start();
-    }
     @FXML
     public void setWPM() {WPM = wpmSlider.getValue();}
+
+
     @FXML
     public void setFrequency() {
         ToneGenerator.setFrequency((int) toneFrequencySlider.getValue());
@@ -368,6 +284,41 @@ public class ScenarioController extends Controller implements Initializable {
     public void setHertzLabel(){
         int hertz = (int) toneFrequencySlider.getValue();
         bandwidthLabel.setText(hertz + " Hz");
+    }
+
+    @FXML
+    public void saveScenarioToFile() {
+        List<ChatMessage> chatMessages = ChatRoom.getChatMessageList();
+        List<ChatBot> bots = ChatRoom.getBots();
+        ScenarioData scenarioData = new ScenarioData(chatMessages, bots);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(scenarioData);
+
+        try (PrintWriter out = new PrintWriter(DEFAULT_USER_PREFERENCES_FILE)) {
+            out.println(json);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void loadScenarioFromFile() {
+        Gson gson = new Gson();
+        try {
+            ScenarioData scenarioData = gson.fromJson(new FileReader(DEFAULT_USER_PREFERENCES_FILE), ScenarioData.class);
+            List<ChatMessage> chatMessages = scenarioData.getChatMessages();
+            List<ChatBot> bots = scenarioData.getBots();
+            ChatRoom.setChatMessageList(chatMessages);
+            ChatRoom.setBots(bots);
+            chatLogVBox.getChildren().clear();
+            for (ChatMessage message : chatMessages) {
+                addMessageToChatLogUI(message);
+            }
+            botListView.getItems().clear();
+            botListView.getItems().addAll(ChatRoom.getBots());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

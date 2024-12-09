@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import static java.awt.Color.red;
+
 
 public class ChatClient {
 
@@ -59,7 +61,7 @@ public class ChatClient {
             // Log the JSON payload
             System.out.println("JSON Payload: " + payload.toString());
 
-            URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
+            URL url = new URL("http://localhost:8000/rag/");
             // Send HTTP POST request
 //            if (bot.getName().equals("FireDepartment")) {
 //                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/firedpt/");
@@ -105,10 +107,14 @@ public class ChatClient {
                 String sender = bot.getName();
 
 
+                Color botsColor = bot.getColor();
+                if (bot.getColor() == null)
+                    botsColor = Color.GREEN;
+
 
                 //messages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
-                ChatRoom.addMessage(new ChatMessage(assistantMessage, sender, bot.getColor()));
-                botMessages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
+                ChatRoom.addMessage(new ChatMessage(assistantMessage, sender, botsColor));
+                botMessages.add(new ChatMessage(assistantMessage, "assistant", botsColor));
 
 
                 //ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);

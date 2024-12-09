@@ -7,7 +7,7 @@ import java.util.*;
 
 public class ChatBot {
     private final String name;
-    private final Color textColor;
+    private final transient Color textColor;
 
     private double frequency = 0;
     private String personalityType;

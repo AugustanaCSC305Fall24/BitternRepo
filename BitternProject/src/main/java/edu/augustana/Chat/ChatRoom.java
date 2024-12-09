@@ -18,9 +18,14 @@ public class ChatRoom {
         chatLogMessageList.add(new ChatMessage("Welcome to " +roomTitle+"!", "System", Color.GREEN));
     }
 
-    public String getRoomTitle() {
-        return roomTitle;
+    public static void setChatMessageList(List<ChatMessage> chatMessages) {
+        chatLogMessageList = chatMessages;
     }
+
+    public static void setBots(List<ChatBot> newBots) {
+        bots = newBots;
+    }
+
 
     public static List<ChatBot> getBots() {
         return bots;
@@ -35,8 +40,5 @@ public class ChatRoom {
 
     }
 
-    public static void setNewMessageEventListener(NewMessageEventListener listener) {
-        newMessageEventListener = listener;
-    }
 
 }

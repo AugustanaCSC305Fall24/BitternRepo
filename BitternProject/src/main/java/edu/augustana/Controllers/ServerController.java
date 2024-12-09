@@ -40,6 +40,7 @@ public class ServerController extends Controller implements Initializable {
     @FXML private TextField callSignTextbox = new TextField();
     @FXML private Slider bandPassSlider;
 
+
     private String callSign;
     private Session session;
     private Random randGen = new Random();
