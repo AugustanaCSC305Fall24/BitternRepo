@@ -61,17 +61,8 @@ public class ChatClient {
             // Log the JSON payload
             System.out.println("JSON Payload: " + payload.toString());
 
-            URL url = new URL("http://localhost:8000/rag/");
+            URL url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/");
             // Send HTTP POST request
-//            if (bot.getName().equals("FireDepartment")) {
-//                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/firedpt/");
-//            } else if (bot.getName().equals("NationalGuard")) {
-//                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/guard/");
-//            } else if (bot.getName().equals("RedCross")) {
-//                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/redcross/");
-//            } else {
-//                url = new URL("https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/victim/");
-//            }
 
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
