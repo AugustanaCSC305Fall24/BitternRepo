@@ -59,14 +59,19 @@ public class TrainingController extends Controller {
     @FXML
     private void updateLabel() {
         // Check if CW phrase or English letter
-        if (index < Translator.englishLetters.length) {
-            letterLabel.setText((String.valueOf(Translator.englishLetters[index])).toUpperCase());
-            currentMorse = morseCodeLetters[index];
-        } else {
+        if (onlyCWCheckbox.isSelected()) {
+            int tempIndex = index;
+            String currentCW = Translator.codeWords[tempIndex];
+            letterLabel.setText(currentCW);
+            currentMorse = Translator.textToMorse(currentCW);
+        } else if (cwCheckbox.isSelected()) {
             int tempIndex = index - Translator.englishLetters.length;
             String currentCW = Translator.codeWords[tempIndex];
             letterLabel.setText(currentCW);
             currentMorse = Translator.textToMorse(currentCW);
+        } else {
+            letterLabel.setText((String.valueOf(Translator.englishLetters[index])).toUpperCase());
+            currentMorse = morseCodeLetters[index];
         }
         nextButton.setDisable(true);
         prevButton.setDisable(true);
