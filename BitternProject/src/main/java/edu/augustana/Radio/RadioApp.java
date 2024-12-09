@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
 
 /** JavaFX App **/
@@ -23,21 +22,12 @@ public class RadioApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        // Assuming WelcomeController is the controller for WelcomeScreen.fxml
         WelcomeController welcomeController = loader.getController();
         welcomeController.setApp(this);
     }
 
     public static Scene getScene() {
         return scene;
-    }
-
-    public void switchToWelcome() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/Controllers/WelcomeScreen.fxml"));
-        Parent root = loader.load();
-        scene.setRoot(root);
-        WelcomeController welcomeController = loader.getController();
-        welcomeController.setApp(this);
     }
 
     public static void setRoot(String fxml) throws IOException {
