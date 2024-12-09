@@ -19,7 +19,7 @@ public class RadioApp extends Application {
     public void start(Stage stage) throws IOException, LineUnavailableException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/augustana/Controllers/WelcomeScreen.fxml"));
         Parent root = loader.load();
-        scene = new Scene(root, 1000, 640); //640x640 is the default size
+        scene = new Scene(root, 900, 640); //640x640 is the default size
         stage.setScene(scene);
         stage.show();
 

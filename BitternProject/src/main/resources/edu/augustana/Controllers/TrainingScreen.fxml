@@ -12,18 +12,18 @@
 
 <VBox alignment="CENTER" prefHeight="609.0" prefWidth="621.0" spacing="20.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.TrainingController">
     <children>
-      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="452.0" spacing="15.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="852.0" spacing="15.0">
          <children>
             <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" style="-fx-background-color: #ffffff;" text="How To">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                  <Font size="14.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect></Button>
               <Button fx:id="welcomeButton" alignment="TOP_CENTER" onAction="#switchToWelcome" prefWidth="19.0" style="-fx-background-color: #f00000;" text="X">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                  <Font size="14.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
@@ -36,9 +36,9 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="42.0" prefWidth="133.0" text="Training" textAlignment="CENTER">
+              <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" prefHeight="44.0" prefWidth="133.0" text="Training" textAlignment="CENTER">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="24.0" />
+                  <Font size="36.0" />
                </font>
                <padding>
                   <Insets right="10.0" />
@@ -53,12 +53,12 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
             <Label fx:id="letterLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="118.0" prefWidth="305.0" text="A" textAlignment="CENTER">
                <font>
-                  <Font name="Lucida Sans Typewriter Bold" size="96.0" />
+                  <Font size="120.0" />
                </font>
             </Label>
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonAction" style="-fx-background-color: #ffffff;" text="→">
@@ -66,17 +66,17 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
                <font>
-                  <Font size="14.0" />
+                  <Font size="16.0" />
                </font>
             </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="25.0">
          <children>
-            <TextField fx:id="userTextBox" editable="false" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: #ffffff;" />
+            <TextField fx:id="userTextBox" editable="false" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: #ffffff;" />
             <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" style="-fx-background-color: #ffffff;" text="Retry">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                  <Font size="16.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
@@ -88,12 +88,15 @@
          <children>
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                  <Font size="14.0" />
                </font>
                <padding>
                   <Insets right="25.0" />
                </padding></CheckBox>
-            <CheckBox fx:id="cwCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases" />
+            <CheckBox fx:id="cwCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
          </children>
       </HBox>
     </children>

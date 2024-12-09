@@ -17,9 +17,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1019.0" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.ScenarioController">
+<AnchorPane prefHeight="640.0" prefWidth="900" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.ScenarioController">
    <children>
-      <Text layoutX="38.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario" wrappingWidth="376.79996337890634">
+      <Text layoutX="140.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario" textAlignment="CENTER" wrappingWidth="376.79996337890634">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="36.0" />
          </font>
@@ -78,26 +78,26 @@
             <Font name="Lucida Sans Typewriter Regular" size="12.0" />
          </font>
       </CheckBox>
-      <HBox layoutX="45.0" layoutY="429.0" prefHeight="189.0" prefWidth="621.0">
+      <HBox layoutX="33.0" layoutY="423.0" prefHeight="189.0" prefWidth="621.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
-                  <Label text="WPM">
+                  <Label prefHeight="16.0" prefWidth="28.0" text="WPM" textAlignment="RIGHT">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Side Tone">
+                  <Label text="Side Tone" textAlignment="RIGHT">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="15.0" prefWidth="125.0" text="Filter Bandwidth">
+                  <Label prefHeight="15.0" prefWidth="85.0" text="Filter Bandwidth" textAlignment="RIGHT">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="45.0" prefWidth="116.0" text="Band Pass Filter">
+                  <Label prefHeight="45.0" prefWidth="87.0" text="Band Pass Filter" textAlignment="RIGHT">
                      <font>
                         <Font name="Lucida Sans Typewriter Regular" size="12.0" />
                      </font>
@@ -164,7 +164,7 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="TOP_RIGHT" layoutX="440.0" layoutY="30.0" prefHeight="42.0" prefWidth="162.0" spacing="10.0">
+      <HBox alignment="TOP_RIGHT" layoutX="708.0" layoutY="24.0" prefHeight="42.0" prefWidth="162.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#openHowTo" text="How To">
                <font>
@@ -186,18 +186,18 @@
             </Button>
          </children>
       </HBox>
-      <Text layoutX="705.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" wrappingWidth="288.79996337890634">
+      <Text layoutX="679.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" textAlignment="CENTER" wrappingWidth="162.0000000000001">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="24.0" />
          </font>
       </Text>
-      <ListView fx:id="botListView" layoutX="681.0" layoutY="258.0" prefHeight="200.0" prefWidth="243.0" />
-      <Button fx:id="addBot" layoutX="769.0" layoutY="475.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
+      <ListView fx:id="botListView" layoutX="642.0" layoutY="194.0" prefHeight="200.0" prefWidth="237.0" />
+      <Button fx:id="addBot" layoutX="732.0" layoutY="411.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
          <font>
             <Font name="Lucida Sans Typewriter Regular" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="saveScenario" layoutX="713.0" layoutY="581.0" mnemonicParsing="false" onAction="#saveScenarioToFile" text="Save Scenario" />
-      <Button fx:id="loadScenario" layoutX="813.0" layoutY="581.0" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Scenario" />
+      <Button fx:id="saveScenario" layoutX="654.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveScenarioToFile" text="Save Scenario" />
+      <Button fx:id="loadScenario" layoutX="772.0" layoutY="452.0" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Scenario" />
    </children>
 </AnchorPane>
