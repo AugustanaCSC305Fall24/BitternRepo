@@ -24,6 +24,7 @@ public class TrainingController extends Controller {
     @FXML private CheckBox randomizeCheckbox;
     @FXML private Button nextButton;
     @FXML private Button prevButton;
+    @FXML private Button retryButton;
     @FXML private Label letterLabel;
     @FXML private TextField userTextBox;
     @FXML private CheckBox cwAndEnglishCheckbox;
@@ -72,6 +73,7 @@ public class TrainingController extends Controller {
         }
         nextButton.setDisable(true);
         prevButton.setDisable(true);
+        retryButton.setDisable(true);
 
         // Create a new thread for playing the Morse sound
         new Thread(() -> {
@@ -86,7 +88,7 @@ public class TrainingController extends Controller {
             } catch (LineUnavailableException | InterruptedException e) {
                 throw new RuntimeException(e);
             } finally {
-                Platform.runLater(() -> { nextButton.setDisable(false); prevButton.setDisable(false);});
+                Platform.runLater(() -> { nextButton.setDisable(false); prevButton.setDisable(false); retryButton.setDisable(false); });
             }
         }).start(); // Start the new thread
     }

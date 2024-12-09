@@ -1,17 +1,4 @@
 {
   "chatMessages": [],
-  "bots": [
-    {
-      "name": "Bob the victum",
-      "frequency": 312.5,
-      "personalityType": "victum",
-      "chatLog": [
-        {
-          "text": "victum",
-          "sender": "user",
-          "colorCode": "0x800080ff"
-        }
-      ]
-    }
-  ]
+  "bots": []
 }
