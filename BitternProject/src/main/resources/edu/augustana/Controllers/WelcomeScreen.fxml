@@ -9,9 +9,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="myVBox" alignment="CENTER" prefHeight="370.0" prefWidth="548.0" spacing="20.0" style="-fx-background-image: url(&quot;https://i.pinimg.com/564x/6f/b9/83/6fb9838f2d2c24b7b00a57fb4dc62317.jpg&quot;); -fx-background-size: cover; -fx-padding: 40%;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.WelcomeController">
+<VBox id="myVBox" alignment="CENTER" prefHeight="370.0" prefWidth="577.0" spacing="20.0" style="-fx-background-image: url(&quot;https://i.pinimg.com/564x/6f/b9/83/6fb9838f2d2c24b7b00a57fb4dc62317.jpg&quot;); -fx-background-size: cover; -fx-padding: 40%;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.WelcomeController">
    <children>
-      <Label alignment="CENTER" minWidth="-Infinity" prefHeight="60.0" prefWidth="436.0" text="HAM Radio Simulator" textAlignment="CENTER" textFill="#1251ff">
+      <Label alignment="CENTER" minWidth="-Infinity" prefHeight="60.0" prefWidth="552.0" text="HAM Radio Simulator" textAlignment="CENTER" textFill="#1251ff">
          <font>
             <Font name="Lucida Sans Typewriter Bold Oblique" size="48.0" />
          </font>
