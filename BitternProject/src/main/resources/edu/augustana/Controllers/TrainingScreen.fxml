@@ -16,14 +16,14 @@
          <children>
             <Button fx:id="howToButton" mnemonicParsing="false" onAction="#openHowTo" style="-fx-background-color: #ffffff;" text="How To">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect></Button>
               <Button fx:id="welcomeButton" alignment="TOP_CENTER" onAction="#switchToWelcome" prefWidth="19.0" style="-fx-background-color: #f00000;" text="X">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
@@ -36,9 +36,9 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-              <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" prefHeight="44.0" prefWidth="133.0" text="Training" textAlignment="CENTER">
+              <Label alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" prefHeight="44.0" prefWidth="270.0" text="Training" textAlignment="CENTER">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Lucida Console" size="36.0" />
                </font>
                <padding>
                   <Insets right="10.0" />
@@ -53,12 +53,12 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
                <font>
-                  <Font size="16.0" />
+                  <Font name="Lucida Console" size="20.0" />
                </font>
             </Button>
             <Label fx:id="letterLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="118.0" prefWidth="305.0" text="A" textAlignment="CENTER">
                <font>
-                  <Font size="120.0" />
+                  <Font name="Lucida Console" size="120.0" />
                </font>
             </Label>
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextButtonAction" style="-fx-background-color: #ffffff;" text="→">
@@ -66,7 +66,7 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
                <font>
-                  <Font size="16.0" />
+                  <Font name="Lucida Console" size="20.0" />
                </font>
             </Button>
          </children>
@@ -76,7 +76,7 @@
             <TextField fx:id="userTextBox" editable="false" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: #ffffff;" />
             <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" style="-fx-background-color: #ffffff;" text="Retry">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
@@ -88,15 +88,23 @@
          <children>
             <CheckBox fx:id="randomizeCheckbox" mnemonicParsing="false" onAction="#randomizeLetters" text="Randomize">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="14.0" />
                </font>
                <padding>
                   <Insets right="25.0" />
                </padding></CheckBox>
             <CheckBox fx:id="cwCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases">
                <font>
-                  <Font size="14.0" />
-               </font></CheckBox>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="25.0" />
+               </padding></CheckBox>
+            <CheckBox fx:id="onlyCWCheckbox" mnemonicParsing="false" onAction="#handleOnlyCWCheckboxAction" text="Only CW Phrases">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </CheckBox>
          </children>
       </HBox>
     </children>

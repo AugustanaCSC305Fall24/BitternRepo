@@ -29,6 +29,7 @@ public class TrainingController extends Controller {
     @FXML private Label letterLabel;
     @FXML private TextField userTextBox;
     @FXML private CheckBox cwCheckbox;
+    @FXML private CheckBox onlyCWCheckbox;
 
     private String currentMorse;
     private int index = 0;
@@ -143,6 +144,17 @@ public class TrainingController extends Controller {
         } else {
             numTranslatableItems = Translator.englishLetters.length;
         }
+    }
+
+    @FXML
+    private void handleOnlyCWCheckboxAction() {
+        if (onlyCWCheckbox.isSelected()) {
+            numTranslatableItems = Translator.codeWords.length;
+        } else {
+            handleCWCheckboxAction();
+        }
+        resetTextBox();
+        updateLabel();
     }
 
     @FXML
