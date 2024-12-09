@@ -213,6 +213,12 @@ public class ScenarioController extends Controller implements Initializable {
         userText.clear();
 
         String translation;
+// fix index if no bot
+// return
+// not add pop up caution
+        if(ChatRoom.getBots().isEmpty()){ //fix later
+            return;
+        }
 
         // Check if the message contains a phrase that maps to a code word
         if (Translator.phraseToCodeWord.containsKey(message.toLowerCase())) {
