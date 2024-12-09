@@ -19,33 +19,33 @@
     <children>
       <HBox alignment="TOP_CENTER" layoutX="25.0" layoutY="24.0" prefHeight="53.0" prefWidth="859.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Server" wrappingWidth="104.42946529388428">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Server" wrappingWidth="142.82945919036865">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Lucida Console" size="36.0" />
                </font>
-               <HBox.margin>
-                  <Insets right="80.0" />
-               </HBox.margin>
-            </Text>
-            <Label alignment="CENTER" prefHeight="51.0" prefWidth="92.0" text="Call Sign:" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="callSignTextbox" editable="false" prefHeight="51.0" prefWidth="131.0">
                <HBox.margin>
                   <Insets right="50.0" />
+               </HBox.margin>
+            </Text>
+            <Label alignment="CENTER" prefHeight="51.0" prefWidth="123.0" text="Call Sign:" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Console" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="callSignTextbox" editable="false" prefHeight="51.0" prefWidth="133.0">
+               <HBox.margin>
+                  <Insets />
                </HBox.margin>
                <font>
                   <Font size="22.0" />
                </font>
             </TextField>
-            <Button fx:id="howToButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openHowTo" prefHeight="27.0" prefWidth="81.0" style="-fx-background-color: #ffffff;" text="How To">
+            <Button fx:id="howToButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#openHowTo" prefHeight="34.0" prefWidth="87.0" style="-fx-background-color: #ffffff;" text="How To">
                <HBox.margin>
-                  <Insets left="150.0" right="10.0" top="10.0" />
+                  <Insets left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
                <effect>
                   <InnerShadow>
@@ -55,12 +55,12 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="notepadButton" mnemonicParsing="false" onAction="#openNotepad" prefHeight="27.0" prefWidth="84.0" style="-fx-background-color: #ffffff;" text="Notepad">
+            <Button fx:id="notepadButton" mnemonicParsing="false" onAction="#openNotepad" prefHeight="34.0" prefWidth="99.0" style="-fx-background-color: #ffffff;" text="Notepad">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
                <effect>
                   <InnerShadow>
@@ -70,12 +70,12 @@
                   </InnerShadow>
                </effect>
             </Button>
-            <Button fx:id="helpPageButton" mnemonicParsing="false" onAction="#openHelpScreen" prefHeight="27.0" prefWidth="60.0" style="-fx-background-color: #ffffff;" text="Help">
+            <Button fx:id="helpPageButton" mnemonicParsing="false" onAction="#openHelpScreen" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #ffffff;" text="Help">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
                <effect>
                   <InnerShadow>
@@ -87,7 +87,7 @@
             </Button>
             <Button fx:id="welcomeButton" mnemonicParsing="false" onAction="#switchToWelcome" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #f00000;" text="X">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="18.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0">
@@ -107,7 +107,7 @@
                <children>
                   <Label fx:id="replyLabel" text="Reply:" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Lucida Console" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -118,12 +118,12 @@
                         <Insets bottom="40.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </TextField>
                   <Label text="Your message" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Lucida Console" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -134,7 +134,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </TextField>
                </children>
@@ -146,7 +146,7 @@
                <children>
                   <Label text="Translation" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Lucida Console" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -157,12 +157,12 @@
                         <Insets bottom="40.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </TextField>
                   <Label text="Translation" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Lucida Console" size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -173,7 +173,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </TextField>
                </children>
@@ -185,10 +185,10 @@
                <children>
                   <Button fx:id="repeatSoundButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="83.0" style="-fx-background-color: #ffffff;" text="Repeat">
                      <VBox.margin>
-                        <Insets top="35.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                      <effect>
                         <InnerShadow>
@@ -198,12 +198,12 @@
                         </InnerShadow>
                      </effect>
                   </Button>
-                  <Button fx:id="sendMessage" mnemonicParsing="false" onAction="#sendAction" style="-fx-background-color: #ffffff;" text="Send">
+                  <Button fx:id="sendMessage" mnemonicParsing="false" onAction="#sendAction" prefHeight="32.0" prefWidth="72.0" style="-fx-background-color: #ffffff;" text="Send">
                      <VBox.margin>
-                        <Insets top="75.0" />
+                        <Insets top="70.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                      <effect>
                         <InnerShadow>
@@ -223,22 +223,22 @@
                <children>
                   <Label prefHeight="20.0" prefWidth="41.0" text="WPM" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Side Tone" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </Label>
                   <Label text="Filter Bandwidth" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="44.0" prefWidth="110.0" text="Band Pass Filter" textFill="WHITE">
+                  <Label prefHeight="44.0" prefWidth="150.0" text="Band Pass Filter" textFill="WHITE">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Lucida Console" size="15.0" />
                      </font>
                   </Label>
                </children>
