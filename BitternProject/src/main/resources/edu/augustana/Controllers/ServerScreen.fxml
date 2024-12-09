@@ -254,7 +254,7 @@
                      </cursor>
                   </Slider>
                   <Slider fx:id="frequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                  <Slider fx:id="staticSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="50.0">
+                  <Slider fx:id="bandwidthSilder" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="50.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>

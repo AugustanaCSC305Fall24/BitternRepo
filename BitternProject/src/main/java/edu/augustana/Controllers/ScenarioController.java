@@ -8,6 +8,9 @@ import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
 import edu.augustana.bots.ChatBot;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +28,7 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileReader;
@@ -130,6 +134,7 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         whiteNoise.stopPlaying();
+        whiteNoise.reset();
         RadioApp.setRoot("WelcomeScreen");
     }
 

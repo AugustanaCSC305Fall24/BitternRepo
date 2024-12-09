@@ -121,7 +121,7 @@
                      </cursor>
                   </Slider>
                   <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="36.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
+                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0"  onMouseReleased="#setWhiteNoiseVolume" prefHeight="36.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
