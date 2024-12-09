@@ -59,10 +59,8 @@ public class ScenarioController extends Controller implements Initializable {
     public static final File DEFAULT_USER_PREFERENCES_FILE = new File("user_preferences.json");
 
     public void initialize(URL arg0, ResourceBundle arg1){
-
         userText = userTextField;
         WPM = wpmSlider.getValue();
-        whiteNoise.reset();
         new Thread(whiteNoise::play).start();
 
 
