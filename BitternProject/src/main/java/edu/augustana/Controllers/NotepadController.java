@@ -21,7 +21,6 @@ public class NotepadController {
 
     }
 
-
     // Serialize only the content of the TextArea
     private static class NotepadData {
         String content;

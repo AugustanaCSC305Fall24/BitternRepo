@@ -17,18 +17,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="640.0" prefWidth="1019.0" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.ScenarioController">
+<AnchorPane prefHeight="640.0" prefWidth="900" style="-fx-background-color: #f0fff0;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Controllers.ScenarioController">
    <children>
-      <Text layoutX="38.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario" wrappingWidth="376.79996337890634">
+      <Text layoutX="140.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Disaster Scenario" textAlignment="CENTER" wrappingWidth="376.79996337890634">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="36.0" />
+            <Font name="Lucida Console" size="36.0" />
          </font>
       </Text>
       <BorderPane layoutX="55.0" layoutY="81.0" prefHeight="322.0" prefWidth="546.0">
          <center>
             <ScrollPane fx:id="chatLogScrollPane" prefHeight="239.0" prefWidth="561.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 3;" vvalue="1.0">
                <BorderPane.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </BorderPane.margin>
                <content>
                   <VBox fx:id="chatLogVBox" spacing="10.0">
@@ -42,7 +42,7 @@
          <top>
             <Label text="Chat Log" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Lucida Sans Typewriter Bold" size="13.0" />
+                  <Font name="Lucida Console" size="15.0" />
                </font>
             </Label>
          </top>
@@ -51,15 +51,15 @@
                <children>
                   <TextField fx:id="userTextField" promptText="(type English messages here)" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font></TextField>
                   <Button mnemonicParsing="false" onAction="#sendAction" text="Send">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font></Button>
                   <Button layoutX="500.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearChatLogAction" text="Clear">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font></Button>
                </children>
                <BorderPane.margin>
@@ -70,36 +70,36 @@
       </BorderPane>
       <CheckBox fx:id="translationCheckbox" alignment="TOP_LEFT" layoutX="270.0" layoutY="394.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="170.0" text="Turn on translation">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+            <Font name="Lucida Console" size="12.0" />
          </font>
       </CheckBox>
       <CheckBox fx:id="englishCheckBox" layoutX="114.0" layoutY="394.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="141.0" text="Type in English">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+            <Font name="Lucida Console" size="12.0" />
          </font>
       </CheckBox>
-      <HBox layoutX="45.0" layoutY="429.0" prefHeight="189.0" prefWidth="621.0">
+      <HBox layoutX="33.0" layoutY="423.0" prefHeight="189.0" prefWidth="621.0">
          <children>
             <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="131.0" spacing="30.0">
                <children>
-                  <Label text="WPM">
+                  <Label prefHeight="16.0" prefWidth="28.0" text="WPM" textAlignment="RIGHT">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font>
                   </Label>
-                  <Label text="Side Tone">
+                  <Label text="Side Tone" textAlignment="RIGHT">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="15.0" prefWidth="125.0" text="Filter Bandwidth">
+                  <Label prefHeight="15.0" prefWidth="129.0" text="Filter Bandwidth" textAlignment="RIGHT">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="45.0" prefWidth="116.0" text="Band Pass Filter">
+                  <Label prefHeight="46.0" prefWidth="134.0" text="Band Pass Filter" textAlignment="RIGHT">
                      <font>
-                        <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                        <Font name="Lucida Console" size="12.0" />
                      </font>
                   </Label>
                </children>
@@ -143,16 +143,25 @@
                      <opaqueInsets>
                         <Insets top="1.0" />
                      </opaqueInsets>
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font>
                   </Label>
                   <Label fx:id="bandwidthLabel" alignment="TOP_CENTER" onDragDone="#setHertzLabel" prefHeight="31.0" prefWidth="91.0" text="50 Hz" textAlignment="CENTER" underline="true">
                      <opaqueInsets>
                         <Insets top="1.0" />
                      </opaqueInsets>
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font>
                   </Label>
                   <Label fx:id="bandPassLabel" alignment="TOP_CENTER" onDragDone="#setHertzLabel" prefHeight="34.0" prefWidth="91.0" text="7.04 MHz" textAlignment="CENTER" underline="true">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font>
                   </Label>
                </children>
                <opaqueInsets>
@@ -164,21 +173,21 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="TOP_RIGHT" layoutX="440.0" layoutY="30.0" prefHeight="42.0" prefWidth="162.0" spacing="10.0">
+      <HBox alignment="TOP_RIGHT" layoutX="645.0" layoutY="24.0" prefHeight="42.0" prefWidth="225.0" spacing="10.0">
          <children>
             <Button mnemonicParsing="false" onAction="#openHowTo" text="How To">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                  <Font name="Lucida Console" size="16.0" />
                </font>
             </Button>
             <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpScreen" text="Help">
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+                  <Font name="Lucida Console" size="16.0" />
                </font>
             </Button>
             <Button fx:id="welcomeButton" mnemonicParsing="false" onAction="#switchToWelcome" style="-fx-background-color: #f00000;" text="X">
                <font>
-                  <Font name="Lucida Sans Typewriter Bold" size="12.0" />
+                  <Font name="Lucida Console" size="16.0" />
                </font>
                <effect>
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
@@ -186,18 +195,24 @@
             </Button>
          </children>
       </HBox>
-      <Text layoutX="705.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" wrappingWidth="288.79996337890634">
+      <Text layoutX="661.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" textAlignment="CENTER" wrappingWidth="198.8000488281251">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="24.0" />
+            <Font name="Lucida Console" size="24.0" />
          </font>
       </Text>
-      <ListView fx:id="botListView" layoutX="681.0" layoutY="258.0" prefHeight="200.0" prefWidth="243.0" />
-      <Button fx:id="addBot" layoutX="769.0" layoutY="475.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
+      <ListView fx:id="botListView" layoutX="642.0" layoutY="194.0" prefHeight="200.0" prefWidth="237.0" />
+      <Button fx:id="addBot" layoutX="732.0" layoutY="411.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+            <Font name="Lucida Console" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="saveScenario" layoutX="713.0" layoutY="581.0" mnemonicParsing="false" onAction="#saveScenarioToFile" text="Save Scenario" />
-      <Button fx:id="loadScenario" layoutX="813.0" layoutY="581.0" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Scenario" />
+      <Button fx:id="saveScenario" layoutX="654.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveScenarioToFile" text="Save Scenario">
+         <font>
+            <Font name="Lucida Console" size="12.0" />
+         </font></Button>
+      <Button fx:id="loadScenario" layoutX="772.0" layoutY="452.0" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Scenario">
+         <font>
+            <Font name="Lucida Console" size="12.0" />
+         </font></Button>
    </children>
 </AnchorPane>

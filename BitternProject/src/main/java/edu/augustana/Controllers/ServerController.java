@@ -115,6 +115,11 @@ public class ServerController extends Controller implements Initializable {
         textBox.setText(edu.augustana.Input.Translator.morseToText(msgText));
     }
 
+    @FXML
+    public void repeatButton() throws LineUnavailableException, InterruptedException {
+        ChatMessage.playMessageSound(replyTextbox.getText(), wpmSlider.getValue());
+    }
+
     public void setWPM() {WPM = wpmSlider.getValue();}
 
     public void setFrequency() {
