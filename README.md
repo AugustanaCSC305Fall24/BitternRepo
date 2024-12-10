@@ -1,13 +1,15 @@
-# BitternRepo
-Team Bittern's Educational HAM Radio Simulator
-  # Bittern Project
+# Version 1.0 Release Notes
 
-## Overview
+## BitternRepo
+Team Bittern's Educational HAM Radio Simulator
+## Bittern Project
+
+### Overview
 
 The Bittern Project is a Java-based application that simulates the HAM radio communication system. 
 It includes features such as chat messaging, Morse code translation, white noise generation, and bot interactions.
 
-## Features
+### Features
 
 - **Chat Messaging**: Users can send and receive messages.
 - **Morse Code Translation**: Messages can be translated to and from Morse code.
@@ -15,7 +17,7 @@ It includes features such as chat messaging, Morse code translation, white noise
 - **Bot Interactions**: Bots can send and receive messages, including in Morse code.
 - **Scenario Management**: Save and load chat scenarios to/from JSON files.
 
-## Project Structure
+### Project Structure
 
 - `edu.augustana.Controllers`: Contains the controllers for the application.
   - `ScenarioController.java`: Manages the main scenario interactions.
