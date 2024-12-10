@@ -43,6 +43,6 @@ It includes features such as chat messaging, Morse code translation, white noise
 ### Installation
  Clone the repository:
    ```sh
-   git clone https://github.com/leroyg-m/BitternProject.git
+   git clone https://github.com/AugustanaCSC305Fall24/BitternRepo.git
 
 
