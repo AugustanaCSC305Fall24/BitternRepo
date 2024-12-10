@@ -20,7 +20,6 @@ public class ChatMessage {
         this.colorCode= color.toString();
     }
 
-
     public String getText() {
         return text;
     }
@@ -65,6 +64,5 @@ public class ChatMessage {
         Thread.sleep(500);
         messagePlaying = false;
     }
-
 
 }

@@ -8,13 +8,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import javafx.scene.paint.Color;
-
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 
 public class ChatClient {
 
@@ -26,12 +23,8 @@ public class ChatClient {
 
     }
 
-
     public static void sendMessage(String messageContent, ChatBot bot) {
-
-
         try {
-
             ArrayList<ChatMessage> botMessages = bot.getChatLog();
 
 //          botMessages.add(new ChatMessage(bot.getPersonalityType(), "user", Color.BLACK));
@@ -120,4 +113,3 @@ public class ChatClient {
         return messages;
     }
 }
-

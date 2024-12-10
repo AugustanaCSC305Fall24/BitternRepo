@@ -24,7 +24,6 @@ public class ChatRoom {
         bots = newBots;
     }
 
-
     public static List<ChatBot> getBots() {
         return bots;
     }
@@ -35,8 +34,6 @@ public class ChatRoom {
 
     public static void addMessage(ChatMessage message) {
         chatLogMessageList.add(message);
-
     }
-
 
 }
