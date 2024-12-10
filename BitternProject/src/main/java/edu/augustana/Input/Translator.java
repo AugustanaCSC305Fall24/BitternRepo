@@ -38,12 +38,12 @@ public class Translator {
     public static String[] codeWords
             = { "CQ", "GM", "GA", "GE", "GN",
             "AGN", "QSB", "QRS", "QRQ", "WPM",
-            "SOS", "R", "TU", "73", "K"};
+            "SOS", "R", "TU", "73", "K", "QTH"};
 
     public static String[] codeWordTranslation
             = { "Calling all stations", "Good morning", "Good afternoon", "Good evening", "Good night",
             "Again", "Fading signal", "Send slower", "Send faster", "Words per minute",
-            "Help", "Roger", "Thank you", "Best wishes", "Over"};
+            "Help", "Roger", "Thank you", "Best wishes", "Over", "Sending From"};
 
     public Translator() {
         // Initialize the maps with Morse code mappings
