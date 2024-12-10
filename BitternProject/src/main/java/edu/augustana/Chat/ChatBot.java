@@ -24,6 +24,9 @@ public class ChatBot {
     public String getName() {
         return name;
     }
+    public Color getTextColor() {
+        return textColor;
+    }
 
     @Override
     public String toString() {
