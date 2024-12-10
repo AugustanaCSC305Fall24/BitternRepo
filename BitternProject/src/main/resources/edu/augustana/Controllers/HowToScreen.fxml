@@ -5,15 +5,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="326.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="380.0" prefWidth="366.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea editable="false" layoutX="5.0" layoutY="50.0" prefHeight="264.0" prefWidth="356.0" text="Use 'N' to input     .     (dit)&#10;Use 'M' to input    -     (dah)&#10;&#10;Training:&#10;Practice CW skills! You can use the left and right buttons to play through the alphabet and numbers in morse code. If you type a character correctly, it will automatically move on to the next character.&#10;&#10;Scenario:&#10;Talk to AI bots about real-life disaster scenarios! You can make bots for scenarios that you can save and share with friends.&#10;&#10;Server:&#10;Connect with others using CW! Enter morse code using N and M and hit enter to start your conversation." wrapText="true">
+      <TextArea editable="false" layoutX="5.0" layoutY="50.0" prefHeight="326.0" prefWidth="356.0" text="Use 'N' to input    .     (dit)&#10;Use 'M' to input    -     (dah)&#10;&#10;Training:&#10;Practice CW skills! You can use the left and right buttons to play through the alphabet and numbers in morse code. If you type a character correctly, it will automatically move on to the next character.&#10;&#10;Scenario:&#10;Talk to AI bots about real-life disaster scenarios! You can make bots for scenarios that you can save and share with friends. To pass the scenario you must tell the victum that &quot;help is on the way&quot;.&#10;&#10;Server:&#10;Connect with others using CW! Enter morse code using N and M and hit enter to start your conversation." wrapText="true">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="12.0" />
+            <Font name="Lucida Console" size="12.0" />
          </font></TextArea>
       <Label layoutX="14.0" layoutY="14.0" text="How To">
          <font>
-            <Font name="Lucida Sans Typewriter Regular" size="24.0" />
+            <Font name="Lucida Console" size="24.0" />
          </font>
       </Label>
    </children>
