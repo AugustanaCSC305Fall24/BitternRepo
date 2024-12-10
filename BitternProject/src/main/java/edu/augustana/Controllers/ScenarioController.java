@@ -66,7 +66,6 @@ public class ScenarioController extends Controller implements Initializable {
 
         botListView.getItems().addAll(ChatRoom.getBots()); // add all pre-existing messages to the chat log ...check this
 
-
         // Add a listener to the slider to update the hertz label text
         bandwidthSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             int hertz = newValue.intValue(); // Get the slider's value as an integer
@@ -157,9 +156,21 @@ public class ScenarioController extends Controller implements Initializable {
     @FXML @Override
     public void sendAction() throws LineUnavailableException {
         if (!userText.getText().isBlank()) {
+            if (ChatRoom.getBots().isEmpty()) {
+                showNoBotAlert(); // Trigger the alert
+                return; // Stop further processing
+            }
             sendMessage(userText.getText(), "User", Color.BLACK);
         }
         super.sendAction();
+    }
+
+    private void showNoBotAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("No Bot Selected");
+        alert.setHeaderText("No bot selected");
+        alert.setContentText("Please add a bot to the chat room before sending a message.");
+        alert.showAndWait();
     }
 
     private void addMessageToChatLogUI(ChatMessage messageToDisplay) {
@@ -174,7 +185,6 @@ public class ScenarioController extends Controller implements Initializable {
     }
 
     private void checkBoxHandler(String msgText) {
-        if (translationCheckbox.isSelected()) {
             String morse;
 
             // Check if the message matches any predefined phrase
@@ -195,7 +205,7 @@ public class ScenarioController extends Controller implements Initializable {
                     throw new RuntimeException(e);
                 }
             }).start();
-        }
+
     }
 
     public void addTranslation(String message, String sender, Color color){
@@ -243,7 +253,7 @@ public class ScenarioController extends Controller implements Initializable {
 
 
 
-        if (englishCheckBox.isSelected()) {
+
             new Thread(() -> {
                 ChatClient.sendMessage(newMessage.getText(), bot);
                 ChatMessage lastMessage = ChatRoom.getChatMessageList().get(ChatRoom.getChatMessageList().size() - 1);
@@ -265,7 +275,7 @@ public class ScenarioController extends Controller implements Initializable {
                     addMessageToChatLogUI(lastMessage);
                 });
             }).start();
-        }
+
     }
 
     public void botMessage(String message) {

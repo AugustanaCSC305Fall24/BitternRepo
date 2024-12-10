@@ -1,4 +1,70 @@
 {
-  "chatMessages": [],
-  "bots": []
+  "chatMessages": [
+    {
+      "text": "hello",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "GM! How can I assist you today?",
+      "sender": "Fred the Teacher",
+      "colorCode": "0x800000ff"
+    },
+    {
+      "text": "hey sam",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "CQ! What’s your emergency?",
+      "sender": "Sam the Ham",
+      "colorCode": "0x808000ff"
+    }
+  ],
+  "bots": [
+    {
+      "name": "Fred the Teacher",
+      "frequency": 200.0,
+      "personalityType": "Teacher",
+      "chatLog": [
+        {
+          "text": "Teacher",
+          "sender": "user",
+          "colorCode": "0x800000ff"
+        },
+        {
+          "text": "hello",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "GM! How can I assist you today?",
+          "sender": "assistant",
+          "colorCode": "0x800000ff"
+        }
+      ]
+    },
+    {
+      "name": "Sam the Ham",
+      "frequency": 350.0,
+      "personalityType": "Ham",
+      "chatLog": [
+        {
+          "text": "Ham",
+          "sender": "user",
+          "colorCode": "0x808000ff"
+        },
+        {
+          "text": "hey sam",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "CQ! What’s your emergency?",
+          "sender": "assistant",
+          "colorCode": "0x808000ff"
+        }
+      ]
+    }
+  ]
 }
