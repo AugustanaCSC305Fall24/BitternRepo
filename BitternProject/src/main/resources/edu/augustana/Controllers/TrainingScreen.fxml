@@ -74,7 +74,7 @@
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="25.0">
          <children>
             <TextField fx:id="userTextBox" editable="false" prefHeight="36.0" prefWidth="96.0" style="-fx-background-color: #ffffff;" />
-            <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" style="-fx-background-color: #ffffff;" text="Retry">
+            <Button fx:id="retryButton" mnemonicParsing="false" onAction="#handleReplayButtonAction" style="-fx-background-color: #ffffff;" text="Retry">
                <font>
                   <Font name="Lucida Console" size="15.0" />
                </font>
@@ -93,7 +93,7 @@
                <padding>
                   <Insets right="25.0" />
                </padding></CheckBox>
-            <CheckBox fx:id="cwCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases">
+            <CheckBox fx:id="cwAndEnglishCheckbox" mnemonicParsing="false" onAction="#handleCWCheckboxAction" text="Include CW Phrases">
                <font>
                   <Font name="Lucida Console" size="14.0" />
                </font>

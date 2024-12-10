@@ -15,8 +15,8 @@ module edu.augustana {
     exports edu.augustana.Chat;
     opens edu.augustana.Input to javafx.fxml, com.google.gson;
     exports edu.augustana.Input;
-    opens edu.augustana.WebSocket to javafx.fxml, com.google.gson;
-    exports edu.augustana.WebSocket;
+//    opens edu.augustana.WebSocket to javafx.fxml, com.google.gson;
+//    exports edu.augustana.WebSocket;
     opens edu.augustana.bots to com.google.gson;
     exports edu.augustana.bots;
 

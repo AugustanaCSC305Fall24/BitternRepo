@@ -121,7 +121,7 @@
                      </cursor>
                   </Slider>
                   <Slider fx:id="toneFrequencySlider" max="725.0" min="575.0" onDragDetected="#setFrequency" onMouseReleased="#setFrequency" prefHeight="14.0" prefWidth="250.0" showTickLabels="true" showTickMarks="true" value="650.0" />
-                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" onMouseReleased="#setWhiteNoiseVolume" prefHeight="36.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
+                  <Slider fx:id="bandwidthSlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0"  onMouseReleased="#setWhiteNoiseVolume" prefHeight="36.0" prefWidth="365.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0">
                      <padding>
                         <Insets bottom="15.0" />
                      </padding>
@@ -195,24 +195,35 @@
             </Button>
          </children>
       </HBox>
-      <Text layoutX="661.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" textAlignment="CENTER" wrappingWidth="198.8000488281251">
-         <font>
-            <Font name="Lucida Console" size="24.0" />
-         </font>
-      </Text>
-      <ListView fx:id="botListView" layoutX="642.0" layoutY="194.0" prefHeight="200.0" prefWidth="237.0" />
-      <Button fx:id="addBot" layoutX="732.0" layoutY="411.0" mnemonicParsing="false" onAction="#addBot" text="Add bot">
-         <font>
-            <Font name="Lucida Console" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="saveScenario" layoutX="654.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveScenarioToFile" text="Save Scenario">
-         <font>
-            <Font name="Lucida Console" size="12.0" />
-         </font></Button>
-      <Button fx:id="loadScenario" layoutX="772.0" layoutY="452.0" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Scenario">
-         <font>
-            <Font name="Lucida Console" size="12.0" />
-         </font></Button>
+      <VBox alignment="TOP_CENTER" layoutX="628.0" layoutY="132.0" prefHeight="414.0" prefWidth="258.0" spacing="20.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scenario Bots" textAlignment="CENTER" wrappingWidth="198.8000488281251">
+               <font>
+                  <Font name="Lucida Console" size="24.0" />
+               </font>
+            </Text>
+            <ListView fx:id="botListView" prefHeight="202.0" prefWidth="258.0" />
+            <Button fx:id="addBot" mnemonicParsing="false" onAction="#addBot" text="Add bot">
+               <font>
+                  <Font name="Lucida Console" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="loadPreviousScenario" mnemonicParsing="false" onAction="#loadScenarioFromFile" text="Load Previous Scenario">
+               <font>
+                  <Font name="Lucida Console" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#saveCurrentScenario" text="Save Current Scenario">
+               <font>
+                  <Font name="Lucida Console" size="12.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#loadNewScenario" text="Load New Scenario">
+               <font>
+                  <Font name="Lucida Console" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

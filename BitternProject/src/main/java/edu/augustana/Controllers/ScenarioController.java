@@ -7,7 +7,7 @@ import edu.augustana.Input.Translator;
 import edu.augustana.Radio.RadioApp;
 import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
-import edu.augustana.bots.ChatBot;
+import edu.augustana.Chat.ChatBot;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +25,7 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileReader;
@@ -58,7 +59,6 @@ public class ScenarioController extends Controller implements Initializable {
     public static final File DEFAULT_USER_PREFERENCES_FILE = new File("user_preferences.json");
 
     public void initialize(URL arg0, ResourceBundle arg1){
-
         userText = userTextField;
         WPM = wpmSlider.getValue();
         new Thread(whiteNoise::play).start();
@@ -94,9 +94,6 @@ public class ScenarioController extends Controller implements Initializable {
         });
 
 
-
-
-
         // Add Key Event Handler for the Enter Key
         userTextField.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -112,8 +109,6 @@ public class ScenarioController extends Controller implements Initializable {
             }
         });
 
-
-
         for (ChatMessage message : ChatRoom.getChatMessageList()) {
             addMessageToChatLogUI(message);
         }
@@ -125,11 +120,19 @@ public class ScenarioController extends Controller implements Initializable {
         RadioApp.setRoot("AddNewBotView");
     }
 
-
+    public void clearScenarioData() {
+        ChatRoom.getChatMessageList().clear();
+        ChatRoom.getBots().clear();
+        chatLogVBox.getChildren().clear();
+        botListView.getItems().clear();
+    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
+        whiteNoise.reset();
         whiteNoise.stopPlaying();
+        saveScenarioToFile();
+        clearScenarioData();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -196,11 +199,7 @@ public class ScenarioController extends Controller implements Initializable {
         }
     }
 
-    public void addTranslation(String message, String sender, Color color){
-        ChatMessage newMessage = new ChatMessage(message, sender, color);
-        ChatRoom.addMessage(newMessage);
-        addMessageToChatLogUI(newMessage);
-    }
+
 
     private void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
@@ -208,6 +207,12 @@ public class ScenarioController extends Controller implements Initializable {
         userText.clear();
 
         String translation;
+// fix index if no bot
+// return
+// not add pop up caution
+        if(ChatRoom.getBots().isEmpty()){ //fix later
+            return;
+        }
 
         // Check if the message contains a phrase that maps to a code word
         if (Translator.phraseToCodeWord.containsKey(message.toLowerCase())) {
@@ -241,7 +246,6 @@ public class ScenarioController extends Controller implements Initializable {
                 ChatMessage lastMessage = ChatRoom.getChatMessageList().get(ChatRoom.getChatMessageList().size() - 1);
 
                 new Thread(() -> {
-                    if (translationCheckbox.isSelected()) {
 
                         try {
                             Thread.sleep(500);
@@ -250,7 +254,7 @@ public class ScenarioController extends Controller implements Initializable {
                         } catch (LineUnavailableException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-                    }
+
                 }).start();
 
                 Platform.runLater(() -> {
@@ -261,10 +265,7 @@ public class ScenarioController extends Controller implements Initializable {
         }
     }
 
-    public void botMessage(String message) {
-        sendMessage(message, "Bot", Color.BLUE);
-        checkBoxHandler(message);
-    }
+
 
 
     @FXML
@@ -284,6 +285,68 @@ public class ScenarioController extends Controller implements Initializable {
     public void setHertzLabel(){
         int hertz = (int) toneFrequencySlider.getValue();
         bandwidthLabel.setText(hertz + " Hz");
+    }
+
+
+    //Save to JSON file
+    public String toJSON() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        ScenarioData data = new ScenarioData(ChatRoom.getChatMessageList(), ChatRoom.getBots());
+        return gson.toJson(data);
+    }
+
+    public void saveToFile(File file) {
+        try {
+            PrintWriter out = new PrintWriter(file);
+            out.println(toJSON());
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Error saving to file " + file + ": " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static ScenarioData loadFromJSONFile(File file) {
+        Gson gson = new Gson();
+        try {
+            return gson.fromJson(new FileReader(file), ScenarioData.class);
+        } catch (Exception e) {
+            System.out.println(" file " + file + " not found or invalid. Setting to empty instead.");
+            return new ScenarioData(new ArrayList<>(), new ArrayList<>());
+        }
+    }
+
+    @FXML
+    private void saveCurrentScenario() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Notepad");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        File choosenFile = fileChooser.showSaveDialog(RadioApp.getScene().getWindow());
+        saveToFile(choosenFile);
+    }
+
+    @FXML
+    private void loadNewScenario() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Notepad");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
+        File choosenFile = fileChooser.showOpenDialog(RadioApp.getScene().getWindow());
+
+        ScenarioData scenarioData = loadFromJSONFile(choosenFile);
+        try {
+            List<ChatMessage> chatMessages = scenarioData.getChatMessages();
+            List<ChatBot> bots = scenarioData.getBots();
+            ChatRoom.setChatMessageList(chatMessages);
+            ChatRoom.setBots(bots);
+            chatLogVBox.getChildren().clear();
+            for (ChatMessage message : chatMessages) {
+                addMessageToChatLogUI(message);
+            }
+            botListView.getItems().clear();
+            botListView.getItems().addAll(ChatRoom.getBots());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -320,7 +383,6 @@ public class ScenarioController extends Controller implements Initializable {
             e.printStackTrace();
         }
     }
-
 
 }
 

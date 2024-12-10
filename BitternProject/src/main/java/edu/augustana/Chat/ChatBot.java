@@ -1,6 +1,5 @@
-package edu.augustana.bots;
+package edu.augustana.Chat;
 
-import edu.augustana.Chat.ChatMessage;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -12,7 +11,6 @@ public class ChatBot {
     private double frequency = 0;
     private String personalityType;
 
-    private static final Random randomGen = new Random();
     private ArrayList<ChatMessage> chatLog = new ArrayList<>();
 
     public ChatBot(String name,String personalityType, Color textColor, double frequency) {
@@ -26,9 +24,6 @@ public class ChatBot {
     public String getName() {
         return name;
     }
-    public Color getTextColor() {
-        return textColor;
-    }
 
     @Override
     public String toString() {
@@ -38,8 +33,6 @@ public class ChatBot {
     public String getPersonalityType(){
         return personalityType;
     }
-
-
 
     public int getFrequency() {
         return (int) frequency;

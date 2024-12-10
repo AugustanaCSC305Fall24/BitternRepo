@@ -2,25 +2,15 @@ package edu.augustana.Controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import edu.augustana.Radio.RadioApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 
 import java.io.*;
 
 public class NotepadController {
 
-//    public static final File NOTEPAD = new File("notepad.json");
-
     @FXML private TextArea notepadContent;
-
-    @FXML
-    public void initialize() {
-
-    }
-
 
     // Serialize only the content of the TextArea
     private static class NotepadData {
@@ -31,24 +21,13 @@ public class NotepadController {
         }
     }
 
-    public String getContent() {
-        return notepadContent.getText();
-    }
-
     public String toJSON() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         NotepadData data = new NotepadData(notepadContent.getText());
         return gson.toJson(data);
     }
 
-    public void saveToFile(File file) throws IOException {
-//        System.out.println(getContent());
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        String notePadText = gson.toJson(notepadContent);
-//        PrintWriter writer = new PrintWriter(new FileWriter(file));
-//        writer.println(notePadText);
-//        writer.close();
-//        System.out.println("debug wrote to file: "+notePadText);
+    public void saveToFile(File file) {
         try {
             PrintWriter out = new PrintWriter(file);
             out.println(toJSON());
@@ -69,15 +48,11 @@ public class NotepadController {
         }
     }
 
-
-
-
     @FXML
     private void menuFileOpen() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Notepad");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
-//        Window mainWindow = RadioApp.getScene().getWindow();
         File choosenFile = fileChooser.showOpenDialog(notepadContent.getScene().getWindow());
 
         NotepadData notepadData = loadFromJSONFile(choosenFile);
@@ -85,11 +60,10 @@ public class NotepadController {
     }
 
     @FXML
-    private void menuFileSave() throws IOException {
+    private void menuFileSave() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Notepad");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files", "*.json"));
-//        Window mainWindow = RadioApp.getScene().getWindow();
         File choosenFile = fileChooser.showSaveDialog(notepadContent.getScene().getWindow());
         saveToFile(choosenFile);
     }

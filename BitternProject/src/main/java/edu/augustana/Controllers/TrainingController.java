@@ -4,7 +4,6 @@ import edu.augustana.Chat.ChatMessage;
 import edu.augustana.Input.Translator;
 import edu.augustana.Input.UserInput;
 import edu.augustana.Radio.RadioApp;
-import edu.augustana.Radio.ToneGenerator;
 import edu.augustana.Radio.WhiteNoise;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -22,13 +21,13 @@ import static edu.augustana.Input.Translator.morseCodeLetters;
 
 public class TrainingController extends Controller {
 
-    @FXML private Button welcomeButton;
     @FXML private CheckBox randomizeCheckbox;
     @FXML private Button nextButton;
     @FXML private Button prevButton;
+    @FXML private Button retryButton;
     @FXML private Label letterLabel;
     @FXML private TextField userTextBox;
-    @FXML private CheckBox cwCheckbox;
+    @FXML private CheckBox cwAndEnglishCheckbox;
     @FXML private CheckBox onlyCWCheckbox;
 
     private String currentMorse;
@@ -59,17 +58,22 @@ public class TrainingController extends Controller {
     @FXML
     private void updateLabel() {
         // Check if CW phrase or English letter
-        if (index < Translator.englishLetters.length) {
-            letterLabel.setText((String.valueOf(Translator.englishLetters[index])).toUpperCase());
-            currentMorse = morseCodeLetters[index];
-        } else {
+        if (onlyCWCheckbox.isSelected()) {
+            String currentCW = Translator.codeWords[index];
+            letterLabel.setText(currentCW);
+            currentMorse = Translator.textToMorse(currentCW);
+        } else if (cwAndEnglishCheckbox.isSelected() && index > Translator.englishLetters.length) {
             int tempIndex = index - Translator.englishLetters.length;
             String currentCW = Translator.codeWords[tempIndex];
             letterLabel.setText(currentCW);
             currentMorse = Translator.textToMorse(currentCW);
+        } else {
+            letterLabel.setText((String.valueOf(Translator.englishLetters[index])).toUpperCase());
+            currentMorse = morseCodeLetters[index];
         }
         nextButton.setDisable(true);
         prevButton.setDisable(true);
+        retryButton.setDisable(true);
 
         // Create a new thread for playing the Morse sound
         new Thread(() -> {
@@ -84,7 +88,7 @@ public class TrainingController extends Controller {
             } catch (LineUnavailableException | InterruptedException e) {
                 throw new RuntimeException(e);
             } finally {
-                Platform.runLater(() -> { nextButton.setDisable(false); prevButton.setDisable(false);});
+                Platform.runLater(() -> { nextButton.setDisable(false); prevButton.setDisable(false); retryButton.setDisable(false); });
             }
         }).start(); // Start the new thread
     }
@@ -139,22 +143,24 @@ public class TrainingController extends Controller {
 
     @FXML
     private void handleCWCheckboxAction() {
-        if (cwCheckbox.isSelected()) {
+        if (cwAndEnglishCheckbox.isSelected()) {
             numTranslatableItems = Translator.englishLetters.length + Translator.codeWords.length;
         } else {
             numTranslatableItems = Translator.englishLetters.length;
         }
+        index = 0;
+        updateLabel();
+        resetTextBox();
     }
 
     @FXML
     private void handleOnlyCWCheckboxAction() {
         if (onlyCWCheckbox.isSelected()) {
             numTranslatableItems = Translator.codeWords.length;
-        } else {
-            handleCWCheckboxAction();
         }
-        resetTextBox();
+        index = 0;
         updateLabel();
+        resetTextBox();
     }
 
     @FXML

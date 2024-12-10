@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
@@ -40,7 +41,7 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <center>
-      <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="173.0" prefWidth="441.0" vgap="5.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="174.0" prefWidth="528.0" vgap="5.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,31 +53,55 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Bot Personality:" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Lucida Console" size="14.0" />
-               </font></Label>
-            <Label layoutX="66.0" layoutY="57.0" text="Bot Text Color:" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Lucida Console" size="14.0" />
-               </font></Label>
             <ColorPicker fx:id="botColorPicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <value>
                   <Color />
                </value>
             </ColorPicker>
-
-            <Label layoutX="94.0" layoutY="16.0" text="Bandwidth Frequency" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Lucida Console" size="14.0" />
-               </font></Label>
-            <Slider fx:id="botFrequencySlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" prefHeight="38.0" prefWidth="222.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Slider fx:id="botFrequencySlider" blockIncrement="50.0" majorTickUnit="50.0" max="500.0" min="50.0" prefHeight="38.0" prefWidth="262.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="personalityText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Bot Name:">
-               <font>
-                  <Font name="Lucida Console" size="14.0" />
-               </font></Label>
             <TextField fx:id="nameText" GridPane.columnIndex="1" />
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Bot Name:">
+                     <font>
+                        <Font name="Lucida Console" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Pick a name for the bot!" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="253.0" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Bot Role:">
+                     <font>
+                        <Font name="Lucida Console" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Give the bot a role! (e.g. victim, fireman, etc.)" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Bot Text Color:">
+                     <font>
+                        <Font name="Lucida Console" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Pick a color for the text!" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+               <children>
+      
+                  <Label text="Bandwidth Frequency:">
+                     <font>
+                        <Font name="Lucida Console" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Pick a frequency for the bot to operate on!" />
+               </children>
+            </VBox>
 
          </children>
          <BorderPane.margin>
