@@ -36,8 +36,9 @@ It includes features such as chat messaging, Morse code translation, white noise
 
 ###External API
 
-ChatClient.java sends an HTTP POST request to the specified URL (https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/) with the JSON payload. 
-This URL is the hamapi.py file that generates responses from the OpenAI API, which are extracted and returned as JSON responses. It implements FastAPI and is hosted on Vercel.
+- ChatClient.java sends an HTTP POST request to the specified URL (https://hamapi-abdulsz-abduls-projects-03968352.vercel.app/rag/) with the JSON payload. 
+- This URL is the hamapi.py file that generates responses from the OpenAI API, which are extracted and returned as JSON responses. It implements FastAPI and is hosted on Vercel.
+- hamapi.py is located at BitternRepo/BitternProject/
 
 ### Prerequisites
 
