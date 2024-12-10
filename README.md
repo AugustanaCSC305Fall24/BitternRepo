@@ -34,7 +34,6 @@ It includes features such as chat messaging, Morse code translation, white noise
   - `ToneGenerator.java`: Generates tones for Morse code.
   - `WhiteNoise.java`: Generates white noise.
 
-## Getting Started
 
 ### Prerequisites
 
