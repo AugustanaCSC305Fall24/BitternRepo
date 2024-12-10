@@ -6,14 +6,84 @@
       "colorCode": "0x000000ff"
     },
     {
-      "text": "GM! What’s the situation?",
-      "sender": "Stonedhall the Fireman",
+      "text": "GM! Ready for action!",
+      "sender": "Abdul the Fireman",
       "colorCode": "0x008080ff"
+    },
+    {
+      "text": "Status?",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "SOS",
+      "sender": "Ben the Victim",
+      "colorCode": "0x000080ff"
+    },
+    {
+      "text": "Status",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "In attic. Water rising fast.",
+      "sender": "Ben the Victim",
+      "colorCode": "0x000080ff"
+    },
+    {
+      "text": "Someone is stuck in the attick",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Uh, get a ladder or... pizza?",
+      "sender": "Leroy the Drunkman",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Someone is stuck in the attic",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Ensure they\u0027re near a window.",
+      "sender": "Abdul the Fireman",
+      "colorCode": "0x008080ff"
+    },
+    {
+      "text": "Get close to the window",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Can\u0027t reach window. Stuck! Help!",
+      "sender": "Ben the Victim",
+      "colorCode": "0x000080ff"
+    },
+    {
+      "text": "Help is on the way",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Thank you. Simulation complete.",
+      "sender": "Ben the Victim",
+      "colorCode": "0x000080ff"
+    },
+    {
+      "text": "Victim was saved",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Happy to help! Simulation complete.",
+      "sender": "Abdul the Fireman",
+      "colorCode": "0x008000ff"
     }
   ],
   "bots": [
     {
-      "name": "Stonedhall the Fireman",
+      "name": "Abdul the Fireman",
       "frequency": 50.0,
       "personalityType": "Fireman",
       "chatLog": [
@@ -28,20 +98,102 @@
           "colorCode": "0x000000ff"
         },
         {
-          "text": "GM! What’s the situation?",
+          "text": "GM! Ready for action!",
           "sender": "assistant",
           "colorCode": "0x008080ff"
+        },
+        {
+          "text": "Someone is stuck in the attic",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Ensure they\u0027re near a window.",
+          "sender": "assistant",
+          "colorCode": "0x008080ff"
+        },
+        {
+          "text": "Victim was saved",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Happy to help! Simulation complete.",
+          "sender": "assistant",
+          "colorCode": "0x008000ff"
         }
       ]
     },
     {
-      "name": "Max the Victim",
-      "frequency": 200.0,
+      "name": "Leroy the Drunkman",
+      "frequency": 100.0,
+      "personalityType": "Drunkman",
+      "chatLog": [
+        {
+          "text": "Drunkman",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Someone is stuck in the attick",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Uh, get a ladder or... pizza?",
+          "sender": "assistant",
+          "colorCode": "0x000000ff"
+        }
+      ]
+    },
+    {
+      "name": "Ben the Victim",
+      "frequency": 150.0,
       "personalityType": "Victim",
       "chatLog": [
         {
           "text": "Victim",
           "sender": "user",
+          "colorCode": "0x000080ff"
+        },
+        {
+          "text": "Status?",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "SOS",
+          "sender": "assistant",
+          "colorCode": "0x000080ff"
+        },
+        {
+          "text": "Status",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "In attic. Water rising fast.",
+          "sender": "assistant",
+          "colorCode": "0x000080ff"
+        },
+        {
+          "text": "Get close to the window",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Can\u0027t reach window. Stuck! Help!",
+          "sender": "assistant",
+          "colorCode": "0x000080ff"
+        },
+        {
+          "text": "Help is on the way",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Thank you. Simulation complete.",
+          "sender": "assistant",
           "colorCode": "0x000080ff"
         }
       ]
