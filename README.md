@@ -4,7 +4,7 @@ Team Bittern's Educational HAM Radio Simulator
 
 ## Overview
 
-The Bittern Project is a Java-based application that simulates a radio communication system. 
+The Bittern Project is a Java-based application that simulates the HAM radio communication system. 
 It includes features such as chat messaging, Morse code translation, white noise generation, and bot interactions.
 
 ## Features
