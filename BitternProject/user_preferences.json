@@ -1,27 +1,128 @@
 {
-  "chatMessages": [],
+  "chatMessages": [
+    {
+      "text": "hello",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "SOS",
+      "sender": "GregTheVictim",
+      "colorCode": "0x0000ffff"
+    },
+    {
+      "text": "status",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "In attic. Water rising fast.",
+      "sender": "GregTheVictim",
+      "colorCode": "0x0000ffff"
+    },
+    {
+      "text": "someone trapped water",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Stay calm. Evacuate higher ground.",
+      "sender": "DerekTheFireman",
+      "colorCode": "0xff0000ff"
+    },
+    {
+      "text": "stay calm . address",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "House on Oak Street, second floor.",
+      "sender": "GregTheVictim",
+      "colorCode": "0x0000ffff"
+    },
+    {
+      "text": "Help is on the way",
+      "sender": "user",
+      "colorCode": "0x000000ff"
+    },
+    {
+      "text": "Thank you. Simulation complete.",
+      "sender": "GregTheVictim",
+      "colorCode": "0x0000ffff"
+    }
+  ],
   "bots": [
     {
-      "name": "EthanTheFireman",
-      "frequency": 150.0,
+      "name": "DerekTheFireman",
+      "frequency": 250.0,
       "personalityType": "Fireman",
       "chatLog": [
         {
           "text": "Fireman",
           "sender": "user",
+          "colorCode": "0xff0000ff"
+        },
+        {
+          "text": "someone trapped water",
+          "sender": "user",
           "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Stay calm. Evacuate higher ground.",
+          "sender": "assistant",
+          "colorCode": "0xff0000ff"
         }
       ]
     },
     {
-      "name": "AlexTheRed cross",
+      "name": "GregTheVictim",
       "frequency": 400.0,
-      "personalityType": "Red cross",
+      "personalityType": "Victim",
       "chatLog": [
         {
-          "text": "Red cross",
+          "text": "Victim",
           "sender": "user",
-          "colorCode": "0xff00ffff"
+          "colorCode": "0x0000ffff"
+        },
+        {
+          "text": "hello",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "SOS",
+          "sender": "assistant",
+          "colorCode": "0x0000ffff"
+        },
+        {
+          "text": "status",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "In attic. Water rising fast.",
+          "sender": "assistant",
+          "colorCode": "0x0000ffff"
+        },
+        {
+          "text": "stay calm . address",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "House on Oak Street, second floor.",
+          "sender": "assistant",
+          "colorCode": "0x0000ffff"
+        },
+        {
+          "text": "Help is on the way",
+          "sender": "user",
+          "colorCode": "0x000000ff"
+        },
+        {
+          "text": "Thank you. Simulation complete.",
+          "sender": "assistant",
+          "colorCode": "0x0000ffff"
         }
       ]
     }
