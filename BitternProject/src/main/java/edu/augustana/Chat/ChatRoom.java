@@ -12,7 +12,6 @@ public class ChatRoom {
 
     public ChatRoom(String roomTitle) {
         this.roomTitle = roomTitle;
-//        chatLogMessageList = new ArrayList<>();
         chatLogMessageList.add(new ChatMessage("Welcome to " +roomTitle+"!", "System", Color.GREEN));
     }
 

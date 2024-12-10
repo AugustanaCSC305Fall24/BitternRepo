@@ -93,9 +93,6 @@ public class ScenarioController extends Controller implements Initializable {
         });
 
 
-
-
-
         // Add Key Event Handler for the Enter Key
         userTextField.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -111,8 +108,6 @@ public class ScenarioController extends Controller implements Initializable {
             }
         });
 
-
-
         for (ChatMessage message : ChatRoom.getChatMessageList()) {
             addMessageToChatLogUI(message);
         }
@@ -124,13 +119,19 @@ public class ScenarioController extends Controller implements Initializable {
         RadioApp.setRoot("AddNewBotView");
     }
 
-
+    public void clearScenarioData() {
+        ChatRoom.getChatMessageList().clear();
+        ChatRoom.getBots().clear();
+        chatLogVBox.getChildren().clear();
+        botListView.getItems().clear();
+    }
 
     @FXML
     private void switchToWelcome(ActionEvent event) throws IOException {
         whiteNoise.reset();
         whiteNoise.stopPlaying();
         saveScenarioToFile();
+        clearScenarioData();
         RadioApp.setRoot("WelcomeScreen");
     }
 
@@ -208,11 +209,7 @@ public class ScenarioController extends Controller implements Initializable {
 
     }
 
-    public void addTranslation(String message, String sender, Color color){
-        ChatMessage newMessage = new ChatMessage(message, sender, color);
-        ChatRoom.addMessage(newMessage);
-        addMessageToChatLogUI(newMessage);
-    }
+
 
     private void sendMessage(String message, String sender, Color color) {
         ChatMessage newMessage = new ChatMessage(message, sender, color);
@@ -278,10 +275,7 @@ public class ScenarioController extends Controller implements Initializable {
 
     }
 
-    public void botMessage(String message) {
-        sendMessage(message, "Bot", Color.BLUE);
-        checkBoxHandler(message);
-    }
+
 
 
     @FXML

@@ -19,7 +19,6 @@ import org.json.JSONObject;
 public class ChatClient {
 
     private static List<ChatMessage> messages = new ArrayList<>();
-    private static ChatBot currentBot;
 
     public ChatClient() {
         messages.add(new ChatMessage("Start HAM radio simuation", "assistant", Color.BLACK));
@@ -34,7 +33,6 @@ public class ChatClient {
 
             ArrayList<ChatMessage> botMessages = bot.getChatLog();
 
-//          botMessages.add(new ChatMessage(bot.getPersonalityType(), "user", Color.BLACK));
             botMessages.add(new ChatMessage(messageContent, "user", Color.BLACK));
 
             ChatRoom.addMessage(new ChatMessage(messageContent, "user", Color.BLACK));
@@ -98,16 +96,8 @@ public class ChatClient {
                     botsColor = Color.GREEN;
 
 
-                //messages.add(new ChatMessage(assistantMessage, "assistant", bot.getColor()));
                 ChatRoom.addMessage(new ChatMessage(assistantMessage, sender, botsColor));
                 botMessages.add(new ChatMessage(assistantMessage, "assistant", botsColor));
-
-
-                //ChatMessage newMessage = new ChatMessage(assistantMessage, "assistant", Color.BLACK);
-
-//                ChatMessage.addMessage(newMessage);
-//                ScenarioController.addMessageToChatLogUI(newMessage);
-
 
 
 
